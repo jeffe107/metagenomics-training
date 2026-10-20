@@ -1,0 +1,75 @@
+site_name: Metagenomics Data Analysis Workshop
+nav:
+    - Home: index.md
+    - Precourse preparations: precourse.md
+    - Course schedule: course_schedule.md
+    - Course material:
+      - General guidelines: course_material/0_guidelines.md
+      - Day 1 - Quality control of raw data: course_material/day1_quality_control.md
+      - Day 2 - Targeted sequencing analysis with DADA2: course_material/day2_targeted_amplification_analysis.md
+      - Day 3 - Reference-based compositional analysis: course_material/day3_reference_based_compositional_analysis.md
+      - Day 4 - MAG analysis: course_material/day4_mag_analysis.md
+
+theme:
+  name: material
+  logo: assets/images/SIB_logo.svg
+  favicon: assets/images/SIB_logo.svg
+  custom_dir: overrides
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - announce.dismiss
+    - content.code.copy
+    - navigation.top
+    - navigation.footer
+
+extra:
+  version:
+    provider: mike
+  consent:
+    title: Cookie consent
+    description: >-
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our training material and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our training material better.
+    cookies:
+      matomo: Matomo Analytics
+
+copyright: >
+  Copyright &copy; 2021-2026 SIB Swiss Institute of Bioinformatics -
+  <a href="#__consent">Change cookie settings</a>
+
+# Repository (update once the repository is created)
+repo_name: sib-swiss/metagenomics-training
+repo_url: https://github.com/sib-swiss/metagenomics-training
+
+markdown_extensions:
+  - abbr
+  - def_list
+  - footnotes
+  - tables
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - sane_lists
+  - smarty
+  - toc
+  - pymdownx.superfences
+  - md_in_html
+  - attr_list
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      options:
+        custom_icons:
+          - overrides/.icons
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/consent.js
