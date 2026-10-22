@@ -2,9 +2,9 @@
 
 ## Course goal
 
-<p style='text-align: justify;'>This course walks you through a complete metagenomics analysis. During the **first session** you will learn how to assess the quality of raw sequencing reads (both short, Illumina-style reads and long, PacBio-style reads) with FastQC and how to interpret the different modules of the FastQC report. During the **second session**, you will process targeted 16S amplicon (eDNA) reads with DADA2: filtering, error correction, merging, chimera removal and taxonomy assignment, followed by a downstream analysis with PhyloSeq (rarefaction, α- and β-diversity, barplots, geographic localisation and a LEfSe analysis). During the **third session**, you will run a Nextflow-based pipeline that performs host removal with Bowtie2, taxonomic classification with Kraken2/Bracken, and visualization with Krona plots. You will then compare samples with Pavian and move to a downstream compositional analysis: building a Phyloseq object from the pipeline output and exploring α- and β-diversity, ordination and network analyses. During the **fourth session**, you will perform an integral analysis of the Metagenome-Assembled Genomes (MAGs) recovered with nf-core/mag: overall quality assessment with the BIgMAG dashboard, inference of the metabolic potential with KEGG Decoder, functional annotation with COGclassifier, dbCAN3 and antiSMASH, genome visualization with Proksee and a pangenome comparison with Roary/Phandango.</p>
+This course walks you through a complete metagenomics analysis across **five days**. On **Day 1** you will learn the core concepts of metagenomics, study-design considerations and sequencing technologies, and how to assess the quality of raw sequencing reads (both short, Illumina-style reads and long, PacBio-style reads) with FastQC. On **Day 2** we cover targeted marker-gene sequencing: after the theory (marker gene selection, primer design, PCR biases, OTUs vs ASVs), you will process 16S amplicon (eDNA) reads with DADA2 (filtering, error correction, merging, chimera removal, taxonomy assignment), followed by a downstream analysis with PhyloSeq (rarefaction, α- and β-diversity, barplots, geographic localisation and a LEfSe analysis). On **Day 3** we move to shotgun (whole-genome) metagenomics: how depth and coverage shape the analysis, k-mer vs alignment-based read classification, and a Nextflow-based pipeline that performs host removal with Bowtie2, taxonomic classification with Kraken2/Bracken and visualization with Krona plots. You will then compare samples with Pavian and build a Phyloseq object from the pipeline output to explore α- and β-diversity, ordination and network analyses. On **Day 4** we deal with assembly and binning: principles of _de novo_ metagenome assembly, the challenges of community complexity and strain microdiversity, and the binning strategies (MetaBAT2, MaxBin2 and friends) used by nf-core/mag to recover Metagenome-Assembled Genomes. On **Day 5** we close the analysis arc with the integral analysis of the recovered MAGs — quality assessment with BUSCO/CheckM2 and the BIgMAG dashboard, metabolic potential with KEGG Decoder, functional annotation with COGclassifier, dbCAN3 and antiSMASH, genome visualization with Proksee and a pangenome comparison with Roary/Phandango — before zooming out to FAIR data and reproducible analyses with workflow managers and containers.
 
-<p style='text-align: justify;'>By the end of the course, you will have run a complete metagenomics workflow from raw reads to biological interpretation, and you will be able to interpret the outputs at each stage: FastQC reports, DADA2 denoising outputs, Kraken2/Bracken reports, Krona plots, Pavian comparisons and Phyloseq figures.</p>
+By the end of the course, you will have run a complete metagenomics workflow from raw reads to biological interpretation, and you will be able to interpret the outputs at each stage: FastQC reports, DADA2 denoising outputs, Kraken2/Bracken reports, Krona plots, Pavian comparisons, Phyloseq figures and MAG quality/functional annotation outputs.
 
 ## Software
 
@@ -103,12 +103,17 @@ If something is not clear at any point, please raise your hand and we will do ou
 
 **After having completed this course you will be able to:**
 
+* Explain the core concepts of metagenomics, design a study (replication, controls, sampling, sequencing strategy) and distinguish targeted from shotgun approaches.
 * Run FastQC on short and long reads and interpret its main report modules.
 * Process targeted 16S amplicon reads with DADA2 and analyse the recovered ASVs with PhyloSeq (rarefaction, α- and β-diversity, geographic mapping and LEfSe).
+* Explain how sequencing depth and coverage shape a shotgun metagenomics analysis, and how k-mer- and alignment-based classifiers work.
 * Run a reference-based metagenomics characterization pipeline (Bowtie2 → Kraken2/Bracken → Krona).
 * Compare taxa across samples interactively with Krona plots and Pavian.
 * Build a Phyloseq object from a BIOM file and sample metadata.
 * Estimate α- and β-diversity and run ordination and network analyses.
-* Assess the quality and taxonomy of MAGs with the BIgMAG dashboard.
+* Explain the principles of _de novo_ metagenome assembly and evaluate assembly quality.
+* Describe binning strategies and their role in recovering MAGs.
+* Assess the quality and taxonomy of MAGs with BUSCO/CheckM2 and the BIgMAG dashboard.
 * Infer the metabolic potential of MAGs with KEGG Decoder.
 * Annotate functional categories (COG, CAZymes, biosynthetic gene clusters), visualize genomes with Proksee and run a pangenome analysis.
+* Apply the FAIR principles and use workflow managers/containers to make metagenomics analyses reproducible.

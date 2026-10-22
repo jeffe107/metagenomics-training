@@ -22,3 +22,45 @@ article ul ul {
 article ul ul ul {
     list-style-type:  square !important;
 }
+
+/*Justify body paragraphs without interfering with Markdown rendering*/
+article p {
+    text-align: justify;
+}
+
+/* terminal */
+.md-typeset .admonition.terminal,
+.md-typeset details.terminal {
+  border-color: #1e5c2e;
+}
+.md-typeset .terminal > .admonition-title,
+.md-typeset .terminal > summary {
+  background-color: rgba(30, 92, 46, 0.1);
+}
+.md-typeset .terminal > .admonition-title::before,
+.md-typeset .terminal > summary::before {
+  background-color: #1e5c2e;
+  -webkit-mask-image: var(--md-admonition-icon--terminal);
+  mask-image: var(--md-admonition-icon--terminal);
+}
+
+.profile img {
+    display: block;
+    margin: 0 auto;
+}
+
+/* question */
+.md-typeset .admonition.question,
+.md-typeset details.question {
+  border-color: #5a9468;
+}
+.md-typeset .question > .admonition-title,
+.md-typeset .question > summary {
+  background-color: rgba(90, 148, 104, 0.1);
+}
+.md-typeset .question > .admonition-title::before,
+.md-typeset .question > summary::before {
+  background-color: #5a9468;
+  -webkit-mask-image: var(--md-admonition-icon--question);
+  mask-image: var(--md-admonition-icon--question);
+}

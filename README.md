@@ -17,10 +17,11 @@
 
 ## Course content
 
-* **Day 1 - Quality control of raw data**: quality control overview, read types, a FastQC hands-on exercise with short (Illumina), long (PacBio) and metagenomics datasets.
-* **Day 2 - Targeted sequencing analysis with DADA2**: processing of targeted 16S amplicon (eDNA) reads with DADA2 (filtering, error correction, merging, chimera removal, taxonomy assignment), followed by a downstream Phyloseq analysis (rarefaction, α- and β-diversity, barplots, geographic mapping and LEfSe).
-* **Day 3 - Reference-based compositional analysis**: a Nextflow-based Kraken2/Bracken pipeline, Krona plots, Pavian, and a downstream Phyloseq analysis (α- and β-diversity, ordination and networks).
-* **Day 4 - MAG analysis**: integral analysis of Metagenome-Assembled Genomes (MAGs) - quality assessment with BIgMAG, metabolic potential with KEGG Decoder, functional annotation (COG, CAZymes, biosynthetic gene clusters), genome visualization with Proksee and pangenome analysis.
+* **Day 1 - Introduction and quality control**: metagenomics concepts, study design, sequencing technologies (short and long reads); quality control overview and a FastQC hands-on exercise with short (Illumina), long (PacBio) and metagenomics datasets.
+* **Day 2 - Targeted sequencing analysis**: amplicon sequencing theory (marker genes, primer design, PCR biases, OTUs vs ASVs); processing of targeted 16S amplicon (eDNA) reads with DADA2 (filtering, error correction, merging, chimera removal, taxonomy assignment), followed by a downstream Phyloseq analysis (rarefaction, α- and β-diversity, barplots, geographic mapping and LEfSe).
+* **Day 3 - Shotgun metagenomics and downstream analysis**: principles of whole-genome shotgun sequencing (depth, coverage, classification vs profiling); a Nextflow-based Kraken2/Bracken pipeline, Krona plots, Pavian, and a downstream Phyloseq analysis (α- and β-diversity, ordination and networks).
+* **Day 4 - Metagenome assembly and binning**: principles of _de novo_ metagenome assembly and quality metrics; binning strategies (MetaBAT2, MaxBin2) and exploration of the MAGs recovered with nf-core/mag.
+* **Day 5 - MAG annotation and FAIR data**: integral analysis of Metagenome-Assembled Genomes (MAGs) - quality assessment with BUSCO/CheckM2 and BIgMAG, metabolic potential with KEGG Decoder, functional annotation (COG, CAZymes, biosynthetic gene clusters), genome visualization with Proksee and pangenome analysis; FAIR data and reproducibility with workflow managers and containers.
 
 More material may be appended as new days are added to the course.
 

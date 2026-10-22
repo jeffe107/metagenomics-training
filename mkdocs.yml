@@ -1,14 +1,15 @@
-site_name: Metagenomics Data Analysis Workshop
+site_name: Metagenomic Data Analysis of Microbial Communities (MGMC01)
 nav:
     - Home: index.md
     - Precourse preparations: precourse.md
     - Course schedule: course_schedule.md
+    - Course instructor: instructor.md
     - Course material:
-      - General guidelines: course_material/0_guidelines.md
-      - Day 1 - Quality control of raw data: course_material/day1_quality_control.md
-      - Day 2 - Targeted sequencing analysis with DADA2: course_material/day2_targeted_amplification_analysis.md
-      - Day 3 - Reference-based compositional analysis: course_material/day3_reference_based_compositional_analysis.md
-      - Day 4 - MAG analysis: course_material/day4_mag_analysis.md
+      - Day 1 - Introduction and quality control: course_material/day1_introduction_quality_control.md
+      - Day 2 - Targeted sequencing analysis: course_material/day2_targeted_amplification_analysis.md
+      - Day 3 - Shotgun metagenomics and downstream analysis: course_material/day3_reference_based_compositional_analysis.md
+      - Day 4 - Metagenome assembly and binning: course_material/day4_assembly_and_binning.md
+      - Day 5 - MAG annotation and FAIR data: course_material/day5_mag_annotation_and_fair.md
 
 theme:
   name: material
@@ -17,6 +18,16 @@ theme:
   custom_dir: overrides
   icon:
     repo: fontawesome/brands/github
+    admonition:
+      catalog: octicons/thumbsup-16
+      courses: octicons/book-16
+      terminal: octicons/terminal-16
+      full-code: material/code-block-braces
+      learning: octicons/mortar-board-16
+      people: octicons/people-16
+      licensing: octicons/law-16
+      videos: octicons/video-16
+      question: octicons/question-16
   features:
     - announce.dismiss
     - content.code.copy

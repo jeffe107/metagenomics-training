@@ -1,22 +1,68 @@
-# Day 2 - Targeted sequencing analysis with DADA2
+# Day 2 - Targeted sequencing analysis
 
 ## Learning outcomes
 
 **After having completed this chapter you will be able to:**
 
+* Explain the principles of amplicon-based (targeted) metagenomics and the rationale behind marker gene selection (16S rRNA, ITS).
+* Discuss how primer design, PCR amplification and library preparation introduce biases in targeted metagenomics.
+* Contrast OTU- and ASV-based workflows and justify the choice between them.
 * Process Illumina paired-end 16S amplicon (eDNA) reads with the DADA2 pipeline: quality assessment, filtering, error correction, merging, chimera removal and taxonomy assignment.
 * Build a Phyloseq object from the DADA2 outputs (ASV table and taxonomy) and the sample metadata.
 * Assess the sequencing effort with rarefaction curves and estimate α-diversity (Shannon, Simpson, Chao1).
 * Explore β-diversity with an NMDS ordination and barplots of the most abundant taxa.
 * Map the samples geographically and run a LEfSe analysis to identify taxa that discriminate the sampled fractions.
 
-## Objective
+## Session 3 - Targeted sequencing I (Introduction and theory)
 
-<p style='text-align: justify;'>This session introduces a **targeted-amplicon (16S rRNA) analysis** of environmental DNA (eDNA) samples collected along the Danube river, using the R package DADA2 and the downstream analysis toolbox PhyloSeq. You start from raw Illumina paired-end reads, go through the classical denoising pipeline, and finish with ecological and statistical interpretation of the recovered ASVs (Amplicon Sequence Variants).</p>
+### Principles of amplicon-based sequencing
 
-## About the data
+Targeted (amplicon) metagenomics does not sequence all the DNA in a sample. Instead, it amplifies and sequences a **specific marker gene** present in all members of a target group, using PCR with primers that flank a conserved region. The variable regions between the primers then serve as a molecular fingerprint for taxonomic identification. Because only a tiny fraction of the community DNA is sequenced, amplicon approaches are cheap, tolerate low DNA yields and can reach very high numbers of samples — at the price of capturing **who is there**, but generally not **what they can do**.
 
-<p style='text-align: justify;'>The dataset is extracted from a study of the bacterial diversity along the Danube river, published by [Savio et al. (2015)](https://ami-journals.onlinelibrary.wiley.com/doi/10.1111/1462-2920.12886) (BioProject accession [PRJNA256993](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA256993)). We provide a subset of **24 samples** to fit the schedule of the session. The samples were amplified with primers **Bakt_341F** and **Bakt_805R** (V3–V4 region of the 16S rRNA gene), using 2×250 bp paired-end Illumina reads. Samples were collected at different positions along the river (downstream distance in km, `pos_km`), depths and size fractions (0.2 µm vs. 3 µm). A preview of the sample metadata is shown below:</p>
+### Marker gene selection
+
+The choice of marker gene defines the resolution and the scope of the study:
+
+* **16S rRNA gene** — the standard marker for bacteria and archaea. Combines conserved regions (for universal primer binding) with nine variable regions (V1–V9) carrying taxonomic signal. Typical amplicons target V3–V4, V4 or V1–V2, ~250–450 bp.
+* **ITS (Internal Transcribed Spacer)** — the official marker for fungi. Much more variable than 16S, which gives excellent species-level resolution but makes reference databases and primer specificity more challenging.
+* **Other markers** — 18S rRNA for eukaryotes, _rpoB_/_gyrB_ for higher resolution in specific groups, or multi-marker panels.
+
+### Primer design, PCR biases and library preparation
+
+Every PCR step imprints itself on the data, and understanding these biases is essential to interpret the results correctly:
+
+* **Primer coverage and specificity** — no primer pair is truly universal. Mismatches at the binding site cause systematic under-detection (or complete missing) of some taxa; in silico coverage tests against reference databases should guide primer choice.
+* **Amplification bias** — primers do not amplify all targets with equal efficiency; GC content, secondary structures and template length all play a role.
+* **Chimeras** — partially extended molecules from one template can prime on another during later PCR cycles, creating artificial sequences that must be removed computationally.
+* **Tag switching / index hopping** — sample cross-contamination on the sequencer, mitigated by unique dual indexes.
+* **Library preparation strategies** — two-stage (2-step) PCR protocols (amplicon PCR + indexing PCR) are standard for Illumina sequencing; amplicon length must match the chosen read length so that paired reads overlap (e.g. V3–V4 ~460 bp with 2×250 bp reads).
+
+!!! info "Design checklist"
+    Whenever you evaluate a published amplicon study — or design your own — check: which marker and variable region? Which primer pair (and its coverage)? How many negatives and mock communities? How many biological replicates? These determine what the data can (and cannot) support.
+
+### OTUs vs ASVs
+
+Two paradigms exist to turn raw amplicon reads into discrete features:
+
+| | **OTUs** (Operational Taxonomic Units) | **ASVs** (Amplicon Sequence Variants) |
+|---|---|---|
+| Inference | Greedy clustering of reads at a similarity threshold (typically 97%) | Model-based denoising of exact sequences (error model per run) |
+| Resolution | Genus-ish; single-nucleotide variants collapsed | Single-nucleotide resolution |
+| Reproducibility | Depends on the dataset and algorithm (pipeline-specific) | Exact sequences — comparable across studies |
+| Noise handling | Abundance filters (e.g. remove singletons) | Probabilistic error and chimera removal |
+| Example tools | UPARSE, VSEARCH, mothur | DADA2, UNOISE3, Deblur |
+
+Modern amplicon workflows (and this course) use **ASVs**: they are more precise, reproducible and better suited for combining studies. In **Session 4** we will process real 16S reads into ASVs with DADA2 and interpret the resulting community tables ecologically.
+
+## Session 4 - Targeted sequencing II (Downstream analyses)
+
+### Objective
+
+This session introduces a **targeted-amplicon (16S rRNA) analysis** of environmental DNA (eDNA) samples collected along the Danube river, using the R package DADA2 and the downstream analysis toolbox PhyloSeq. You start from raw Illumina paired-end reads, go through the classical denoising pipeline, and finish with ecological and statistical interpretation of the recovered ASVs (Amplicon Sequence Variants).
+
+### About the data
+
+The dataset is extracted from a study of the bacterial diversity along the Danube river, published by [Savio et al. (2015)](https://ami-journals.onlinelibrary.wiley.com/doi/10.1111/1462-2920.12886) (BioProject accession [PRJNA256993](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA256993)). We provide a subset of **24 samples** to fit the schedule of the session. The samples were amplified with primers **Bakt_341F** and **Bakt_805R** (V3–V4 region of the 16S rRNA gene), using 2×250 bp paired-end Illumina reads. Samples were collected at different positions along the river (downstream distance in km, `pos_km`), depths and size fractions (0.2 µm vs. 3 µm). A preview of the sample metadata is shown below:
 
 | Code | Collection date | Depth | Fraction | Country | Latitude | Longitude | pos_km |
 |------|-----------------|-------|----------|---------|----------|-----------|--------|
@@ -33,9 +79,9 @@
 | II089F | 23.09.07 | 10 | 0.2 | Romania | 45.30175 | 27.99807 | 167 |
 | II009A | 18.08.07 | 10 | 3 | Austria | 48.19670 | 15.05291 | 2061 |
 
-<p style='text-align: justify;'>**Part I** follows the steps for processing the Illumina reads: QC, cleaning, filtering, error correction, merging, and taxonomy assignment, using the DADA2 pipeline described in the [DADA2 tutorial](https://benjjneb.github.io/dada2/tutorial.html). **Part II** uses these results for the downstream analysis: α-diversity, β-diversity, various plots, geographic localisation, and linear discriminant analysis (LEfSe) to highlight interesting differences and taxa.</p>
+**Part I** follows the steps for processing the Illumina reads: QC, cleaning, filtering, error correction, merging, and taxonomy assignment, using the DADA2 pipeline described in the [DADA2 tutorial](https://benjjneb.github.io/dada2/tutorial.html). **Part II** uses these results for the downstream analysis: α-diversity, β-diversity, various plots, geographic localisation, and linear discriminant analysis (LEfSe) to highlight interesting differences and taxa.
 
-## Material
+### Material
 
 * The cleaned reads (`EU2cleanreads` folder, not hosted on this website because of their size) — download and extract them from the **Moodle page**.
 * The sample metadata: [:fontawesome-solid-file-csv: PRJNA256993_SraRunTable.txt](../assets/data/PRJNA256993_SraRunTable.txt){: .md-button }
@@ -46,13 +92,13 @@
 !!! info "Skipping Part I?"
     If you prefer (or reach the end of the session), you can skip the DADA2 denoising step and load directly the pre-computed `seqtab2.nochim.rds` and `taxa.rds` files to start the downstream analysis of **Part II**.
 
-## Part I - Sequence processing with DADA2
+### Part I - Sequence processing with DADA2
 
-<p style='text-align: justify;'>For the first part we will process the 24 samples of 16S amplicon reads (2×250 bp paired-end Illumina reads) that have already been trimmed of primers and adapters by cutadapt. The workflow follows the steps of the [DADA2 tutorial](https://benjjneb.github.io/dada2/tutorial.html): quality assessment, filtering, learning the error rates, denoising, merging paired reads, chimera removal and taxonomy assignment. DADA2 implements a model-based error-correction method that resolves Amplicon Sequence Variants (ASVs) differing by just a single nucleotide.</p>
+For the first part we will process the 24 samples of 16S amplicon reads (2×250 bp paired-end Illumina reads) that have already been trimmed of primers and adapters by cutadapt. The workflow follows the steps of the [DADA2 tutorial](https://benjjneb.github.io/dada2/tutorial.html): quality assessment, filtering, learning the error rates, denoising, merging paired reads, chimera removal and taxonomy assignment. DADA2 implements a model-based error-correction method that resolves Amplicon Sequence Variants (ASVs) differing by just a single nucleotide.
 
-### Experimental setting
+#### Experimental setting
 
-<p style='text-align: justify;'>Open RStudio, create a working directory (we will use `~/Desktop/eDNAworkshop2024`) and place the reads in a subdirectory named `EU2cleanreads`. Download the metadata file from the [Material](#material) section and copy it to the working directory. Then run:</p>
+Open RStudio, create a working directory (we will use `~/Desktop/eDNAworkshop2024`) and place the reads in a subdirectory named `EU2cleanreads`. Download the metadata file from the [Material](#material) section and copy it to the working directory. Then run:
 
 ```r title="Experimental setting" linenums="1"
 options(conflicts.policy = list(warn = FALSE)) #this line removes all warnings of function masking
@@ -76,9 +122,9 @@ fnRs <- sort(list.files(path, pattern="_2trim.fastq.gz", full.names = TRUE))
 sample.names <- sapply(strsplit(basename(fnFs), "_"), `[`, 1)
 ```
 
-### Data QC: quality profiles
+#### Data QC: quality profiles
 
-<p style='text-align: justify;'>DADA2 includes a plotting function to inspect the quality of the reads (analogous to what you did with FastQC in [Day 1](day1_quality_control.md)). Here we plot the quality profiles of the first forward and reverse reads:</p>
+DADA2 includes a plotting function to inspect the quality of the reads (analogous to what you did with FastQC in [Day 1](day1_introduction_quality_control.md)). Here we plot the quality profiles of the first forward and reverse reads:
 
 ```r title="Quality profiles" linenums="1"
 #now we plot the QC of the first two Forward and Reverse reads
@@ -98,9 +144,9 @@ plotQualityProfile(fnRs[1:2])
   <figcaption>Quality profiles of the first two reverse reads. The quality drops after position ~230.</figcaption>
 </figure>
 
-### Filtering and truncation of reads
+#### Filtering and truncation of reads
 
-<p style='text-align: justify;'>We filter the reads with the standard parameters: `maxN=0` (DADA2 requires no Ns), `truncQ=2`, `rm.phix=TRUE` and `maxEE=2`. The `maxEE` parameter sets the maximum number of "expected errors" allowed in a read, which is a better filter than simply averaging quality scores. In this case we do not truncate the reads (`truncLen=0`) but in other cases it could be adjusted, e.g. `truncLen=c(220,160)`.</p>
+We filter the reads with the standard parameters: `maxN=0` (DADA2 requires no Ns), `truncQ=2`, `rm.phix=TRUE` and `maxEE=2`. The `maxEE` parameter sets the maximum number of "expected errors" allowed in a read, which is a better filter than simply averaging quality scores. In this case we do not truncate the reads (`truncLen=0`) but in other cases it could be adjusted, e.g. `truncLen=c(220,160)`.
 
 ```r title="Filter and trim" linenums="1"
 # Filter and place filtered files in filtered/ subdirectory
@@ -115,12 +161,12 @@ out <- filterAndTrim(fnFs, filtFs, fnRs, filtRs, truncLen=0,
 head(out)
 ```
 
-### Learn the error rates and correct the reads
+#### Learn the error rates and correct the reads
 
 !!! warning "Slow step"
     This part is relatively slow (about 5 min on a laptop).
 
-<p style='text-align: justify;'>DADA2 learns the error rates from the data itself using a machine-learning algorithm, once for the forward and once for the reverse reads:</p>
+DADA2 learns the error rates from the data itself using a machine-learning algorithm, once for the forward and once for the reverse reads:
 
 ```r title="Learn the error rates" linenums="1"
 errF <- learnErrors(filtFs, multithread=TRUE)
@@ -145,7 +191,7 @@ plotErrors(errR, nominalQ=TRUE)
   <figcaption>Estimated error rates for the reverse reads.</figcaption>
 </figure>
 
-<p style='text-align: justify;'>Everything looks reasonable, so we can proceed with confidence and apply the core sample-inference algorithm:</p>
+Everything looks reasonable, so we can proceed with confidence and apply the core sample-inference algorithm:
 
 ```r title="Denoise the reads" linenums="1"
 #We are now ready to apply the core sample DADA2 inference algorithm to the filtered and trimmed sequence data.
@@ -157,9 +203,9 @@ dadaFs[[1]]
 !!! info "Pooling samples"
     By default, the `dada` function processes each sample independently. Pooling information across samples can increase sensitivity to sequence variants that may be present at very low frequencies in multiple samples. `dada(..., pool=TRUE)` performs standard pooled processing, whereas `dada(..., pool="pseudo")` (used above) shares information between samples while processing them independently, approximating pooled inference in linear time. You'll find an explanation [here](https://benjjneb.github.io/dada2/pseudo.html).
 
-### Merging the reads
+#### Merging the reads
 
-<p style='text-align: justify;'>Now we merge the forward and reverse reads into a single amplicon sequence and write a FASTA file with the merged sequences per sample:</p>
+Now we merge the forward and reverse reads into a single amplicon sequence and write a FASTA file with the merged sequences per sample:
 
 ```r title="Merge paired reads" linenums="1"
 merged <- mergePairs(dadaFs, filtFs, dadaRs, filtRs, verbose=TRUE)
@@ -176,9 +222,9 @@ for(nm in names(merged)) {
 }
 ```
 
-### Construct the sequence table
+#### Construct the sequence table
 
-<p style='text-align: justify;'>We build a table of counts for all merged sequences (one column per ASV) and inspect the distribution of sequence lengths:</p>
+We build a table of counts for all merged sequences (one column per ASV) and inspect the distribution of sequence lengths:
 
 ```r title="Sequence table" linenums="1"
 # We make a table of counts for all sequences merged
@@ -197,9 +243,9 @@ table(nchar(getSequences(seqtab)))
 seqtab2 <- seqtab[,nchar(colnames(seqtab)) %in% 450:481]
 ```
 
-### Remove chimeras
+#### Remove chimeras
 
-<p style='text-align: justify;'>Chimeras are PCR artifacts that must be identified and removed. We use the consensus method and check the proportion of reads kept:</p>
+Chimeras are PCR artifacts that must be identified and removed. We use the consensus method and check the proportion of reads kept:
 
 ```r title="Remove chimeras" linenums="1"
 seqtab2.nochim <- removeBimeraDenovo(seqtab2, method="consensus", multithread=TRUE, verbose=TRUE)
@@ -210,9 +256,9 @@ sum(seqtab2.nochim)/sum(seqtab2)
 write.table(t(seqtab2.nochim), "seqtab-nochim.txt", sep="\t", row.names=TRUE, col.names=NA, quote=FALSE)
 ```
 
-### Track reads through the pipeline
+#### Track reads through the pipeline
 
-<p style='text-align: justify;'>It is important to keep track of how many reads survive each step. We build a table that summarises the number of reads at each stage of the pipeline:</p>
+It is important to keep track of how many reads survive each step. We build a table that summarises the number of reads at each stage of the pipeline:
 
 ```r title="Track read counts" linenums="1"
 getN <- function(x) sum(getUniques(x))
@@ -224,14 +270,14 @@ rownames(track) <- sample.names
 head(track)
 ```
 
-<p style='text-align: justify;'>Looks good! We kept the majority of our raw reads, and there is no over-large drop associated with any single step.</p>
+Looks good! We kept the majority of our raw reads, and there is no over-large drop associated with any single step.
 
-### Assign taxonomy
+#### Assign taxonomy
 
 !!! warning "Slow step"
     This part is very slow: about 45 min on an old laptop! Once launched, go for a break.
 
-<p style='text-align: justify;'>We assign a taxon to each ASV using the reference Silva database v138 (download it from the [Material](#material) section):</p>
+We assign a taxon to each ASV using the reference Silva database v138 (download it from the [Material](#material) section):
 
 ```r title="Assign taxonomy" linenums="1"
 #We assign a taxon for each ASV using the Reference Silva database v138
@@ -251,15 +297,15 @@ saveRDS(seqtab2.nochim, 'seqtab2.nochim.rds')
 saveRDS(taxa, 'taxa.rds')
 ```
 
-<p style='text-align: justify;'>This is the end of **Part I**. Move on to **Part II** for the downstream analysis.</p>
+This is the end of **Part I**. Move on to **Part II** for the downstream analysis.
 
-## Part II - Downstream analysis with PhyloSeq
+### Part II - Downstream analysis with PhyloSeq
 
-<p style='text-align: justify;'>In this second part we analyse the DADA2 outputs with PhyloSeq and friends: α-diversity, β-diversity, barplots, geographic localisation and a LEfSe analysis. If you skipped Part I, load the pre-computed `seqtab2.nochim.rds` and `taxa.rds` files from the [Material](#material) section.</p>
+In this second part we analyse the DADA2 outputs with PhyloSeq and friends: α-diversity, β-diversity, barplots, geographic localisation and a LEfSe analysis. If you skipped Part I, load the pre-computed `seqtab2.nochim.rds` and `taxa.rds` files from the [Material](#material) section.
 
-### PhyloSeq setting
+#### PhyloSeq setting
 
-<p style='text-align: justify;'>We build a `phyloseq` object that combines the ASV count table, the sample metadata and the taxonomy table:</p>
+We build a `phyloseq` object that combines the ASV count table, the sample metadata and the taxonomy table:
 
 ```r title="Build the Phyloseq object" linenums="1"
 #BiocManager::install("phyloseq")
@@ -298,9 +344,9 @@ ps <- phyloseq(otu_table(seqtab2.nochim, taxa_are_rows=FALSE),
 ps
 ```
 
-### Rarefaction curves & richness plots
+#### Rarefaction curves & richness plots
 
-<p style='text-align: justify;'>Plotting the rarefaction curve is a quality check to verify that we reached saturation of the sampling. We then add the ASV sequences to the object and rename the ASVs, and check the α-diversity with several richness indices, either by Depth or by Fraction, along the river:</p>
+Plotting the rarefaction curve is a quality check to verify that we reached saturation of the sampling. We then add the ASV sequences to the object and rename the ASVs, and check the α-diversity with several richness indices, either by Depth or by Fraction, along the river:
 
 ```r title="Rarefaction and richness" linenums="1"
 #plotting the rarefaction curve is a quality check to verify that we reached saturation of the sampling
@@ -336,9 +382,9 @@ plot_richness(ps, x="pos_km", color="factor(Fraction)", measures=c("Shannon", "S
 !!! question "Question"
     Can you see an effect?
 
-### Shannon plot with regression
+#### Shannon plot with regression
 
-<p style='text-align: justify;'>We now focus on the Shannon diversity, plotting the regression line by Fraction size along the river:</p>
+We now focus on the Shannon diversity, plotting the regression line by Fraction size along the river:
 
 ```r title="Shannon diversity with regression" linenums="1"
 #OK we will focus on the Shannon diversity, but plotting the regression line by Fraction size
@@ -367,9 +413,9 @@ p3
 !!! question "Question"
     Do you see a clear separation of the Fraction?
 
-### Beta diversity and barplots
+#### Beta diversity and barplots
 
-<p style='text-align: justify;'>We transform the data to proportions (appropriate for Bray-Curtis distances) and ordinate the samples with a non-metric multidimensional scaling (NMDS). We also plot the genus and phylum abundance per sample:</p>
+We transform the data to proportions (appropriate for Bray-Curtis distances) and ordinate the samples with a non-metric multidimensional scaling (NMDS). We also plot the genus and phylum abundance per sample:
 
 ```r title="Beta diversity and barplots" linenums="1"
 #Transform data to proportions as appropriate for Bray-Curtis distances
@@ -414,9 +460,9 @@ plot_bar(ps.top1000, x="BioSample", fill="Phylum") + geom_bar(aes(color=Phylum, 
 !!! question "Question"
     Are there differences?
 
-### Phylogeo localisation
+#### Phylogeo localisation
 
-<p style='text-align: justify;'>What about the geographic localisation of the samples? We use the [`phylogeo`](http://zachcp.github.io/phylogeo/) package to map the sample coordinates to geographic maps:</p>
+What about the geographic localisation of the samples? We use the [`phylogeo`](http://zachcp.github.io/phylogeo/) package to map the sample coordinates to geographic maps:
 
 ```r title="Geographic maps with phylogeo" linenums="1"
 #What about the geographic localisation of the samples?
@@ -438,7 +484,7 @@ map_phyloseq(ps, region=c("Bulgaria"))
 map_phyloseq(ps, region=c("Romania"))
 ```
 
-<p style='text-align: justify;'>This is what you should obtain for each country:</p>
+This is what you should obtain for each country:
 
 <table>
   <tr>
@@ -455,7 +501,7 @@ map_phyloseq(ps, region=c("Romania"))
   </tr>
 </table>
 
-<p style='text-align: justify;'>As this is not practical and frozen, we can map the samples on an interactive leaflet map, similar to Google Maps. Unfortunately the `htmlmap_phyloseq()` function is deprecated and cannot be used anymore, so we build the map with `sf` and `mapview`:</p>
+As this is not practical and frozen, we can map the samples on an interactive leaflet map, similar to Google Maps. Unfortunately the `htmlmap_phyloseq()` function is deprecated and cannot be used anymore, so we build the map with `sf` and `mapview`:
 
 ```r title="Interactive map with mapview" linenums="1"
 #As this is not practical and frozen, we will map on a leaflet map similar to googlemaps
@@ -475,9 +521,9 @@ my_sites<- sf::st_as_sf(my_sites, coords=c("longitude","latitude"), crs=4326)
 mapview::mapview(my_sites)
 ```
 
-### LEfSe analysis
+#### LEfSe analysis
 
-<p style='text-align: justify;'>Can we identify taxa that are specific for the two fractions (0.2 µm vs. 3 µm)? We use LEfSe (**L**inear discriminant analysis **E**ffect **S**ize) on the genus table with the `microbiomeMarker` package:</p>
+Can we identify taxa that are specific for the two fractions (0.2 µm vs. 3 µm)? We use LEfSe (**L**inear discriminant analysis **E**ffect **S**ize) on the genus table with the `microbiomeMarker` package:
 
 ```r title="LEfSe analysis" linenums="1"
 #Can we identify taxa that are specific for the two fractions?
@@ -497,15 +543,15 @@ microbiomeMarker::plot_ef_bar(lef_out)
   <figcaption>LEfSe results: genera with a significant Linear Discriminant Analysis (LDA) effect size between the two fractions.</figcaption>
 </figure>
 
-<p style='text-align: justify;'>Some taxa are known from lakes, rivers or seas (CL500-29 marine group, Halioglobus, Polynucleobacter) or from sediment/water interfaces (Gemmatimonas, Opitutus, Brevundimonas, Ilumatobacter, Sediminibacterium, Solitalea), and even some potential pathogens (Roseomonas). The hgcl-clade group is typical of areas associated with urban and industrial activities.</p>
+Some taxa are known from lakes, rivers or seas (CL500-29 marine group, Halioglobus, Polynucleobacter) or from sediment/water interfaces (Gemmatimonas, Opitutus, Brevundimonas, Ilumatobacter, Sediminibacterium, Solitalea), and even some potential pathogens (Roseomonas). The hgcl-clade group is typical of areas associated with urban and industrial activities.
 
 ## Summary
 
-<p style='text-align: justify;'>Several tools were introduced to analyse 16S amplicon sequences from different samples along 2,600 km of the Danube river. The first part related to processing of the read data: QC, cleaning, filtering, error correction, merging, and taxonomy assignment. The second part related to α-diversity, β-diversity, various plots, geographic localisation, and linear discriminant analysis to highlight some interesting differences and taxa.</p>
+Several tools were introduced to analyse 16S amplicon sequences from different samples along 2,600 km of the Danube river. The first part related to processing of the read data: QC, cleaning, filtering, error correction, merging, and taxonomy assignment. The second part related to α-diversity, β-diversity, various plots, geographic localisation, and linear discriminant analysis to highlight some interesting differences and taxa.
 
 ## Additional resources
 
-<p style='text-align: justify;'>If you want to explore more in detail how you can expand your analysis, please check the following resources:</p>
+If you want to explore more in detail how you can expand your analysis, please check the following resources:
 
 * [DADA2 tutorial](https://benjjneb.github.io/dada2/tutorial.html)
 * [DADA2 pseudo-pooling](https://benjjneb.github.io/dada2/pseudo.html)
