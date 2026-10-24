@@ -57,11 +57,81 @@ Sequencing technologies have evolved to provide us with different types of reads
 ??? tip "Not either/or"
     Increasingly, studies combine both technologies in **hybrid** assemblies, using short reads for accuracy and long reads for continuity. Throughout this course you will work mainly with Illumina short reads, but the QC principles you learn apply to long reads as well — you will see PacBio data in the practical below.
 
-
 !!! info "Further reading"
     For an expanded overview and in-depth discussion of metagenomics data analysis scope, we recommend this reading:
 
     [:fontawesome-solid-file-pdf: Further reading](../assets/pdf/Analysis-of-metagenomic-data.pdf){: .md-button }
+
+### Practical Activity: Design Your Own Metagenomics Study
+
+**Objective:** Design a metagenomics study to answer a scientific question, considering sampling strategy, experimental design, sequencing technology, and potential limitations.
+
+**Instructions:** Read your assigned scenario and try to answer the questions in the box.
+
+??? question "Scenario 1"
+    **Scenario 1 — Rice Straw Decomposition**
+
+    > **Your mission:** Help farmers understand how microorganisms contribute to rice straw decomposition.
+
+    Rice straw contains cellulose, hemicellulose, and lignin. A research team wants to determine whether applying a microbial inoculant improves decomposition and changes the microbial community.
+
+    | **Topic** | **Questions** |
+    |---|---|
+    | **Research question** | What hypothesis would you test? |
+    | **Study design** | Which treatments, controls, replicates, and sampling time points would you include? |
+    | **Sequencing** | Would you choose amplicon sequencing, short-read shotgun, or long-read sequencing? Why? |
+    | **Expected results** | How would you identify microorganisms with potential lignocellulose-degrading capabilities? |
+
+??? question "Scenario 2"
+    **Scenario 2 — Antibiotic Resistance in Wastewater**
+
+    > **Your mission:** Investigate whether wastewater treatment reduces the environmental spread of antibiotic resistance.
+
+    Hospital wastewater may contain antibiotic resistance genes and resistant bacteria. Researchers want to compare wastewater before and after treatment and investigate which microorganisms carry resistance genes.
+
+    | **Topic** | **Questions** |
+    |---|---|
+    | **Research question** | What would you measure to evaluate changes in antibiotic resistance? |
+    | **Study design** | Where would you sample, and how would you account for temporal variation? |
+    | **Sequencing** | Which approach would help identify resistance genes and link them to microbial genomes? |
+    | **Expected results** | Would detecting fewer resistance genes prove that resistant bacteria have been eliminated? What additional evidence would you need? |
+
+??? question "Scenario 3"
+    **Scenario 3 — Diet and the Human Gut Microbiome**
+
+    > **Your mission:** Investigate whether a high-fiber diet changes the gut microbiome.
+
+    A research team wants to determine whether a high-fiber dietary intervention changes microbial composition and functional potential, and whether these changes are associated with improved metabolic health.
+
+    | **Topic** | **Questions** |
+    |---|---|
+    | **Research question** | What hypothesis would you test? |
+    | **Study design** | How would you compare participants and account for individual differences? |
+    | **Sequencing** | Would you choose amplicon sequencing, shotgun metagenomics, or metatranscriptomics? |
+    | **Expected results** | Can DNA sequencing alone demonstrate that microbial genes are actively expressed or that the microbiome caused a health improvement? |
+
+??? question "Scenario 4"
+    **Scenario 4 — Discovering Industrial Enzymes**
+
+    > **Your mission:** Discover microbial enzymes that could improve the conversion of agricultural residues into valuable products.
+
+    A biotechnology company wants to find novel enzymes from microorganisms living in environments such as compost, hot springs, and industrial wastewater. The goal is to identify promising candidates for industrial applications.
+
+    | **Discuss with your team** | **Questions** |
+    |---|---|
+    | **Research question** | Which environments would you sample, and why? |
+    | **Study design** | How would you select samples and biological replicates? |
+    | **Sequencing** | Which sequencing technology would best support enzyme discovery and linking genes to microbial genomes? |
+    | **Expected results** | How would you distinguish a predicted enzyme function from experimentally demonstrated activity? |
+
+??? question "Final Challenge: Your Budget Is Cut by 50%!"
+    In each case, revise the study design.
+
+    - What would you prioritize: more biological replicates, deeper sequencing, or additional sampling time points?
+    - What would you sacrifice, and how would this affect your conclusions?
+    - What is the most important scientific question your revised study could still answer?
+
+---
 
 ## Session 2 - Quality control and contamination assessment
 
@@ -94,8 +164,8 @@ If not done already, login to your GitHub account and create the Codespaces trai
 
 !!! terminal "CodeSpaces"
     ```bash title="Download datasets"
-    # create the working directory
-    mkdir workshop && cd "$_"
+    # go to the working directory
+    cd workshop
 
     # download the tarball of the files and untar, go to the directory created
     wget https://zenodo.org/api/records/15318985/files/data.tar/content
@@ -124,6 +194,15 @@ If not done already, login to your GitHub account and create the Codespaces trai
 
     * Do you see an impact of the cleaning?
 
+??? success "After cleaning"
+
+    | Module | Status | What it shows | Interpretation |
+    |---|---|---|---|
+    | Per base sequence content | ❌ FAIL | ~100% single-base spikes at positions 1–9 (G-A-C-T-A-C-…-G-G-G), then irregular swings along the read | Expected for amplicons: all reads cover the same region, so base composition is fixed at each position. The primer is likely still present and should be removed (e.g. cutadapt) before ASV/OTU calling. |
+    | Per sequence GC content | ⚠️ WARNING | Narrow peak at ~57–58% GC (narrower than the theoretical curve), small shoulder at ~47–48% | Expected for amplicons: reads come from one short, conserved region, so GC is uniform. The shoulder may reflect lower-GC taxa. Smooth shape, so no contamination signal. |
+    | Sequence duplication levels | ❌ FAIL | Only 8.66% of reads would remain after deduplication | Expected for amplicons: abundant taxa produce identical sequences. **Do not deduplicate**, since abundance information would be lost. |
+    | Overrepresented sequences | ❌ FAIL | Top sequence = 4.05% of reads. Dozens of near-identical entries (0.5–3% each), all starting `GACTAC…GGGTATCTAATCC…`, labelled "No Hit" | Expected for amplicons: these are the primer region plus variants from different taxa (and some sequencing errors). "No Hit" means they are not in FastQC's contaminant list, so the primer is not recognised. |
+
 #### 5. Compare with those results files for a WGS sequencing of a single genome
 
 TO-DO
@@ -131,8 +210,18 @@ TO-DO
 * [Forward reads]()
 * [Reverse reads]()
 
-!!! question ""
+!!! question "Amplicon sequencing vs WGS of single-genome"
     * What are the differences?
+
+??? success "Amplicon sequencing vs WGS of single-genome"
+    | Module | 16S amplicon | Single genome | Why they differ |
+    |---|---|---|---|
+    | Basic statistics | 294,158 reads, fixed 160 bp, 54% GC | 957,850 reads, 35–151 bp, 70% GC | Amplicons give uniform length and a GC value set by the 16S region. The genome's GC (70%) is a property of the organism (a high-GC genome). |
+    | Per base sequence content | ❌ FAIL: ~100% single-base spikes at positions 1–9, irregular swings along the whole read | ❌ FAIL: bias only in the first ~10–15 bp, then flat lines (C ≈ G ≈ 35%, A ≈ T ≈ 15%) | Same flag, different cause. In the amplicon sample every read starts with the primer and the whole read is the same region. In the single-genome sample the flat profile after ~15 bp is what a random genome fragment library should look like. The 5′ bias is typical of library-prep bias (e.g. transposase/tagmentation or priming), not a primer. |
+    | Per sequence GC content | ⚠️ WARNING: narrow peak at ~57–58% plus a shoulder | ⚠️ WARNING: single peak at ~71–72%, slightly taller and narrower than theoretical | The peak in the amplicon sequencing is narrow because all reads are one conserved region. The one in the single-genome sample is a single smooth peak, consistent with one genome and no obvious contamination. The warning is minor. |
+    | Sequence length distribution | ✅ PASS (159–161 bp) | ⚠️ WARNING (35–151 bp, most reads at 151) | FL_S8 reads were trimmed (adapters/quality), so the lengths vary. Amplicon reads were trimmed to one fixed length. |
+    | Sequence duplication levels | ❌ FAIL: 8.66% remain after deduplication | ✅ PASS: 88.21% remain after deduplication | Amplicons are duplicated by design. A single genome sampled at modest depth should give mostly unique reads. |
+    | Overrepresented sequences | ❌ FAIL: primer-derived sequences at 0.5–4% each | ✅ PASS: none | Only the amplicon library has a few sequences dominating the reads. |
 
 #### 6. Second sample: Targeted 16S dataset from PacBio sequencing (1600bp)
 
@@ -179,47 +268,50 @@ Go to the directory WGS_shortReads_MOCK:
 
 ### Tips: FastQC output explained
 
+!!! tip "Reading the report at a glance"
+    Each module is flagged **pass** (green), **warning** (yellow) or **fail** (red). A single warning does not automatically mean the data are bad, meaning that modules must be interpreted together; always compare raw _vs_ cleaned reads. In metagenomics, some deviations (e.g. GC content or duplication) are expected because a sample contains many organisms.
+
 The most relevant modules to look at when assessing the quality of your reads:
 
-#### Per Sequence Quality Scores
+| Module | What it shows | What to look for |
+|--------|---------------|------------------|
+| **Per Sequence Quality Scores** | Distribution of the average quality score over all reads. | A second peak at low quality reveals a subset of poor-quality reads. |
+| **Per Base Sequence Content** | Proportion of each base (A, T, C, G) at each position across all reads. | A non-random or strongly biased profile suggests contamination or a library-construction bias. |
+| **Per Sequence GC Content** | Observed GC distribution compared with a theoretical distribution. | A shifted or secondary peak can indicate contamination or an unexpected organism. |
+| **Per Base N Content** | Proportion of bases called as `N` at each position (undetermined bases). | A high or rising `N` content points to failing base calls and poor quality. |
+| **Sequence Length Distribution** | Distribution of read lengths. | Unexpected lengths may reflect trimming problems, degradation or adapter read-through. |
+| **Sequence Duplication Levels** | Percentage of reads that are duplicates of other reads. | High duplication suggests PCR amplification bias or low-complexity libraries. |
+| **Overrepresented Sequences** | Sequences appearing more often than expected. | Can be adapter, primer, rRNA or a contaminant — or genuinely abundant biological sequence. |
+| **Adapter Content** | Presence of adapter sequences along the reads. | Adapter content rising towards the read end means trimming is needed. |
+| **Kmer Content** | Kmers (short nucleotide sequences) that are overrepresented at particular positions. | Position-specific anomalies can indicate contamination or biases. |
 
-This graph shows the distribution of the average quality score over all reads. It helps to identify if a subset of reads has poor quality.
-
-#### Per Base Sequence Content
-
-This section assesses the proportion of each base (A, T, C, G) at each position across all reads. A non-random distribution suggests a possible contamination or bias in the library construction.
-
-#### Per Sequence GC Content
-
-This plot compares the GC distribution of the reads to a theoretical distribution. A significant deviation from the expected distribution can indicate contamination.
-
-#### Per Base N Content
-
-This part shows the proportion of bases called as 'N' at each position, which represents a base that could not be determined.
-
-#### Sequence Length Distribution
-
-This section shows if there are any reads that are not the expected length, which could be indicative of quality issues.
-
-#### Sequence Duplication Levels
-
-This plot shows the percentage of reads that are duplicates of other reads, which can suggest PCR amplification bias.
-
-#### Overrepresented Sequences
-
-A list of sequences that appear more often than expected. This could be due to biological significance or technical artifacts.
-
-#### Adapter Content
-
-This section identifies DNA sequences from adapters that might have been ligated to the small fragments of DNA prior to sequencing.
-
-#### Kmer Content
-
-The final analysis shows kmer (short nucleotide sequence) counts that are overrepresented on the read. Anomalies in this section can also indicate contamination or biases.
+!!! warning "Some modules are expected to warn in metagenomics"
+    Duplication levels, GC content and per-base sequence content can look unusual simply because many genomes are mixed together. Interpret these modules in the context of the sample type, and give more weight to quality scores, adapter content and overrepresented sequences.
 
 ### Discussion
 
-* Did the cleaning improve the quality of the reads? In which module(s) do you see the impact?
-* What are the main differences between Illumina short reads, PacBio long reads and metagenomics WGS in terms of quality?
-* How would you proceed if a sample fails the quality control?
-* Where does contamination typically enter a metagenomics experiment, and which controls would you use to detect it?
+Work through the questions below with your neighbour. Open the hint only after you have looked at your reports.
+
+??? question "1. Did the cleaning improve the quality of the reads?"
+    In which module(s) do you see the impact? Compare the raw and cleaned reports side by side.
+
+    ??? tip "Hint"
+        Focus on adapter content, per-base sequence content and overrepresented sequences. Quality scores and `N` content often improve too.
+
+??? question "2. What are the main differences between Illumina short reads, PacBio long reads and metagenomics WGS in terms of quality?"
+    Compare the three datasets you analysed.
+
+    ??? tip "Hint"
+        Consider read length, per-base error profiles, duplication levels and how many organisms contribute to the signal.
+
+??? question "3. How would you proceed if a sample fails the quality control?"
+    Think about the decision tree before reaching for a tool.
+
+    ??? tip "Hint"
+        First identify which module fails and why. Then consider trimming/filtering, removing contamination (host, phiX, adapters), re-extracting or re-sequencing. Document the decision and the parameters used.
+
+??? question "4. Where does contamination typically enter a metagenomics experiment, and which controls would you use to detect it?"
+    Trace the sample from collection to sequencing.
+
+    ??? tip "Hint"
+        Sources include reagents, extraction kits, PCR, the laboratory environment and cross-contamination between samples. Use extraction blanks, PCR blanks and mock communities as negative and positive controls.

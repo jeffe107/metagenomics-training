@@ -13,37 +13,37 @@
 * Build a Phyloseq object from a BIOM file and sample metadata.
 * Estimate α- and β-diversity, and run ordination and network analyses.
 
-## Session 5 - Whole genome sequencing and taxonomic classification
+## Whole genome sequencing and taxonomic classification
 
 ### Principles of shotgun metagenomic sequencing
 
-Unlike targeted amplicon sequencing ([Day 2](day2_targeted_amplification_analysis.md)), shotgun metagenomics sequences **all the DNA present in a sample at once**. The community DNA is fragmented (physically or enzymatically), sequencing adapters are ligated to both ends of every fragment, and the library is sequenced from both sides. No prior knowledge of which organisms are present is required, so the approach captures bacteria, archaea, fungi, viruses and host DNA alike — and, crucially, it delivers **functional information** (genes, pathways, MAGs) in addition to taxonomy.
+Unlike targeted amplicon sequencing ([Day 2](day2_targeted_amplification_analysis.md)), shotgun metagenomics sequences **all the DNA present in a sample at once**. The community DNA is fragmented (physically or enzymatically), sequencing adapters are ligated to both ends of every fragment, and the library is sequenced from both sides. No prior knowledge of which organisms are present is required, so the approach captures bacteria, archaea, fungi, viruses and host DNA. Crucially, it delivers **functional information** (genes, pathways, MAGs) in addition to taxonomy.
 
 ### Library preparation, depth and coverage
 
 Several design decisions determine what a shotgun dataset can resolve:
 
-* **Library preparation** — typically PCR-free or low-cycle protocols are preferred to avoid amplification bias; paired-end short reads (2×150 bp) are the standard, while long-read libraries (PacBio, Nanopore) improve continuity at higher cost and error rate. Host DNA depletion or methylation-based enrichment can be used when the microbial fraction is low (e.g. clinical samples).
-* **Sequencing depth** — how many reads are generated per sample. Shallow shotgun (~1 Gb) supports family-level profiling; deep sequencing (5–20+ Gb) is needed for strain resolution, assembly and MAG recovery.
-* **Coverage** — the number of times a genome is sequenced, which depends on sequencing depth and on the relative abundance of the organism in the community. A genome at 1% relative abundance in a 10 Gb run receives only ~100 Mb of reads — often not enough to assemble. **Abundance and genome size therefore jointly determine which members of a community can be recovered as MAGs.**
-* **Community complexity** — diverse environments (soil, marine) dilute the coverage of individual genomes, while low-complexity communities (gut, enrichment cultures) are more amenable to assembly and binning ([Day 4](day4_assembly_and_binning.md)).
+* **Library preparation**: typically PCR-free or low-cycle protocols are preferred to avoid amplification bias; paired-end short reads (2×150 bp) are the standard, while long-read libraries (PacBio, Nanopore) improve continuity at higher cost and error rate. Host DNA depletion or methylation-based enrichment can be used when the microbial fraction is low (e.g. clinical samples).
+* **Sequencing depth**: how many reads are generated per sample. Shallow shotgun (~1 Gb) supports family-level profiling; deep sequencing (5–20+ Gb) is needed for strain resolution, assembly and MAG recovery.
+* **Coverage**: the number of times a genome is sequenced, which depends on sequencing depth and on the relative abundance of the organism in the community. A genome at 1% relative abundance in a 10 Gb run receives only ~100 Mb of reads (often not enough to assemble). **Abundance and genome size therefore jointly determine which members of a community can be recovered as MAGs.**
+* **Community complexity**: diverse environments (soil, marine) dilute the coverage of individual genomes, while low-complexity communities (gut, enrichment cultures) are more amenable to assembly and binning ([Day 4](day4_assembly_and_binning.md)).
 
 ### Read-based taxonomic classification
 
 Before dealing with assemblies (Days 4–5), the fastest way to obtain a community profile is to classify individual reads against a reference database. Two families of methods dominate:
 
-* **k-mer (hashing)-based** — each read is split into k-mers, and the taxonomy of the k-mers (precomputed from a reference genome database) votes for the most likely origin of the read. Extremely fast and memory-efficient for large databases. _Examples: **Kraken2**, KrakenUniq, Centrifuge._
-* **alignment-based** — reads (or their translated products) are aligned with BLAST or DIAMOND against reference sequences; taxonomies are then transferred from the best hits. Slower, but sensitive for divergent sequences and protein-level (functional) assignment. _Examples: DIAMOND+MEGAN, BLAST-based classifiers._
-* **marker-gene-based** — only reads matching clade-specific marker genes are used (e.g. MetaPhlAn). Compact, but limited to the markers represented in the database.
+* **k-mer (hashing)-based**: each read is split into k-mers, and the taxonomy of the k-mers (precomputed from a reference genome database) votes for the most likely origin of the read. Extremely fast and memory-efficient for large databases. _Examples: **Kraken2**, KrakenUniq, Centrifuge._
+* **alignment-based**: reads (or their translated products) are aligned with BLAST or DIAMOND against reference sequences; taxonomies are then transferred from the best hits. Slower, but sensitive for divergent sequences and protein-level (functional) assignment. _Examples: DIAMOND+MEGAN, BLAST-based classifiers._
+* **marker-gene-based**: only reads matching clade-specific marker genes are used (e.g. MetaPhlAn). Compact, but limited to the markers represented in the database.
 
 !!! warning "The database is the analysis"
-    All reference-based methods are only as good as their database: incomplete or mislabelled references produce false positives and missing taxa. Always record which database version (and which taxa are underrepresented) you used — this returns on [Day 5](day5_mag_annotation_and_fair.md) when we discuss FAIR data and reproducibility.
+    All reference-based methods are only as good as their database: incomplete or mislabelled references produce false positives and missing taxa. Always record which database version you used.
 
-## Session 6 - Taxonomic classification and downstream analysis
+## Session 5 - Taxonomic classification
 
 ### Objective
 
-Carry out a downstream analysis using the Kraken2/Bracken output to report important insights in terms of differences among samples.
+Execute an end-to-end workflow with the aim of performing taxonomic classification and abundance estimation, as well as analyze preliminary results.
 
 ### About the data
 
@@ -63,57 +63,119 @@ The experiment metadata used throughout this chapter:
 | ERR2143770 | Fertilized | 2 |
 | ERR2143773 | Fertilized | 3 |
 
-[You can download the CSV file here](../assets/data/test_sheet.csv){: .md-button }
-
 ### The pipeline
 
-For this course, we propose to wrap with Nextflow the protocol published by [Jennifer Lu et al. (2022)](https://www.nature.com/articles/s41596-022-00738-y). The workflow is designed as follows:
+For this course, we propose to wrap with Nextflow the protocol published by [Jennifer Lu et al. (2022)](https://www.nature.com/articles/s41596-022-00738-y). The wrapped workflow is called [TaxoFlow](https://gigabytejournal.com/articles/187) and is designed as follows:
 
 <figure markdown align="center">
-  ![Kraken2/Bracken workflow](../assets/images/workflow_kraken.png)
+  ![Kraken2/Bracken workflow](../assets/images/workflow_taxoflow.png)
   <figcaption>Reference-based metagenomics workflow used throughout this session.</figcaption>
 </figure>
 
 As you can see from the picture, the input is FASTQ files from one or multiple samples, then it performs a host removal with Bowtie2 by aligning the reads against an indexed reference genome to carry out the taxonomic classification with Kraken2 afterwards. Taking the output from Kraken2, a Bayesian species abundance re-estimation is achieved with Bracken, and Krona plots are generated using the Bracken output to visualize interactively the relative abundance of each annotated species. If multiple samples are used as input to the pipeline, the bracken reports will be concatenated and converted into a Biological Observation Matrix (BIOM) file. Finally, the BIOM file will be first converted in a Phyloseq object, and this object will be further processed to generate absolute plots, estimate both α and β-diversity and perform a network analysis; this information will be presented in a final report.html.
 
-!!! warning "This is only a mock execution/dry run"
-    The run performed during the course uses a **viral database and an indexed yeast genome** given the computational constraints in Codespaces. For a proper analysis you can download the proper resources [here](https://benlangmead.github.io/aws-indexes/).
-
 ### Running the pipeline
 
-Let's go then to Codespaces to run the pipeline. First, we are going to move to the proper directory to run the pipeline; you should be in the directory `nf4-science`. Copy and paste the following commands in the terminal:
+!!! warning "This is only a mock execution/dry run"
+    The run performed during the course uses a mock data given the computational constraints in Codespaces. For a proper analysis you can download the proper resources [here](https://benlangmead.github.io/aws-indexes/).
 
-```console title="Move to the pipeline directory" linenums="1"
-code .
-rm -r content
-mv data/metagenomics ./
-cd metagenomics
-```
+Copy and paste the following commands in the Codespaces terminal:
 
-We are ready to run the pipeline then, with the commands:
+!!! terminal "CodeSpaces"
+    ```bash title="Download Kraken DB"
+    cd workshop/TaxoFlow
+    mkdir -p data/krakendb && cd "$_"
+    wget --no-check-certificate --no-proxy 'https://zenodo.org/api/records/17708950/files/krakendb.tar.gz/content'
+    tar -xvzf content
+    rm -r content
+    cd -
+    ```
 
-```console title="Run the pipeline" linenums="1"
-export JAVA_CMD=/usr/local/sdkman/candidates/java/current/bin/java
-export NXF_VER=24.10.6
-nextflow run main.nf --sheet_csv 'data/samplesheet.csv'
-```
+!!! terminal "CodeSpaces"
+    ```bash title="Download indexed genome"
+    mkdir -p data/TAIR10 && cd "$_"
+    wget --no-check-certificate --no-proxy 'https://genome-idx.s3.amazonaws.com/bt/TAIR10.zip'
+    unzip TAIR10.zip
+    rm -r TAIR10.zip
+    cd -
+    ```
 
-Once it has finished, go back to the working directory:
+The directoy of the pipeline will contain:
 
-```console title="Return to the working directory" linenums="1"
-cd ..
-```
+??? abstract "Directory content"
+    ```bash title="Directory content"
+    .
+    ├── bin
+    │   └── report.Rmd
+    ├── data
+    │   ├── krakendb
+    │   │   ├── database250mers.kmer_distrib
+    │   │   ├── database250mers.kraken
+    │   │   ├── database.kraken
+    │   │   ├── hash.k2d
+    │   │   ├── names.dmp
+    │   │   ├── nodes.dmp
+    │   │   ├── opts.k2d
+    │   │   ├── seqid2taxid.map
+    │   │   └── taxo.k2d
+    │   ├── samples
+    │   │   ├── ERR2143768
+    │   │   │   ├── ERR2143768_1.fastq.gz
+    │   │   │   └── ERR2143768_2.fastq.gz
+    │   │   ├── ERR2143770
+    │   │   │   ├── ERR2143770_1.fastq.gz
+    │   │   │   └── ERR2143770_2.fastq.gz
+    │   │   └── ERR2143774
+    │   │       ├── ERR2143774_1.fastq.gz
+    │   │       └── ERR2143774_2.fastq.gz
+    │   ├── samplesheet.csv
+    │   └── TAIR10
+    │       ├── TAIR10.1.bt2
+    │       ├── TAIR10.2.bt2
+    │       ├── TAIR10.3.bt2
+    │       ├── TAIR10.4.bt2
+    │       ├── TAIR10.dict
+    │       ├── TAIR10.manifest.json
+    │       ├── TAIR10.rev.1.bt2
+    │       └── TAIR10.rev.2.bt2
+    ├── main.nf
+    ├── modules
+    │   ├── bowtie2.nf
+    │   ├── bracken.nf
+    │   ├── fastqc.nf
+    │   ├── knit_phyloseq
+    │   │   ├── environment.yml
+    │   │   └── knit_phyloseq.nf
+    │   ├── kraken2.nf
+    │   ├── kraken_biom.nf
+    │   ├── kReport2Krona.nf
+    │   ├── ktImportText.nf
+    │   ├── multiqc.nf
+    │   └── trimgalore.nf
+    ├── nextflow.config
+    └── taxoflow.nf
+    ```
 
-!!! warning "Mock execution"
-    As mentioned before, this was a mock execution, and therefore to perform a real analysis, we have used a proper Kraken2 database for you to analyze the results below.
+We are ready to run the pipeline with the command:
 
-### Krona plots
+!!! terminal "CodeSpaces"
+    ```bash title="Execute pipeline"
+    nextflow run main.nf --sheet_csv 'data/samplesheet.csv' -profile docker
+    ```
 
-These are the Krona plots depicting the species abundance per sample.
+??? warning "Mock execution"
+    As mentioned before, this was a mock execution, and therefore to perform a real analysis, we have used a proper Kraken2 database for you to analyze the results below. Moreover, for your analysis you need to define the database and indexed genome you want to implement.
 
-**As a reminder, Krona plots are interactive, multi-layered pie charts used to visualize hierarchic data derived from taxonomic annotation of the sequences.**
+??? info "more about TaxoFlow"
+    TaxoFlow is both a tutorial and a pipeline. You can learn more about [here](https://taxoflow.work/).
 
-Use the dropdown to switch between samples:
+### Pipeline's output
+
+#### Krona plots
+
+One of the main and most useful outputs of Taxoflow is Krona plots. These are interactive, multi-layered pie charts used to visualize hierarchic data derived from taxonomic annotation of the sequences.
+
+You can check all of them here:
 
 <select id="kronaSelect">
   <option value="krona1">ERR2143758</option>
@@ -168,6 +230,13 @@ Now, perform a visual inspection of the results, and consider the following ques
 
 !!! question "Question"
     Do you observe any difference among samples/replicates, at what taxonomic level?
+
+## Session 6 - Downstream analysis
+
+### Objective
+
+Carry out a downstream analysis using the Kraken2/Bracken output to report important insights in terms of differences among samples.
+
 
 ### Phyloseq object
 
