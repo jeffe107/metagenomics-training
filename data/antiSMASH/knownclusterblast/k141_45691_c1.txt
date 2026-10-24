@@ -1,0 +1,15 @@
+ClusterBlast scores for k141_45691
+
+Table of genes, locations, strands and annotations of query cluster:
+KKNACEHJ_02922	131	791	+	hypothetical protein	
+KKNACEHJ_02923	881	1895	-	hypothetical protein	
+KKNACEHJ_02924	2200	3883	-	Ribonuclease Y	
+KKNACEHJ_02925	3987	4287	-	hypothetical protein	
+KKNACEHJ_02926	4346	4658	-	hypothetical protein	
+KKNACEHJ_02927	4859	7301	-	Phenylalanine--tRNA ligase beta subunit	
+
+
+Significant hits: 
+
+
+Details:

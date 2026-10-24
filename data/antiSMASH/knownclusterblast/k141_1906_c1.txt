@@ -1,0 +1,19 @@
+ClusterBlast scores for k141_1906
+
+Table of genes, locations, strands and annotations of query cluster:
+KKNACEHJ_01549	114	888	+	Putative aliphatic sulfonates transport permease protein SsuC	
+KKNACEHJ_01550	1157	2147	+	hypothetical protein	
+KKNACEHJ_01551	2143	4927	+	D-alanine--D-alanyl carrier protein ligase	
+KKNACEHJ_01552	5061	5793	+	hypothetical protein	
+KKNACEHJ_01553	5770	6631	+	hypothetical protein	
+KKNACEHJ_01554	6655	7831	+	hypothetical protein	
+KKNACEHJ_01555	8086	9874	+	Heterocyst differentiation ATP-binding protein HepA	
+KKNACEHJ_01556	10163	13385	+	TonB-dependent receptor P3	
+KKNACEHJ_01557	13403	14819	+	hypothetical protein	
+KKNACEHJ_01558	15835	16660	+	Transcriptional regulatory protein BtsR	
+
+
+Significant hits: 
+
+
+Details:

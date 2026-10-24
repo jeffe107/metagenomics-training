@@ -1,0 +1,15 @@
+ClusterBlast scores for k141_6189
+
+Table of genes, locations, strands and annotations of query cluster:
+KKNACEHJ_03597	321	1758	+	CC-adding tRNA nucleotidyltransferase	
+KKNACEHJ_03598	1783	2581	-	hypothetical protein	
+KKNACEHJ_03599	2917	3880	-	hypothetical protein	
+KKNACEHJ_03600	3981	4977	-	hypothetical protein	
+KKNACEHJ_03601	5099	6833	-	Decarbamoylnovobiocin carbamoyltransferase	
+KKNACEHJ_03602	7149	7401	+	hypothetical protein	
+
+
+Significant hits: 
+
+
+Details:

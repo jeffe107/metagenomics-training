@@ -1,0 +1,19 @@
+ClusterBlast scores for k141_1484
+
+Table of genes, locations, strands and annotations of query cluster:
+KKNACEHJ_01316	328	1042	-	Phosphoribosylformylglycinamidine synthase subunit PurQ	
+KKNACEHJ_01317	1120	2113	-	hypothetical protein	
+KKNACEHJ_01318	2625	3600	+	Octaprenyl diphosphate synthase	
+KKNACEHJ_01319	3948	4446	+	hypothetical protein	
+KKNACEHJ_01320	4442	6203	+	hypothetical protein	
+KKNACEHJ_01321	6213	6669	+	hypothetical protein	
+KKNACEHJ_01323	7447	7882	-	hypothetical protein	
+KKNACEHJ_01324	7985	8870	-	hypothetical protein	
+KKNACEHJ_01325	8976	9771	-	hypothetical protein	
+KKNACEHJ_01326	9777	10695	-	hypothetical protein	
+
+
+Significant hits: 
+
+
+Details:

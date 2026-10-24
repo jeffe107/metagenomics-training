@@ -1,0 +1,37 @@
+ClusterBlast scores for k141_24443
+
+Table of genes, locations, strands and annotations of query cluster:
+KKNACEHJ_02470	308	563	-	hypothetical protein	
+KKNACEHJ_02471	813	1401	-	ECF RNA polymerase sigma factor SigR	
+KKNACEHJ_02472	1888	2080	-	hypothetical protein	
+KKNACEHJ_02473	2521	3373	-	hypothetical protein	
+KKNACEHJ_02474	3373	4210	-	15-cis-phytoene synthase	
+KKNACEHJ_02475	4363	5152	-	zeta-carotene-forming phytoene desaturase	
+
+
+Significant hits: 
+1. BGC0000650	carotenoid
+
+
+Details:
+
+>>
+1. BGC0000650
+Source: carotenoid
+Type: Terpene
+Number of proteins with BLAST hits to this cluster: 2
+Cumulative BLAST score: 653.0
+
+Table of genes, locations, strands and annotations of subject cluster:
+ABB88947.1	ABB88947.1	29	541	+	ORF1
+ABB88948.1	ABB88948.1	546	2024	+	CrtI
+ABB88949.1	ABB88949.1	2171	3013	+	CrtB
+ABB88950.1	ABB88950.1	3016	3726	+	CrtYcd
+ABB88951.1	ABB88951.1	3730	4575	+	IspH
+ABB88952.1	ABB88952.1	4533	5303	+	CrtW
+ABB88953.1	ABB88953.1	5264	7720	+	hypothetical_protein
+
+Table of Blast hits (query gene, subject gene, %identity, blast score, %coverage, e-value):
+KKNACEHJ_02474	ABB88949.1	59	325	98.56115107913669	5.24e-112
+KKNACEHJ_02475	ABB88948.1	62	328	98.47328244274809	1.11e-110
+

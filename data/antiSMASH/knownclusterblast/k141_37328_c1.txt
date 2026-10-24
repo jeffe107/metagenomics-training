@@ -1,0 +1,20 @@
+ClusterBlast scores for k141_37328
+
+Table of genes, locations, strands and annotations of query cluster:
+KKNACEHJ_02083	8336	9158	-	hypothetical protein	
+KKNACEHJ_02084	9567	11766	+	hypothetical protein	
+KKNACEHJ_02085	12065	13256	-	hypothetical protein	
+KKNACEHJ_02086	13283	15746	-	hypothetical protein	
+KKNACEHJ_02087	15761	18641	-	hypothetical protein	
+KKNACEHJ_02088	19231	23248	-	hypothetical protein	
+KKNACEHJ_02089	23827	24007	+	hypothetical protein	
+KKNACEHJ_02090	24404	25679	-	4-hydroxy-2,2'-bipyrrole-5-methanol synthase PigH	
+KKNACEHJ_02091	26058	27180	-	Kynurenine 3-monooxygenase	
+KKNACEHJ_02092	27329	28031	-	hypothetical protein	
+KKNACEHJ_02093	28011	29103	-	Alpha-pyrone synthesis polyketide synthase-like Pks18	
+
+
+Significant hits: 
+
+
+Details:
