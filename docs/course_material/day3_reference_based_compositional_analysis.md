@@ -177,6 +177,7 @@ One of the main and most useful outputs of Taxoflow is Krona plots. These are in
 
 You can check all of them here:
 
+<div class="kronaWidget">
 <select id="kronaSelect">
   <option value="krona1">ERR2143758</option>
   <option value="krona2">ERR2143759</option>
@@ -189,15 +190,16 @@ You can check all of them here:
   <option value="krona9">ERR2143773</option>
 </select>
 
-<iframe id="krona1" class="kronaFrame" src="../assets/krona/ERR2143758.krona.html" width="100%" height="600px"></iframe>
-<iframe id="krona2" class="kronaFrame" src="../assets/krona/ERR2143759.krona.html" width="100%" height="600px" style="display:none;"></iframe>
-<iframe id="krona3" class="kronaFrame" src="../assets/krona/ERR2143760.krona.html" width="100%" height="600px" style="display:none;"></iframe>
-<iframe id="krona4" class="kronaFrame" src="../assets/krona/ERR2143771.krona.html" width="100%" height="600px" style="display:none;"></iframe>
-<iframe id="krona5" class="kronaFrame" src="../assets/krona/ERR2143772.krona.html" width="100%" height="600px" style="display:none;"></iframe>
-<iframe id="krona6" class="kronaFrame" src="../assets/krona/ERR2143774.krona.html" width="100%" height="600px" style="display:none;"></iframe>
-<iframe id="krona7" class="kronaFrame" src="../assets/krona/ERR2143769.krona.html" width="100%" height="600px" style="display:none;"></iframe>
-<iframe id="krona8" class="kronaFrame" src="../assets/krona/ERR2143770.krona.html" width="100%" height="600px" style="display:none;"></iframe>
-<iframe id="krona9" class="kronaFrame" src="../assets/krona/ERR2143773.krona.html" width="100%" height="600px" style="display:none;"></iframe>
+<iframe id="krona1" class="kronaFrame" src="../../assets/krona/ERR2143758.krona.html" width="100%" height="600px"></iframe>
+<iframe id="krona2" class="kronaFrame" src="../../assets/krona/ERR2143759.krona.html" width="100%" height="600px" style="display:none;"></iframe>
+<iframe id="krona3" class="kronaFrame" src="../../assets/krona/ERR2143760.krona.html" width="100%" height="600px" style="display:none;"></iframe>
+<iframe id="krona4" class="kronaFrame" src="../../assets/krona/ERR2143771.krona.html" width="100%" height="600px" style="display:none;"></iframe>
+<iframe id="krona5" class="kronaFrame" src="../../assets/krona/ERR2143772.krona.html" width="100%" height="600px" style="display:none;"></iframe>
+<iframe id="krona6" class="kronaFrame" src="../../assets/krona/ERR2143774.krona.html" width="100%" height="600px" style="display:none;"></iframe>
+<iframe id="krona7" class="kronaFrame" src="../../assets/krona/ERR2143769.krona.html" width="100%" height="600px" style="display:none;"></iframe>
+<iframe id="krona8" class="kronaFrame" src="../../assets/krona/ERR2143770.krona.html" width="100%" height="600px" style="display:none;"></iframe>
+<iframe id="krona9" class="kronaFrame" src="../../assets/krona/ERR2143773.krona.html" width="100%" height="600px" style="display:none;"></iframe>
+</div>
 
 <script>
 document.getElementById("kronaSelect").addEventListener("change", function () {
