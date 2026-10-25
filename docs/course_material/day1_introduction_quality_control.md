@@ -153,7 +153,7 @@ You will use the Codespaces environment in GitHub Education, download a sample d
 
 If not done already, login to your GitHub account and create the Codespaces training environment <span style="color:red">opening this link in a new tab:</span>
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/sib-swiss/metagenomics-training?quickstart=1)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/jeffe107/metagenomics-training?quickstart=1)
 
 #### 1. Install FastQC in the codespace and copy the dataset to your working directory
 

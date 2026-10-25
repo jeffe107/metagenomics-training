@@ -73,7 +73,7 @@ You will be provided with a link to create the workspace in GitHub Codespaces au
 
 This is the link to GitHub Codespaces:
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/sib-swiss/metagenomics-training?quickstart=1)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/jeffe107/metagenomics-training?quickstart=1)
 
 !!! warning "Create your Codespaces account"
     We use the free tier of [GitHub Codespaces](https://github.com/features/codespaces). Please create your account before the course, but **do not start using the Codespace yet** — the free tier has limited computing hours and storage, and they can run out quickly.

@@ -1,0 +1,2149 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../day2_targeted_amplification_analysis/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/SIB_logo.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
+    
+    
+      
+        <title>Day 3 - Shotgun metagenomics and downstream analysis - Metagenomic Data Analysis of Microbial Communities (MGMC01)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--catalog:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M8.347.631A.75.75%200%200%201%209.123.26l.238.04a3.25%203.25%200%200%201%202.591%204.098L11.494%206h.665a3.25%203.25%200%200%201%203.118%204.167l-1.135%203.859A2.75%202.75%200%200%201%2011.503%2016H6.586a3.75%203.75%200%200%201-2.184-.702A1.75%201.75%200%200%201%203%2016H1.75A1.75%201.75%200%200%201%200%2014.25v-6.5C0%206.784.784%206%201.75%206h3.417a.25.25%200%200%200%20.217-.127ZM4.75%2013.649l.396.33c.404.337.914.521%201.44.521h4.917a1.25%201.25%200%200%200%201.2-.897l1.135-3.859A1.75%201.75%200%200%200%2012.159%207.5H10.5a.75.75%200%200%201-.721-.956l.731-2.558a1.75%201.75%200%200%200-1.127-2.14L6.69%206.611a1.75%201.75%200%200%201-1.523.889H4.75ZM3.25%207.5h-1.5a.25.25%200%200%200-.25.25v6.5c0%20.138.112.25.25.25H3a.25.25%200%200%200%20.25-.25Z%22/%3E%3C/svg%3E');--md-admonition-icon--courses:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M0%201.75A.75.75%200%200%201%20.75%201h4.253c1.227%200%202.317.59%203%201.501A3.74%203.74%200%200%201%2011.006%201h4.245a.75.75%200%200%201%20.75.75v10.5a.75.75%200%200%201-.75.75h-4.507a2.25%202.25%200%200%200-1.591.659l-.622.621a.75.75%200%200%201-1.06%200l-.622-.621A2.25%202.25%200%200%200%205.258%2013H.75a.75.75%200%200%201-.75-.75Zm7.251%2010.324.004-5.073-.002-2.253A2.25%202.25%200%200%200%205.003%202.5H1.5v9h3.757a3.75%203.75%200%200%201%201.994.574M8.755%204.75l-.004%207.322a3.75%203.75%200%200%201%201.992-.572H14.5v-9h-3.495a2.25%202.25%200%200%200-2.25%202.25%22/%3E%3C/svg%3E');--md-admonition-icon--terminal:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M0%202.75C0%201.784.784%201%201.75%201h12.5c.966%200%201.75.784%201.75%201.75v10.5A1.75%201.75%200%200%201%2014.25%2015H1.75A1.75%201.75%200%200%201%200%2013.25Zm1.75-.25a.25.25%200%200%200-.25.25v10.5c0%20.138.112.25.25.25h12.5a.25.25%200%200%200%20.25-.25V2.75a.25.25%200%200%200-.25-.25ZM7.25%208a.75.75%200%200%201-.22.53l-2.25%202.25a.749.749%200%200%201-1.275-.326.75.75%200%200%201%20.215-.734L5.44%208%203.72%206.28a.749.749%200%200%201%20.326-1.275.75.75%200%200%201%20.734.215l2.25%202.25c.141.14.22.331.22.53m1.5%201.5h3a.75.75%200%200%201%200%201.5h-3a.75.75%200%200%201%200-1.5%22/%3E%3C/svg%3E');--md-admonition-icon--full-code:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M5%203c-1.1%200-2%20.9-2%202s-.9%202-2%202v2c1.1%200%202%20.9%202%202s.9%202%202%202h2v-2H5v-1c0-1.1-.9-2-2-2%201.1%200%202-.9%202-2V5h2V3m4%200c1.1%200%202%20.9%202%202s.9%202%202%202v2c-1.1%200-2%20.9-2%202s-.9%202-2%202H9v-2h2v-1c0-1.1.9-2%202-2-1.1%200-2-.9-2-2V5H9V3zm11%203v12c0%201.11-.89%202-2%202H4a2%202%200%200%201-2-2v-3h2v3h16V6h-2.97V4H20c1.11%200%202%20.89%202%202%22/%3E%3C/svg%3E');--md-admonition-icon--learning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M7.693%201.066a.75.75%200%200%201%20.614%200l7.25%203.25a.75.75%200%200%201%200%201.368L13%206.831v2.794c0%201.024-.81%201.749-1.66%202.173-.893.447-2.075.702-3.34.702q-.417%200-.816-.036a.75.75%200%200%201%20.133-1.494Q7.649%2011%208%2011c1.082%200%202.025-.221%202.67-.543.69-.345.83-.682.83-.832V7.503L8.307%208.934a.75.75%200%200%201-.614%200L4%207.28v1.663c.296.105.575.275.812.512.438.438.688%201.059.688%201.796v3a.75.75%200%200%201-.75.75h-3a.75.75%200%200%201-.75-.75v-3c0-.737.25-1.358.688-1.796.237-.237.516-.407.812-.512V6.606L.443%205.684a.75.75%200%200%201%200-1.368ZM2.583%205%208%207.428%2013.416%205%208%202.572ZM2.5%2011.25v2.25H4v-2.25c0-.388-.125-.611-.25-.735a.7.7%200%200%200-.5-.203.7.7%200%200%200-.5.203c-.125.124-.25.347-.25.735%22/%3E%3C/svg%3E');--md-admonition-icon--people:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M2%205.5a3.5%203.5%200%201%201%205.898%202.549%205.51%205.51%200%200%201%203.034%204.084.75.75%200%201%201-1.482.235%204%204%200%200%200-7.9%200%20.75.75%200%200%201-1.482-.236A5.5%205.5%200%200%201%203.102%208.05%203.5%203.5%200%200%201%202%205.5M11%204a3.001%203.001%200%200%201%202.22%205.018%205%205%200%200%201%202.56%203.012.749.749%200%200%201-.885.954.75.75%200%200%201-.549-.514%203.51%203.51%200%200%200-2.522-2.372.75.75%200%200%201-.574-.73v-.352a.75.75%200%200%201%20.416-.672A1.5%201.5%200%200%200%2011%205.5.75.75%200%200%201%2011%204m-5.5-.5a2%202%200%201%200-.001%203.999A2%202%200%200%200%205.5%203.5%22/%3E%3C/svg%3E');--md-admonition-icon--licensing:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M8.75.75V2h.985c.304%200%20.603.08.867.231l1.29.736q.058.033.124.033h2.234a.75.75%200%200%201%200%201.5h-.427l2.111%204.692a.75.75%200%200%201-.154.838l-.53-.53.529.531-.001.002-.002.002-.006.006-.006.005-.01.01-.045.04q-.317.265-.686.45C14.556%2010.78%2013.88%2011%2013%2011a4.5%204.5%200%200%201-2.023-.454%203.5%203.5%200%200%201-.686-.45l-.045-.04-.016-.015-.006-.006-.004-.004v-.001a.75.75%200%200%201-.154-.838L12.178%204.5h-.162c-.305%200-.604-.079-.868-.231l-1.29-.736a.25.25%200%200%200-.124-.033H8.75V13h2.5a.75.75%200%200%201%200%201.5h-6.5a.75.75%200%200%201%200-1.5h2.5V3.5h-.984a.25.25%200%200%200-.124.033l-1.289.737c-.265.15-.564.23-.869.23h-.162l2.112%204.692a.75.75%200%200%201-.154.838l-.53-.53.529.531-.001.002-.002.002-.006.006-.016.015-.045.04q-.317.265-.686.45C4.556%2010.78%203.88%2011%203%2011a4.5%204.5%200%200%201-2.023-.454%203.5%203.5%200%200%201-.686-.45l-.045-.04-.016-.015-.006-.006-.004-.004v-.001a.75.75%200%200%201-.154-.838L2.178%204.5H1.75a.75.75%200%200%201%200-1.5h2.234a.25.25%200%200%200%20.125-.033l1.288-.737c.265-.15.564-.23.869-.23h.984V.75a.75.75%200%200%201%201.5%200m2.945%208.477c.285.135.718.273%201.305.273s1.02-.138%201.305-.273L13%206.327Zm-10%200c.285.135.718.273%201.305.273s1.02-.138%201.305-.273L3%206.327Z%22/%3E%3C/svg%3E');--md-admonition-icon--videos:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M0%203.75C0%202.784.784%202%201.75%202h12.5c.966%200%201.75.784%201.75%201.75v8.5A1.75%201.75%200%200%201%2014.25%2014H1.75A1.75%201.75%200%200%201%200%2012.25Zm1.75-.25a.25.25%200%200%200-.25.25v8.5c0%20.138.112.25.25.25h12.5a.25.25%200%200%200%20.25-.25v-8.5a.25.25%200%200%200-.25-.25Z%22/%3E%3Cpath%20d%3D%22M6%2010.559V5.442a.25.25%200%200%201%20.379-.215l4.264%202.559a.25.25%200%200%201%200%20.428l-4.264%202.559A.25.25%200%200%201%206%2010.559%22/%3E%3C/svg%3E');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M0%208a8%208%200%201%201%2016%200A8%208%200%200%201%200%208m8-6.5a6.5%206.5%200%201%200%200%2013%206.5%206.5%200%200%200%200-13M6.92%206.085h.001a.749.749%200%201%201-1.342-.67c.169-.339.436-.701.849-.977C6.845%204.16%207.369%204%208%204a2.76%202.76%200%200%201%201.637.525c.503.377.863.965.863%201.725%200%20.448-.115.83-.329%201.15-.205.307-.47.513-.692.662-.109.072-.22.138-.313.195l-.006.004a6%206%200%200%200-.26.16%201%201%200%200%200-.276.245.75.75%200%200%201-1.248-.832c.184-.264.42-.489.692-.661q.154-.1.313-.195l.007-.004c.1-.061.182-.11.258-.161a1%201%200%200%200%20.277-.245C8.96%206.514%209%206.427%209%206.25a.61.61%200%200%200-.262-.525A1.27%201.27%200%200%200%208%205.5c-.369%200-.595.09-.74.187a1%201%200%200%200-.34.398M9%2011a1%201%200%201%201-2%200%201%201%200%200%201%202%200%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#day-3-shotgun-metagenomics-classification-and-downstream-analysis" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+          <aside class="md-banner md-banner--warning">
+            <div class="md-banner__inner md-grid md-typeset">
+              
+  You're not viewing the latest version.
+  <a href="../../.."> 
+    <strong>Click here to go to latest.</strong>
+  </a>
+
+            </div>
+            <script>var el=document.querySelector("[data-md-component=outdated]"),base=new URL("../.."),outdated=__md_get("__outdated",sessionStorage,base);!0===outdated&&el&&(el.hidden=!1)</script>
+          </aside>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Metagenomic Data Analysis of Microbial Communities (MGMC01)" class="md-header__button md-logo" aria-label="Metagenomic Data Analysis of Microbial Communities (MGMC01)" data-md-component="logo">
+      
+  <img src="../../assets/images/SIB_logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Metagenomic Data Analysis of Microbial Communities (MGMC01)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Day 3 - Shotgun metagenomics and downstream analysis
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jeffe107/metagenomics-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jeffe107/metagenomics-training
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Metagenomic Data Analysis of Microbial Communities (MGMC01)" class="md-nav__button md-logo" aria-label="Metagenomic Data Analysis of Microbial Communities (MGMC01)" data-md-component="logo">
+      
+  <img src="../../assets/images/SIB_logo.svg" alt="logo">
+
+    </a>
+    Metagenomic Data Analysis of Microbial Communities (MGMC01)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jeffe107/metagenomics-training" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jeffe107/metagenomics-training
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../precourse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Precourse preparations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_schedule/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course schedule
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../instructor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course instructor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course material
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Course material
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../day1_introduction_quality_control/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 1 - Introduction and quality control
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../day2_targeted_amplification_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 2 - Targeted sequencing analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 3 - Shotgun metagenomics and downstream analysis
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 3 - Shotgun metagenomics and downstream analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#learning-outcomes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning outcomes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whole-genome-sequencing-and-taxonomic-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Whole genome sequencing and taxonomic classification
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Whole genome sequencing and taxonomic classification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principles-of-shotgun-metagenomic-sequencing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Principles of shotgun metagenomic sequencing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#library-preparation-depth-and-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Library preparation, depth and coverage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-based-taxonomic-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read-based taxonomic classification
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#session-5-taxonomic-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session 5 - Taxonomic classification
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Session 5 - Taxonomic classification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objective" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objective
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#about-the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About the data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-the-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running the pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pipelines-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pipeline&rsquo;s output
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pipeline’s output">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#krona-plots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Krona plots
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pavian" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pavian
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Questions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#session-6-downstream-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session 6 - Downstream analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Session 6 - Downstream analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objective_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objective
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phyloseq-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phyloseq object
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-diversity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        α-Diversity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-diversity_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        β-Diversity
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="β-Diversity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#heatmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heatmap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ordination-plots-principal-coordinate-analysis-pcoa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ordination plots - Principal Coordinate Analysis (PCoA)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#statistical-modelling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Statistical modelling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercises" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercises
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exercises">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bonus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bonus
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional resources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#learning-outcomes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning outcomes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whole-genome-sequencing-and-taxonomic-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Whole genome sequencing and taxonomic classification
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Whole genome sequencing and taxonomic classification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principles-of-shotgun-metagenomic-sequencing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Principles of shotgun metagenomic sequencing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#library-preparation-depth-and-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Library preparation, depth and coverage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-based-taxonomic-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read-based taxonomic classification
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#session-5-taxonomic-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session 5 - Taxonomic classification
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Session 5 - Taxonomic classification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objective" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objective
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#about-the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About the data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-the-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running the pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pipelines-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pipeline&rsquo;s output
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pipeline’s output">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#krona-plots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Krona plots
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pavian" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pavian
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Questions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#session-6-downstream-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session 6 - Downstream analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Session 6 - Downstream analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objective_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objective
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phyloseq-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phyloseq object
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-diversity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        α-Diversity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-diversity_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        β-Diversity
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="β-Diversity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#heatmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heatmap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ordination-plots-principal-coordinate-analysis-pcoa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ordination plots - Principal Coordinate Analysis (PCoA)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#statistical-modelling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Statistical modelling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercises" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercises
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exercises">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bonus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bonus
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional resources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="day-3-shotgun-metagenomics-classification-and-downstream-analysis">Day 3 - Shotgun metagenomics: classification and downstream analysis</h1>
+<h2 id="learning-outcomes">Learning outcomes</h2>
+<p><strong>After having completed this chapter you will be able to:</strong></p>
+<ul>
+<li>Explain the principles of shotgun (whole-genome) metagenomics and how library preparation, sequencing depth and coverage shape the analysis.</li>
+<li>Distinguish k-mer-based from alignment-based approaches for read-level taxonomic classification.</li>
+<li>Distinguish taxonomic <strong>classification</strong> (per-read assignment) from taxonomic <strong>profiling</strong> (community composition estimates).</li>
+<li>Run a reference-based metagenomics pipeline (Bowtie2 → Kraken2 → Bracken → Krona) with Nextflow.</li>
+<li>Explore taxonomic profiles per sample with interactive Krona plots.</li>
+<li>Compare samples with Pavian using Kraken2 reports.</li>
+<li>Build a Phyloseq object from a BIOM file and sample metadata.</li>
+<li>Estimate α- and β-diversity, and run ordination and network analyses.</li>
+</ul>
+<h2 id="whole-genome-sequencing-and-taxonomic-classification">Whole genome sequencing and taxonomic classification</h2>
+<h3 id="principles-of-shotgun-metagenomic-sequencing">Principles of shotgun metagenomic sequencing</h3>
+<p>Unlike targeted amplicon sequencing (<a href="../day2_targeted_amplification_analysis/">Day 2</a>), shotgun metagenomics sequences <strong>all the DNA present in a sample at once</strong>. The community DNA is fragmented (physically or enzymatically), sequencing adapters are ligated to both ends of every fragment, and the library is sequenced from both sides. No prior knowledge of which organisms are present is required, so the approach captures bacteria, archaea, fungi, viruses and host DNA. Crucially, it delivers <strong>functional information</strong> (genes, pathways, MAGs) in addition to taxonomy.</p>
+<h3 id="library-preparation-depth-and-coverage">Library preparation, depth and coverage</h3>
+<p>Several design decisions determine what a shotgun dataset can resolve:</p>
+<ul>
+<li><strong>Library preparation</strong>: typically PCR-free or low-cycle protocols are preferred to avoid amplification bias; paired-end short reads (2×150 bp) are the standard, while long-read libraries (PacBio, Nanopore) improve continuity at higher cost and error rate. Host DNA depletion or methylation-based enrichment can be used when the microbial fraction is low (e.g. clinical samples).</li>
+<li><strong>Sequencing depth</strong>: how many reads are generated per sample. Shallow shotgun (~1 Gb) supports family-level profiling; deep sequencing (5–20+ Gb) is needed for strain resolution, assembly and MAG recovery.</li>
+<li><strong>Coverage</strong>: the number of times a genome is sequenced, which depends on sequencing depth and on the relative abundance of the organism in the community. A genome at 1% relative abundance in a 10 Gb run receives only ~100 Mb of reads (often not enough to assemble). <strong>Abundance and genome size therefore jointly determine which members of a community can be recovered as MAGs.</strong></li>
+<li><strong>Community complexity</strong>: diverse environments (soil, marine) dilute the coverage of individual genomes, while low-complexity communities (gut, enrichment cultures) are more amenable to assembly and binning (<a href="../day4_assembly_and_binning/">Day 4</a>).</li>
+</ul>
+<h3 id="read-based-taxonomic-classification">Read-based taxonomic classification</h3>
+<p>Before dealing with assemblies (Days 4–5), the fastest way to obtain a community profile is to classify individual reads against a reference database. Two families of methods dominate:</p>
+<ul>
+<li><strong>k-mer (hashing)-based</strong>: each read is split into k-mers, and the taxonomy of the k-mers (precomputed from a reference genome database) votes for the most likely origin of the read. Extremely fast and memory-efficient for large databases. <em>Examples: <strong>Kraken2</strong>, KrakenUniq, Centrifuge.</em></li>
+<li><strong>alignment-based</strong>: reads (or their translated products) are aligned with BLAST or DIAMOND against reference sequences; taxonomies are then transferred from the best hits. Slower, but sensitive for divergent sequences and protein-level (functional) assignment. <em>Examples: DIAMOND+MEGAN, BLAST-based classifiers.</em></li>
+<li><strong>marker-gene-based</strong>: only reads matching clade-specific marker genes are used (e.g. MetaPhlAn). Compact, but limited to the markers represented in the database.</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">The database is the analysis</p>
+<p>All reference-based methods are only as good as their database: incomplete or mislabelled references produce false positives and missing taxa. Always record which database version you used.</p>
+</div>
+<h2 id="session-5-taxonomic-classification">Session 5 - Taxonomic classification</h2>
+<h3 id="objective">Objective</h3>
+<p>Execute an end-to-end workflow with the aim of performing taxonomic classification and abundance estimation, as well as analyze preliminary results.</p>
+<h3 id="about-the-data">About the data</h3>
+<p>The data set we will be using for this part of the workshop was collected in Cuatro Ciénegas (México), <em>an oasis in the Mexican desert whose environmental conditions are often linked to the ones present in ancient seas, due to a higher-than-average content of sulfur and magnesium but a lower concentrations of phosphorus and other nutrients</em>. For more information about this study, please check <a href="https://elifesciences.org/articles/49816">Okie et al., (2020)</a>; the BioProject accession number is <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJEB22811">PRJEB22811</a>.</p>
+<p>The experiment metadata used throughout this chapter:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Group</th>
+<th>Replicate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ERR2143758</td>
+<td>Cont</td>
+<td>1</td>
+</tr>
+<tr>
+<td>ERR2143759</td>
+<td>Cont</td>
+<td>2</td>
+</tr>
+<tr>
+<td>ERR2143760</td>
+<td>Cont</td>
+<td>3</td>
+</tr>
+<tr>
+<td>ERR2143771</td>
+<td>Unenriched</td>
+<td>1</td>
+</tr>
+<tr>
+<td>ERR2143772</td>
+<td>Unenriched</td>
+<td>2</td>
+</tr>
+<tr>
+<td>ERR2143774</td>
+<td>Unenriched</td>
+<td>3</td>
+</tr>
+<tr>
+<td>ERR2143769</td>
+<td>Fertilized</td>
+<td>1</td>
+</tr>
+<tr>
+<td>ERR2143770</td>
+<td>Fertilized</td>
+<td>2</td>
+</tr>
+<tr>
+<td>ERR2143773</td>
+<td>Fertilized</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<h3 id="the-pipeline">The pipeline</h3>
+<p>For this course, we propose to wrap with Nextflow the protocol published by <a href="https://www.nature.com/articles/s41596-022-00738-y">Jennifer Lu et al. (2022)</a>. The wrapped workflow is called <a href="https://gigabytejournal.com/articles/187">TaxoFlow</a> and is designed as follows:</p>
+<figure align="center">
+<p><img alt="Kraken2/Bracken workflow" src="../../assets/images/workflow_taxoflow.png" />
+  </p>
+<figcaption>Reference-based metagenomics workflow used throughout this session.</figcaption>
+</figure>
+<p>As you can see from the picture, the input is FASTQ files from one or multiple samples, then it performs a host removal with Bowtie2 by aligning the reads against an indexed reference genome to carry out the taxonomic classification with Kraken2 afterwards. Taking the output from Kraken2, a Bayesian species abundance re-estimation is achieved with Bracken, and Krona plots are generated using the Bracken output to visualize interactively the relative abundance of each annotated species. If multiple samples are used as input to the pipeline, the bracken reports will be concatenated and converted into a Biological Observation Matrix (BIOM) file. Finally, the BIOM file will be first converted in a Phyloseq object, and this object will be further processed to generate absolute plots, estimate both α and β-diversity and perform a network analysis; this information will be presented in a final report.html.</p>
+<h3 id="running-the-pipeline">Running the pipeline</h3>
+<div class="admonition warning">
+<p class="admonition-title">This is only a mock execution/dry run</p>
+<p>The run performed during the course uses a mock data given the computational constraints in Codespaces. For a proper analysis you can download the proper resources <a href="https://benlangmead.github.io/aws-indexes/">here</a>.</p>
+</div>
+<p>Copy and paste the following commands in the Codespaces terminal:</p>
+<div class="admonition terminal">
+<p class="admonition-title">CodeSpaces</p>
+<div class="highlight"><span class="filename">Download Kraken DB</span><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>workshop/TaxoFlow
+mkdir<span class="w"> </span>-p<span class="w"> </span>data/krakendb<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$_</span><span class="s2">&quot;</span>
+wget<span class="w"> </span>--no-check-certificate<span class="w"> </span>--no-proxy<span class="w"> </span><span class="s1">&#39;https://zenodo.org/api/records/17708950/files/krakendb.tar.gz/content&#39;</span>
+tar<span class="w"> </span>-xvzf<span class="w"> </span>content
+rm<span class="w"> </span>-r<span class="w"> </span>content
+<span class="nb">cd</span><span class="w"> </span>-
+</code></pre></div>
+</div>
+<div class="admonition terminal">
+<p class="admonition-title">CodeSpaces</p>
+<div class="highlight"><span class="filename">Download indexed genome</span><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>data/TAIR10<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$_</span><span class="s2">&quot;</span>
+wget<span class="w"> </span>--no-check-certificate<span class="w"> </span>--no-proxy<span class="w"> </span><span class="s1">&#39;https://genome-idx.s3.amazonaws.com/bt/TAIR10.zip&#39;</span>
+unzip<span class="w"> </span>TAIR10.zip
+rm<span class="w"> </span>-r<span class="w"> </span>TAIR10.zip
+<span class="nb">cd</span><span class="w"> </span>-
+</code></pre></div>
+</div>
+<p>The directoy of the pipeline will contain:</p>
+<details class="abstract">
+<summary>Directory content</summary>
+<div class="highlight"><span class="filename">Directory content</span><pre><span></span><code>.
+├──<span class="w"> </span>bin
+│<span class="w">   </span>└──<span class="w"> </span>report.Rmd
+├──<span class="w"> </span>data
+│<span class="w">   </span>├──<span class="w"> </span>krakendb
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>database250mers.kmer_distrib
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>database250mers.kraken
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>database.kraken
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>hash.k2d
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>names.dmp
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>nodes.dmp
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>opts.k2d
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>seqid2taxid.map
+│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>taxo.k2d
+│<span class="w">   </span>├──<span class="w"> </span>samples
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>ERR2143768
+│<span class="w">   </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>ERR2143768_1.fastq.gz
+│<span class="w">   </span>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>ERR2143768_2.fastq.gz
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>ERR2143770
+│<span class="w">   </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>ERR2143770_1.fastq.gz
+│<span class="w">   </span>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>ERR2143770_2.fastq.gz
+│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>ERR2143774
+│<span class="w">   </span>│<span class="w">       </span>├──<span class="w"> </span>ERR2143774_1.fastq.gz
+│<span class="w">   </span>│<span class="w">       </span>└──<span class="w"> </span>ERR2143774_2.fastq.gz
+│<span class="w">   </span>├──<span class="w"> </span>samplesheet.csv
+│<span class="w">   </span>└──<span class="w"> </span>TAIR10
+│<span class="w">       </span>├──<span class="w"> </span>TAIR10.1.bt2
+│<span class="w">       </span>├──<span class="w"> </span>TAIR10.2.bt2
+│<span class="w">       </span>├──<span class="w"> </span>TAIR10.3.bt2
+│<span class="w">       </span>├──<span class="w"> </span>TAIR10.4.bt2
+│<span class="w">       </span>├──<span class="w"> </span>TAIR10.dict
+│<span class="w">       </span>├──<span class="w"> </span>TAIR10.manifest.json
+│<span class="w">       </span>├──<span class="w"> </span>TAIR10.rev.1.bt2
+│<span class="w">       </span>└──<span class="w"> </span>TAIR10.rev.2.bt2
+├──<span class="w"> </span>main.nf
+├──<span class="w"> </span>modules
+│<span class="w">   </span>├──<span class="w"> </span>bowtie2.nf
+│<span class="w">   </span>├──<span class="w"> </span>bracken.nf
+│<span class="w">   </span>├──<span class="w"> </span>fastqc.nf
+│<span class="w">   </span>├──<span class="w"> </span>knit_phyloseq
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>environment.yml
+│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>knit_phyloseq.nf
+│<span class="w">   </span>├──<span class="w"> </span>kraken2.nf
+│<span class="w">   </span>├──<span class="w"> </span>kraken_biom.nf
+│<span class="w">   </span>├──<span class="w"> </span>kReport2Krona.nf
+│<span class="w">   </span>├──<span class="w"> </span>ktImportText.nf
+│<span class="w">   </span>├──<span class="w"> </span>multiqc.nf
+│<span class="w">   </span>└──<span class="w"> </span>trimgalore.nf
+├──<span class="w"> </span>nextflow.config
+└──<span class="w"> </span>taxoflow.nf
+</code></pre></div>
+</details>
+<p>We are ready to run the pipeline with the command:</p>
+<div class="admonition terminal">
+<p class="admonition-title">CodeSpaces</p>
+<div class="highlight"><span class="filename">Execute pipeline</span><pre><span></span><code>nextflow<span class="w"> </span>run<span class="w"> </span>main.nf<span class="w"> </span>--sheet_csv<span class="w"> </span><span class="s1">&#39;data/samplesheet.csv&#39;</span><span class="w"> </span>-profile<span class="w"> </span>docker
+</code></pre></div>
+</div>
+<details class="warning">
+<summary>Mock execution</summary>
+<p>As mentioned before, this was a mock execution, and therefore to perform a real analysis, we have used a proper Kraken2 database for you to analyze the results below. Moreover, for your analysis you need to define the database and indexed genome you want to implement.</p>
+</details>
+<details class="info">
+<summary>More about TaxoFlow</summary>
+<p>TaxoFlow is both a tutorial and a pipeline. You can learn more about <a href="https://taxoflow.work/">here</a>.</p>
+</details>
+<h3 id="pipelines-output">Pipeline&rsquo;s output</h3>
+<h4 id="krona-plots">Krona plots</h4>
+<p>One of the main and most useful outputs of Taxoflow is Krona plots. These are interactive, multi-layered pie charts used to visualize hierarchic data derived from taxonomic annotation of the sequences.</p>
+<p>You can check all of them here:</p>
+<div class="kronaWidget">
+<select id="kronaSelect">
+<option value="krona1">ERR2143758</option>
+<option value="krona2">ERR2143759</option>
+<option value="krona3">ERR2143760</option>
+<option value="krona4">ERR2143771</option>
+<option value="krona5">ERR2143772</option>
+<option value="krona6">ERR2143774</option>
+<option value="krona7">ERR2143769</option>
+<option value="krona8">ERR2143770</option>
+<option value="krona9">ERR2143773</option>
+</select>
+<iframe id="krona1" class="kronaFrame" src="../../assets/krona/ERR2143758.krona.html" width="100%" height="600px"></iframe>
+<iframe id="krona2" class="kronaFrame" src="../../assets/krona/ERR2143759.krona.html" width="100%" height="600px" style="display:none;"></iframe>
+<iframe id="krona3" class="kronaFrame" src="../../assets/krona/ERR2143760.krona.html" width="100%" height="600px" style="display:none;"></iframe>
+<iframe id="krona4" class="kronaFrame" src="../../assets/krona/ERR2143771.krona.html" width="100%" height="600px" style="display:none;"></iframe>
+<iframe id="krona5" class="kronaFrame" src="../../assets/krona/ERR2143772.krona.html" width="100%" height="600px" style="display:none;"></iframe>
+<iframe id="krona6" class="kronaFrame" src="../../assets/krona/ERR2143774.krona.html" width="100%" height="600px" style="display:none;"></iframe>
+<iframe id="krona7" class="kronaFrame" src="../../assets/krona/ERR2143769.krona.html" width="100%" height="600px" style="display:none;"></iframe>
+<iframe id="krona8" class="kronaFrame" src="../../assets/krona/ERR2143770.krona.html" width="100%" height="600px" style="display:none;"></iframe>
+<iframe id="krona9" class="kronaFrame" src="../../assets/krona/ERR2143773.krona.html" width="100%" height="600px" style="display:none;"></iframe>
+</div>
+<script>
+document.getElementById("kronaSelect").addEventListener("change", function () {
+const value = this.value;
+document.querySelectorAll(".kronaFrame").forEach(iframe => {
+    iframe.style.display = "none";
+});
+document.getElementById(value).style.display = "block";
+});
+</script>
+
+<h4 id="pavian">Pavian</h4>
+<p>Another way to explore the species abundance across samples, and more importantly compare them, is to use <a href="https://fbreitwieser.shinyapps.io/pavian/">Pavian</a>. Pavian is an interactive, web-based application designed to analyze, explore, and visualize metagenomic classification results, particularly from tools like Kraken2, Centrifuge, and MetaPhlAn.</p>
+<p>To use this web server you will need just to upload the Kraken2 reports (<code>*.k2report</code>) found <a href="https://github.com/jeffe107/metagenomics-training/tree/main/data/kreports">here</a>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Pavian in trouble?</p>
+<p>In case the Pavian web server is not working properly, we have prepared the report for you; you can find it <a href="https://github.com/jeffe107/metagenomics-training/tree/main/data/Pavian">here</a>.</p>
+</div>
+<h3 id="questions">Questions</h3>
+<p>Now, perform a visual inspection of the results, and consider the following questions:</p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>Do you see anything unusual on it? What would be the reasons causing this problem? What do you propose to solve it?</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>What do you think of the percentages considering the type of samples we are analyzing?</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>Do you observe any difference among samples/replicates, at what taxonomic level?</p>
+</div>
+<hr />
+<h2 id="session-6-downstream-analysis">Session 6 - Downstream analysis</h2>
+<h3 id="objective_1">Objective</h3>
+<p>Carry out a downstream analysis using the Kraken2/Bracken output to report important insights in terms of differences among samples.</p>
+<h3 id="phyloseq-object">Phyloseq object</h3>
+<p>First, download the files found <a href="https://github.com/jeffe107/metagenomics-training/tree/main/data/taxoflow">here</a> and place them in a proper local directory (i.e. <code>~/Desktop/taxoflow</code>).</p>
+<p>Now, let&rsquo;s create the Phyloseq object using the BIOM file generated by the pipeline and the experiment metadata. We are going to manipulate a bit the object to add the names of the taxonomic ranks, complete the species names and subset it to have only two conditions.</p>
+<div class="admonition terminal">
+<p class="admonition-title">RStudio</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Build the Phyloseq object</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">phyloseq</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span>
+
+<span class="c1"># change the PATH according to your settings</span>
+<span class="nf">setwd</span><span class="p">(</span><span class="s">&quot;~/Desktop/taxoflow&quot;</span><span class="p">)</span>
+<span class="n">tab_sam</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;test_sheet.csv&quot;</span><span class="p">)</span>
+<span class="n">data_biom</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">import_biom</span><span class="p">(</span><span class="s">&quot;merged.biom&quot;</span><span class="p">)</span>
+<span class="n">data_biom</span><span class="o">@</span><span class="n">tax_table</span><span class="o">@</span><span class="n">.Data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">substring</span><span class="p">(</span><span class="n">data_biom</span><span class="o">@</span><span class="n">tax_table</span><span class="o">@</span><span class="n">.Data</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">)</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">data_biom</span><span class="o">@</span><span class="n">tax_table</span><span class="o">@</span><span class="n">.Data</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Kingdom&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Phylum&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Class&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Order&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Family&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Genus&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Species&quot;</span><span class="p">)</span>
+
+<span class="n">tax_table_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.data.frame</span><span class="p">(</span><span class="nf">tax_table</span><span class="p">(</span><span class="n">data_biom</span><span class="p">))</span>
+
+<span class="c1"># Modify the species column to include genus</span>
+<span class="n">tax_table_df</span><span class="o">$</span><span class="n">Species</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="n">tax_table_df</span><span class="o">$</span><span class="n">Genus</span><span class="p">,</span><span class="w"> </span><span class="n">tax_table_df</span><span class="o">$</span><span class="n">Species</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">)</span>
+
+<span class="c1"># Update the taxonomy table in the phyloseq object</span>
+<span class="nf">tax_table</span><span class="p">(</span><span class="n">data_biom</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">tax_table_df</span><span class="p">)</span>
+
+<span class="c1"># Phyloseq object with only Bacteria</span>
+<span class="n">data_biom_bact</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">subset_taxa</span><span class="p">(</span><span class="n">data_biom</span><span class="p">,</span><span class="w"> </span><span class="n">Kingdom</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;Bacteria&quot;</span><span class="p">)</span>
+
+<span class="n">samples_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">tab_sam</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="n">tibble</span><span class="o">::</span><span class="nf">column_to_rownames</span><span class="p">(</span><span class="s">&quot;Name&quot;</span><span class="p">)</span>
+<span class="n">samples</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sample_data</span><span class="p">(</span><span class="n">samples_df</span><span class="p">)</span>
+<span class="n">otu_inf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data_biom_bact</span><span class="o">@</span><span class="n">otu_table</span>
+<span class="n">phy_inf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data_biom_bact</span><span class="o">@</span><span class="n">tax_table</span>
+<span class="n">merged</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">phyloseq</span><span class="p">(</span><span class="n">otu_inf</span><span class="p">,</span><span class="w"> </span><span class="n">phy_inf</span><span class="p">,</span><span class="w"> </span><span class="n">samples</span><span class="p">)</span>
+
+<span class="n">two_sample_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">subset_samples</span><span class="p">(</span><span class="n">merged</span><span class="p">,</span><span class="w"> </span><span class="n">Group</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;Cont&quot;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Group</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;Unenriched&quot;</span><span class="p">)</span>
+<span class="n">two_sample_data</span>
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><span class="filename">Console output</span><pre><span></span><code>phyloseq-class<span class="w"> </span>experiment-level<span class="w"> </span>object
+otu_table<span class="o">()</span><span class="w">   </span>OTU<span class="w"> </span>Table:<span class="w">         </span><span class="o">[</span><span class="w"> </span><span class="m">4322</span><span class="w"> </span>taxa<span class="w"> </span>and<span class="w"> </span><span class="m">6</span><span class="w"> </span>samples<span class="w"> </span><span class="o">]</span>
+sample_data<span class="o">()</span><span class="w"> </span>Sample<span class="w"> </span>Data:<span class="w">       </span><span class="o">[</span><span class="w"> </span><span class="m">6</span><span class="w"> </span>samples<span class="w"> </span>by<span class="w"> </span><span class="m">2</span><span class="w"> </span>sample<span class="w"> </span>variables<span class="w"> </span><span class="o">]</span>
+tax_table<span class="o">()</span><span class="w">   </span>Taxonomy<span class="w"> </span>Table:<span class="w">    </span><span class="o">[</span><span class="w"> </span><span class="m">4322</span><span class="w"> </span>taxa<span class="w"> </span>by<span class="w"> </span><span class="m">7</span><span class="w"> </span>taxonomic<span class="w"> </span>ranks<span class="w"> </span><span class="o">]</span>
+</code></pre></div>
+</div>
+<p>We already have created our Phyloseq object, and we are ready to move on with the analysis.</p>
+<h3 id="-diversity">α-Diversity</h3>
+<p>Next, let&rsquo;s explore the α-diversity among samples using two indexes, Chao1 and Shannon:</p>
+<div class="admonition terminal">
+<p class="admonition-title">RStudio</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">α-Diversity (Chao1 & Shannon)</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">plot_richness</span><span class="p">(</span><span class="n">two_sample_data</span><span class="p">,</span><span class="w"> </span><span class="n">measures</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Chao1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Shannon&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Group&quot;</span><span class="p">)</span><span class="o">+</span>
+<span class="nf">theme_bw</span><span class="p">()</span><span class="o">+</span>
+<span class="nf">theme</span><span class="p">(</span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="n">vjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">                               </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span>
+<span class="w">    </span><span class="n">axis.text.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">),</span>
+<span class="w">    </span><span class="n">axis.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">),</span>
+<span class="w">    </span><span class="n">panel.grid.major</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">panel.grid.minor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">panel.border</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">(),</span>
+<span class="w">    </span><span class="n">strip.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">),</span>
+<span class="w">    </span><span class="n">legend.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">),</span>
+<span class="w">    </span><span class="n">legend.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">),</span>
+<span class="w">    </span><span class="n">axis.line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_line</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="p">)</span><span class="o">+</span>
+<span class="w">    </span><span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Samples&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Group&quot;</span><span class="p">)</span>
+
+<span class="n">p</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="o">=</span><span class="m">0.7</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<details class="success">
+<summary>α-Diversity</summary>
+<p><figure markdown align="center">
+<img alt="Alpha diversity (Chao1 and Shannon) for Cont vs Unenriched" src="../../assets/images/alpha_diversity.png" />
+<figcaption>α-diversity estimates (Chao1 and Shannon) comparing Cont and Unenriched samples.</figcaption>
+</figure></p>
+</details>
+<h3 id="-diversity_1">β-Diversity</h3>
+<p><em>β-Diversity measures how different two or more communities are, either in their composition (richness) or in the abundance of the organisms that compose it (abundance)</em>. To perform the analysis, we need to use dimensionality reduction techniques which enable comparisons in a space closer to our understanding (up to 3 dimensions). First, let&rsquo;s create a heatmap that includes an ordination-based ordering of samples or taxa with a Bray-Curtis dissimilarity matrix as input for the ordination method (PCoA):</p>
+<h4 id="heatmap">Heatmap</h4>
+<div class="admonition warning">
+<p class="admonition-title">For visualization purposes</p>
+<p>We filter the &ldquo;OTU&rdquo; table using a pre-specified criterion, and we are using <em>agglomerated</em> data.</p>
+</div>
+<div class="admonition terminal">
+<p class="admonition-title">RStudio</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Heatmap (Bray-Curtis distance, PCoA ordering)</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">phylum_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">tax_glom</span><span class="p">(</span><span class="n">two_sample_data</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Phylum&quot;</span><span class="p">)</span>
+<span class="n">threshold</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">500</span>
+<span class="n">phylum_data_filt</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">filter_taxa</span><span class="p">(</span><span class="n">phylum_data</span><span class="p">,</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">threshold</span><span class="p">,</span><span class="w"> </span><span class="n">prune</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="n">phyloseq</span><span class="o">::</span><span class="nf">plot_heatmap</span><span class="p">(</span><span class="n">phylum_data_filt</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;PCoA&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">distance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bray&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">taxa.label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Phylum&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">trans</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">low</span><span class="o">=</span><span class="s">&quot;beige&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">high</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">na.value</span><span class="o">=</span><span class="s">&quot;beige&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">    </span><span class="nf">theme_bw</span><span class="p">()</span><span class="o">+</span>
+<span class="w">    </span><span class="nf">theme</span><span class="p">(</span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="n">vjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">                                </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span>
+<span class="w">        </span><span class="n">axis.text.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">),</span>
+<span class="w">        </span><span class="n">axis.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">),</span>
+<span class="w">        </span><span class="n">panel.grid.major</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">(),</span>
+<span class="w">        </span><span class="n">panel.grid.minor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">(),</span>
+<span class="w">        </span><span class="n">strip.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">),</span>
+<span class="w">        </span><span class="n">legend.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">),</span>
+<span class="w">        </span><span class="n">legend.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">))</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<details class="success">
+<summary>Heatmap</summary>
+<p><figure markdown align="center">
+<img alt="Heatmap of phylum abundances with PCoA-based ordering (Bray-Curtis)" src="../../assets/images/beta_heatmap.png" />
+<figcaption>Heatmap of agglomerated phyla ordered by PCoA on Bray-Curtis distances.</figcaption>
+</figure></p>
+</details>
+<h4 id="ordination-plots-principal-coordinate-analysis-pcoa">Ordination plots - Principal Coordinate Analysis (PCoA)</h4>
+<p>Ordination plots are obtained after dimensionality reduction. As before, we are using a Bray-Curtis dissimilarity matrix as input for a PCoA to establish data structures that guide us towards the identification of differences among samples.</p>
+<div class="admonition terminal">
+<p class="admonition-title">RStudio</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PCoA ordination plot</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">data.ord</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ordinate</span><span class="p">(</span><span class="n">two_sample_data</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;PCoA&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bray&quot;</span><span class="p">)</span>
+<span class="nf">plot_ordination</span><span class="p">(</span><span class="n">two_sample_data</span><span class="p">,</span><span class="w"> </span><span class="n">data.ord</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s">&quot;samples&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="o">=</span><span class="s">&quot;Group&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="n">title</span><span class="o">=</span><span class="s">&quot;Principal Coordinate Analysis&quot;</span><span class="p">)</span><span class="o">+</span>
+<span class="w">    </span><span class="nf">theme</span><span class="p">(</span><span class="n">axis.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">),</span><span class="w"> </span><span class="n">axis.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">),</span>
+<span class="w">        </span><span class="n">legend.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">),</span><span class="w"> </span><span class="n">strip.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">),</span>
+<span class="w">        </span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16</span><span class="p">),</span>
+<span class="w">        </span><span class="n">legend.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">16</span><span class="p">),</span>
+<span class="w">        </span><span class="n">panel.border</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">(),</span>
+<span class="w">        </span><span class="n">panel.grid.major</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">(),</span>
+<span class="w">        </span><span class="n">panel.grid.minor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">(),</span>
+<span class="w">        </span><span class="n">axis.line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_line</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">),</span>
+<span class="w">        </span><span class="n">panel.background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_blank</span><span class="p">())</span><span class="o">+</span>
+<span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="o">=</span><span class="m">0.7</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<details class="success">
+<summary>Ordination plot</summary>
+<p><figure markdown align="center">
+<img alt="PCoA of Bray-Curtis distances for Cont vs Unenriched" src="../../assets/images/pcoa_ordination.png" />
+<figcaption>PCoA ordination based on Bray-Curtis dissimilarity.</figcaption>
+</figure></p>
+</details>
+<h3 id="network-analysis">Network analysis</h3>
+<p>Now, leveraging the Phyloseq object and its native functionalities, we can perform a simple network analysis (using Bray-Curtis matrix as input):</p>
+<div class="admonition terminal">
+<p class="admonition-title">RStudio</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Network analysis</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nf">set.seed</span><span class="p">(</span><span class="m">42</span><span class="p">)</span>
+<span class="nf">plot_net</span><span class="p">(</span><span class="n">phylum_data</span><span class="p">,</span><span class="w"> </span><span class="n">distance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bray&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;taxa&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">maxdist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.9</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="o">=</span><span class="s">&quot;Phylum&quot;</span><span class="p">)</span><span class="o">+</span>
+<span class="nf">guides</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">guide_legend</span><span class="p">(</span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">))</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<details class="success">
+<summary>Network</summary>
+<p><figure markdown align="center">
+<img alt="Co-occurrence/network plot based on Bray-Curtis" src="../../assets/images/network_analysis.png" />
+<figcaption>Taxon co-occurrence network based on Bray-Curtis distances.</figcaption>
+</figure></p>
+</details>
+<h3 id="statistical-modelling">Statistical modelling</h3>
+<p>For our simple scenario Control vs Unenriched samples, we will fit a linear model per taxon at each rank using the <a href="https://david-barnett.github.io/microViz/articles/web-only/modelling-taxa.html">microViz R package</a>. </p>
+<details class="warning">
+<summary>Important considerations:</summary>
+<ul>
+<li>
+<p>We will perform modelling a each taxonomic rank, and thus this requires quite some computation power. Also, this means that we need to adjust p-values to control False Discovery Rate.</p>
+</li>
+<li>
+<p>We will filter the data since <em>it’s less likely that we are interested in rare taxa, and models of rare taxon abundances are more likely to be unreliable. Reducing the the number of taxa modelled also makes visualising the results easier!</em></p>
+</li>
+<li>
+<p>We will data transformation to reduce the effect of data compositionality, which can stronly bias the results.</p>
+</li>
+<li>
+<p>Microbiome data is heavily sparsed, and thus we need to replace zeros with any <em>meaningful</em> value to be able to perform data transformation.</p>
+</li>
+</ul>
+</details>
+<div class="admonition info">
+<p class="admonition-title">Tutorial</p>
+<p>This part of the course is directly taken from the <a href="https://david-barnett.github.io/microViz/articles/web-only/modelling-taxa.html#model-all-the-taxa">microViz tutorial</a>.</p>
+</div>
+<p>Let&rsquo;s proceed then:</p>
+<div class="admonition terminal">
+<p class="admonition-title">RStudio</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Statistical modelling</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">remotes</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&quot;statdivlab/corncob&quot;</span><span class="p">)</span>
+<span class="n">remotes</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&quot;david-barnett/microViz&quot;</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">microViz</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">corncob</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+
+<span class="n">lm_models</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">two_sample_data</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="nf">tax_fix</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="nf">tax_prepend_ranks</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="c1"># it makes sense to perform the compositional transformation BEFORE filtering</span>
+<span class="nf">tax_transform</span><span class="p">(</span><span class="s">&quot;compositional&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Order&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">keep_counts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="nf">tax_filter</span><span class="p">(</span><span class="n">min_prevalence</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span><span class="w"> </span><span class="n">undetected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">use_counts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="nf">taxatree_models</span><span class="p">(</span>
+<span class="w">    </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lm</span><span class="p">,</span>
+<span class="w">    </span><span class="n">trans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;log2&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">trans_args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">zero_replace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;halfmin&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">ranks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NULL</span><span class="p">,</span><span class="w"> </span><span class="c1"># uses every rank available except the first</span>
+<span class="w">    </span><span class="n">variables</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Group&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">lm_stats</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">taxatree_models2stats</span><span class="p">(</span><span class="n">lm_models</span><span class="p">)</span>
+<span class="n">lm_stats</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">taxatree_stats_get</span><span class="p">()</span>
+<span class="n">lm_stats</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">taxatree_stats_p_adjust</span><span class="p">(</span>
+<span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lm_stats</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;BH&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">grouping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;rank&quot;</span>
+<span class="p">)</span>
+
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">123</span><span class="p">)</span><span class="w"> </span><span class="c1"># label position</span>
+<span class="n">key</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">taxatree_plotkey</span><span class="p">(</span>
+<span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lm_stats</span><span class="p">,</span>
+<span class="n">taxon_renamer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="n">stringr</span><span class="o">::</span><span class="nf">str_remove</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;[PFG]: &quot;</span><span class="p">),</span>
+<span class="c1"># 2 lines of conditions below, for filtering taxa to be labelled</span>
+<span class="n">rank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;Phylum&quot;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;Order&quot;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">prevalence</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span>
+<span class="o">!</span><span class="nf">grepl</span><span class="p">(</span><span class="s">&quot;Kingdom&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">taxon</span><span class="p">)</span>
+<span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="c1"># add a bit more space for the longer labels by expanding the x axis</span>
+<span class="nf">scale_x_continuous</span><span class="p">(</span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expansion</span><span class="p">(</span><span class="n">mult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">))</span>
+<span class="c1"># all phyla are labelled, and all genera with a prevalence of over 0.2</span>
+<span class="c1"># except for any taxa whose names (partly) match &quot;Kingdom&quot;</span>
+<span class="c1"># (i.e. an unclassified taxon)</span>
+
+<span class="n">trees</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lm_stats</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="nf">taxatree_plots</span><span class="p">(</span>
+<span class="w">    </span><span class="n">node_size_range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="n">var_renamer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">toupper</span>
+<span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="n">patchwork</span><span class="o">::</span><span class="nf">wrap_plots</span><span class="p">(</span>
+<span class="w">    </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">guides</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;collect&quot;</span>
+<span class="p">)</span><span class="w"> </span>
+
+<span class="n">panel</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">patchwork</span><span class="o">::</span><span class="nf">wrap_plots</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">trees</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">widths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="o">:</span><span class="m">7</span><span class="p">)</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">111</span><span class="p">)</span>
+<span class="n">panel</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<details class="success">
+<summary>Statistical modelling</summary>
+<p><figure markdown align="center">
+<img alt="Statistical modelling" src="../../assets/images/statistical_modelling.png" />
+<figcaption>Taxonomic tree showing which microbes are more abundant (brown) or less abundant (teal) in the Unenriched group, with the key on the left and significant taxa (p &lt; 0.05) marked with open circles on the right.</figcaption>
+</figure></p>
+</details>
+<h3 id="exercises">Exercises</h3>
+<p>Now it&rsquo;s your turn to carry on with the analysis. For instance, you can subset the Phyloseq object to compare the fertilized ponds against the control, then:</p>
+<div class="admonition question">
+<p class="admonition-title">α-Diversity</p>
+<p>Do you observe any difference between samples in terms of α-diversity? Try other indexes.</p>
+<details class="tip">
+<summary>Hint</summary>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">R code</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">measures</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Observed&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Chao1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ACE&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Shannon&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Simpson&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;InvSimpson&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Fisher&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</details>
+</div>
+<div class="admonition question">
+<p class="admonition-title">β-Diversity</p>
+<p>Are the samples organized as expected along the gradients (coordinates)? Does the PCoA capture well the differences among samples? Try different distance methods to compare the results.</p>
+<details class="tip">
+<summary>Hint</summary>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">R code</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">dist_methods</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">unlist</span><span class="p">(</span><span class="n">distanceMethodList</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</details>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Normalization/transformation methods</p>
+<p>As you may have noticed, we did not apply any normalization/transformation method to the data. Let&rsquo;s try a centered-log ratio transformation.</p>
+<details class="tip">
+<summary>Hint</summary>
+<p>For the centered-log ratio transformation, this is how it is achieved:</p>
+<div class="admonition terminal">
+<p class="admonition-title">RStudio</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">R code</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&quot;microbiome&quot;</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">microbiome</span><span class="p">)</span>
+<span class="n">data_biom_clr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">microbiome</span><span class="o">::</span><span class="nf">transform</span><span class="p">(</span><span class="n">phylum_data_filt</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;clr&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</details>
+</div>
+<p>Now, re-create the heatmap and the PCoA plots with the transformed data and using Euclidean as distance method. Evaluate if there are differences.</p>
+<h4 id="optional">Optional</h4>
+<div class="admonition question">
+<p class="admonition-title">Different taxonomic ranks</p>
+<p>We have performed the analysis at <strong>phylum</strong> level, try changing the taxonomic rank and try to track if the differentially abundant taxa belong to the same phyla identified with the preliminary analysis. Be prepared for really messy plots!</p>
+</div>
+<h4 id="bonus">Bonus</h4>
+<div class="admonition question">
+<p class="admonition-title">Empty fields</p>
+<p>Run the following code line and observe the results. There are species that do not count with genus, order or up-tree level information. How is this possible? How do you propose to handle this? What are the implications of this situation?</p>
+<div class="admonition terminal">
+<p class="admonition-title">RStudio</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Inspect empty taxonomy fields</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nf">summary</span><span class="p">(</span><span class="n">data_biom</span><span class="o">@</span><span class="n">tax_table</span><span class="o">@</span><span class="n">.Data</span><span class="o">==</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><span class="filename">Console output</span><pre><span></span><code><span class="w">      </span>Kingdom<span class="w">          </span>Phylum<span class="w">          </span>Class<span class="w">           </span>Order<span class="w">        </span>
+<span class="w">    </span>Mode<span class="w"> </span>:logical<span class="w">   </span>Mode<span class="w"> </span>:logical<span class="w">   </span>Mode<span class="w"> </span>:logical<span class="w">   </span>Mode<span class="w"> </span>:logical<span class="w">  </span>
+<span class="w">    </span>FALSE:4608<span class="w">      </span>FALSE:4605<span class="w">      </span>FALSE:4589<span class="w">      </span>FALSE:4590<span class="w">     </span>
+<span class="w">    </span>TRUE<span class="w"> </span>:1<span class="w">         </span>TRUE<span class="w"> </span>:4<span class="w">         </span>TRUE<span class="w"> </span>:20<span class="w">        </span>TRUE<span class="w"> </span>:19<span class="w">       </span>
+<span class="w">    </span>Family<span class="w">          </span>Genus<span class="w">          </span>Species<span class="w">       </span>
+<span class="w">    </span>Mode<span class="w"> </span>:logical<span class="w">   </span>Mode<span class="w"> </span>:logical<span class="w">   </span>Mode<span class="w"> </span>:logical<span class="w">  </span>
+<span class="w">    </span>FALSE:4571<span class="w">      </span>FALSE:4606<span class="w">      </span>FALSE:4609<span class="w">     </span>
+<span class="w">    </span>TRUE<span class="w"> </span>:38<span class="w">        </span>TRUE<span class="w"> </span>:3
+</code></pre></div>
+</div>
+</div>
+<h2 id="additional-resources">Additional resources</h2>
+<p>If you want to explore more in detail how you can expand your analysis, please check the following resources:</p>
+<ul>
+<li><a href="https://carpentries-lab.github.io/metagenomics-analysis/">Data Processing and Visualization for Metagenomics</a></li>
+<li><a href="https://david-barnett.github.io/microViz/">Integrated analysis with microViz</a></li>
+<li><a href="https://www.bioconductor.org/packages/release/bioc/vignettes/ANCOMBC/inst/doc/ANCOMBC2.html">ANCOM-BC2 tutorial</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../day2_targeted_amplification_analysis/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Day 2 - Targeted sequencing analysis">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Day 2 - Targeted sequencing analysis
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2021-2026 SIB Swiss Institute of Bioinformatics - <a href="#__consent">Change cookie settings</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our training material and whether users find what they're searching for. With your consent, you're helping us to make our training material better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+      
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="github" checked>
+      <span class="task-list-indicator"></span>
+      GitHub
+    </label>
+  </li>
+
+      
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="matomo" checked>
+      <span class="task-list-indicator"></span>
+      Matomo Analytics
+    </label>
+  </li>
+
+      
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["announce.dismiss", "content.code.copy", "navigation.top", "navigation.footer"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/consent.js"></script>
+      
+    
+  </body>
+</html>
