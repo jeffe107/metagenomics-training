@@ -2,6 +2,11 @@
 
 ## Course overview
 
+??? tip "Course flyer"
+    <div markdown class="profile">
+    ![profile](assets/images/flyer_course.png)
+    </div>
+
 This course covers the metagenomics data analysis workflow from data generation to downstream analysis. Participants explore the tools to manage, share, analyze and interpret metagenomics data. The content includes issues of data quality control and how to process the data until publication.
 
 Both targeted marker-gene (e.g., 16S) and whole-genome shotgun (WGS) approaches are covered. Discussions also explore considerations when selecting the sequencing options (long or short reads), exploring targeted data to OTUs or ASVs, assembling and binning metagenomics data, available tools, and the downstream analyses that can be carried out.
