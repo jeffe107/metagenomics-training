@@ -72,10 +72,6 @@ See [Precourse preparations](precourse.md) for the full setup instructions.
 * Repository with files
 * A workspace on GitHub Codespaces
 
-## Teacher/Author
-
-* [Jeferyd Yepes-García](https://jeferydyepes.com/) [:custom-orcid:](https://orcid.org/0000-0002-3278-3332) [:simple-github:](https://github.com/jeffe107)
-
 ## Acknowledgements
 
 The material for this course is assembled from the SIB course [Introduction to Metagenomics Data Analysis of Microbial Communities](https://www.sib.swiss/training/course/20260504_MEMIC). A big portion of such course was developed by Dr. [Laurent Falquet](https://www.unifr.ch/bio/en/groups/falquet/), to whom we express our deepest gratitude.
