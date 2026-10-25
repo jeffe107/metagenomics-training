@@ -195,20 +195,18 @@ If not done already, login to your GitHub account and create the Codespaces trai
     * Do you see an impact of the cleaning?
 
 ??? success "After cleaning"
-
     | Module | Status | What it shows | Interpretation |
     |---|---|---|---|
     | Per base sequence content | ❌ FAIL | ~100% single-base spikes at positions 1–9 (G-A-C-T-A-C-…-G-G-G), then irregular swings along the read | Expected for amplicons: all reads cover the same region, so base composition is fixed at each position. The primer is likely still present and should be removed (e.g. cutadapt) before ASV/OTU calling. |
     | Per sequence GC content | ⚠️ WARNING | Narrow peak at ~57–58% GC (narrower than the theoretical curve), small shoulder at ~47–48% | Expected for amplicons: reads come from one short, conserved region, so GC is uniform. The shoulder may reflect lower-GC taxa. Smooth shape, so no contamination signal. |
     | Sequence duplication levels | ❌ FAIL | Only 8.66% of reads would remain after deduplication | Expected for amplicons: abundant taxa produce identical sequences. **Do not deduplicate**, since abundance information would be lost. |
-    | Overrepresented sequences | ❌ FAIL | Top sequence = 4.05% of reads. Dozens of near-identical entries (0.5–3% each), all starting `GACTAC…GGGTATCTAATCC…`, labelled "No Hit" | Expected for amplicons: these are the primer region plus variants from different taxa (and some sequencing errors). "No Hit" means they are not in FastQC's contaminant list, so the primer is not recognised. |
+    | Overrepresented sequences | ❌ FAIL | Top sequence = 2-4% of reads. Dozens of near-identical entries (0.5–3% each), all starting `GACTAC…GGGTATCTAATCC…`, labelled "No Hit" | Expected for amplicons: these are the primer region plus variants from different taxa (and some sequencing errors). "No Hit" means they are not in FastQC's contaminant list, so the primer is not recognised. |
 
 #### 5. Compare with those results files for a WGS sequencing of a single genome
 
-TO-DO
+Download the following FastQC files:
 
-* [Forward reads]()
-* [Reverse reads]()
+* [Single-genome reads](https://github.com/jeffe107/metagenomics-training/tree/main/data/fastqc)
 
 !!! question "Amplicon sequencing vs WGS of single-genome"
     * What are the differences?
@@ -219,7 +217,7 @@ TO-DO
     | Basic statistics | 294,158 reads, fixed 160 bp, 54% GC | 957,850 reads, 35–151 bp, 70% GC | Amplicons give uniform length and a GC value set by the 16S region. The genome's GC (70%) is a property of the organism (a high-GC genome). |
     | Per base sequence content | ❌ FAIL: ~100% single-base spikes at positions 1–9, irregular swings along the whole read | ❌ FAIL: bias only in the first ~10–15 bp, then flat lines (C ≈ G ≈ 35%, A ≈ T ≈ 15%) | Same flag, different cause. In the amplicon sample every read starts with the primer and the whole read is the same region. In the single-genome sample the flat profile after ~15 bp is what a random genome fragment library should look like. The 5′ bias is typical of library-prep bias (e.g. transposase/tagmentation or priming), not a primer. |
     | Per sequence GC content | ⚠️ WARNING: narrow peak at ~57–58% plus a shoulder | ⚠️ WARNING: single peak at ~71–72%, slightly taller and narrower than theoretical | The peak in the amplicon sequencing is narrow because all reads are one conserved region. The one in the single-genome sample is a single smooth peak, consistent with one genome and no obvious contamination. The warning is minor. |
-    | Sequence length distribution | ✅ PASS (159–161 bp) | ⚠️ WARNING (35–151 bp, most reads at 151) | FL_S8 reads were trimmed (adapters/quality), so the lengths vary. Amplicon reads were trimmed to one fixed length. |
+    | Sequence length distribution | ✅ PASS (159–161 bp) | ⚠️ WARNING (35–151 bp, most reads at 151) | The single-genome reads were trimmed (adapters/quality), so the lengths vary. Amplicon reads were trimmed to one fixed length. |
     | Sequence duplication levels | ❌ FAIL: 8.66% remain after deduplication | ✅ PASS: 88.21% remain after deduplication | Amplicons are duplicated by design. A single genome sampled at modest depth should give mostly unique reads. |
     | Overrepresented sequences | ❌ FAIL: primer-derived sequences at 0.5–4% each | ✅ PASS: none | Only the amplicon library has a few sequences dominating the reads. |
 
@@ -243,6 +241,31 @@ Go to the directory 16S_longReads:
 
     * What is the difference between PacBio and Illumina data (first sample)?
 
+??? success "PacBio 16S, before vs after cleaning"
+    | Module | Raw | Clean | What changed |
+    |---|---|---|---|
+    | Total sequences | 7,921 | 7,840 | ~1% of reads removed |
+    | Sequence length | 328–3,107 bp | 1,224–1,798 bp | Length outliers removed; reads now centred on ~1.5 kb (full-length 16S) |
+    | Sequence length distribution | ⚠️ WARNING | ⚠️ WARNING | Raw: long tail up to 3 kb. Clean: single narrow peak at ~1,500–1,540 bp, but flagged because lengths still vary slightly |
+    | Per base sequence content | ❌ FAIL | ❌ FAIL | Unchanged: strong bias in the first ~10 bp from the primers |
+    | Per sequence GC content | ❌ FAIL | ❌ FAIL | Unchanged: jagged peaks (~55–56% and ~62%) rather than a smooth curve, from distinct 16S sequences in a small read set |
+    | Sequence duplication levels | ❌ FAIL (45.4% remain) | ❌ FAIL (45.1% remain) | Unchanged: abundant taxa give identical reads, as expected for amplicons |
+    | Overrepresented sequences | ❌ FAIL | ❌ FAIL | Same top sequences and almost the same counts (e.g. 195 and 188 reads) |
+
+??? success "PacBio full-length 16S vs Illumina 16S V4"
+    | Feature | PacBio | Illumina | Why they differ |
+    |---|---|---|---|
+    | Region sequenced | ~full-length 16S (V1–V9) | V4 only | PacBio reads span the whole gene, Illumina reads cover a short fragment |
+    | Read length | 1,224–1,798 bp (peak ~1.5 kb) | 160 bp (fixed) | Illumina reads were trimmed to a fixed length |
+    | Number of reads | 7,840 | 294,158 | Illumina gives far more reads per sample, PacBio gives fewer, longer reads |
+    | Quality scale | Up to Q93, median ~Q83–84 | Up to Q38, median ~Q37–38 | Consistent with consensus (circular consensus / HiFi) reads. Illumina reports raw per-base quality |
+    | Quality along the read | Flat, no end decay | Slight drop at the last ~15 bp | Illumina quality decays with cycles, consensus reads do not |
+    | Per tile quality | Not reported | ✅ PASS | Tiles exist only for Illumina flow cells |
+    | Per base sequence content | ❌ FAIL (first ~10 bp) | ❌ FAIL (first ~9 bp, irregular along the read) | Both caused by primers. PacBio flattens after the primer because the full-length reads vary along the gene, while Illumina stays patterned because every read covers the same short region |
+    | Primer position and orientation | 27F or 1492R at the start, reads in both orientations | 806R at the start, one orientation | Illumina R file always starts at the reverse primer. PacBio reads can start from either end |
+    | Per sequence GC content | ❌ FAIL (jagged peaks) | ⚠️ WARNING (narrow peak plus shoulder) | Both reflect a limited number of distinct 16S sequences. The longer PacBio reads separate taxa more clearly, giving jagged peaks |
+    | Sequence duplication levels | ❌ FAIL (45% remain) | ❌ FAIL (8.7% remain) | Only the first 50 bp of each read is compared (primer + start of the gene). The difference mainly reflects sequencing depth (~7.8k vs 100k reads analysed) and the region covered, not the technology. |
+
 #### 8. Last sample: Metagenomics WGS dataset from Illumina paired-end sequencing (2x125bp)
 
 Go to the directory WGS_shortReads_MOCK:
@@ -265,6 +288,15 @@ Go to the directory WGS_shortReads_MOCK:
     * Are the cleaned reads in sufficient good quality?
 
     * What is the difference between WGS of single genome (_see [this section](./day1_introduction_quality_control.md#5-compare-with-those-results-files-for-a-wgs-sequencing-of-a-single-genome)_) and metagenome?
+
+??? success "Shotgun metagenome vs single genome"
+    | Module | Shotgun metagenome | Single genome | Why they differ |
+    |---|---|---|---|
+    | Basic statistics | 13.4 M reads, 31–125 bp, 43% GC | 957,850 reads, 35–151 bp, 70% GC | The metagenome mixes many genomes, so its GC is an average. The isolate's GC (70%) is that of one organism. |
+    | Per base sequence content | ❌ FAIL (bias in the first ~12 bp, then flat: A ≈ T ≈ 28%, C ≈ G ≈ 22%) | ❌ FAIL (bias in the first ~10–15 bp, then flat: C ≈ G ≈ 35%, A ≈ T ≈ 15%) | Same type of start bias in both, typical of library prep (e.g. tagmentation or priming). The flat plateau is the average composition of the sample: AT-rich for the metagenome, GC-rich for the isolate. |
+    | Per sequence GC content | ❌ FAIL: broad main peak at ~36% plus shoulders at ~50% and ~68% | ⚠️ WARNING: single peak at ~71–72%, slightly narrower than theoretical | Multiple peaks show organisms with different GC content (expected in a community). A single smooth peak is what one genome gives. |
+    | Sequence length distribution | ⚠️ WARNING (31–125 bp, nearly all at 125) | ⚠️ WARNING (35–151 bp, most at 151) | Both were trimmed, so a few reads are shorter. The maximum length reflects each run's read length. |
+    | Sequence duplication levels | ⚠️ WARNING (50.7% remain; bump at >10 copies) | ✅ PASS (88.2% remain) | More duplication in the metagenome is expected: abundant organisms are sequenced deeply, and some duplicates may be technical. The plot cannot separate the two causes. |
 
 ### Tips: FastQC output explained
 
@@ -290,7 +322,7 @@ The most relevant modules to look at when assessing the quality of your reads:
 
 ### Discussion
 
-Work through the questions below with your neighbour. Open the hint only after you have looked at your reports.
+Work through the questions below. Open the hint only after you have looked at your reports.
 
 ??? question "1. Did the cleaning improve the quality of the reads?"
     In which module(s) do you see the impact? Compare the raw and cleaned reports side by side.
@@ -298,7 +330,7 @@ Work through the questions below with your neighbour. Open the hint only after y
     ??? tip "Hint"
         Focus on adapter content, per-base sequence content and overrepresented sequences. Quality scores and `N` content often improve too.
 
-??? question "2. What are the main differences between Illumina short reads, PacBio long reads and metagenomics WGS in terms of quality?"
+??? question "2. What are the main differences between Illumina 16S short reads, PacBio long reads and metagenomics WGS in terms of quality?"
     Compare the three datasets you analysed.
 
     ??? tip "Hint"
@@ -315,3 +347,19 @@ Work through the questions below with your neighbour. Open the hint only after y
 
     ??? tip "Hint"
         Sources include reagents, extraction kits, PCR, the laboratory environment and cross-contamination between samples. Use extraction blanks, PCR blanks and mock communities as negative and positive controls.
+
+### Optional: clean them yourself
+
+There are several tools to perform quality assessment, trimming, adapter removal, among many other functions. [`fastp`](https://github.com/opengene/fastp) stands out as a fast and easy-to-install tool with good results even with its default configuration. Try it as follows with the 16S short reads:
+
+!!! terminal "CodeSpaces"
+    ```bash title="Run fastp on 16S short reads"
+    conda install bioconda::fastp
+    cd ../16S_shortReads
+    fastp -i TC3-1_S37_L001_R1_001.fastq.gz -I TC3-1_S37_L001_R2_001.fastq.gz -o out.R1.fq.gz -O out.R2.fq.gz
+    ```
+
+!!! tip "Results"
+    Explore the `fastp.html`
+
+    * What are the main observations?

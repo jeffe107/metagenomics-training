@@ -8,8 +8,8 @@ nav:
       - Day 1 - Introduction and quality control: course_material/day1_introduction_quality_control.md
       - Day 2 - Targeted sequencing analysis: course_material/day2_targeted_amplification_analysis.md
       - Day 3 - Shotgun metagenomics and downstream analysis: course_material/day3_reference_based_compositional_analysis.md
-      - Day 4 - Metagenome assembly and binning: course_material/day4_assembly_and_binning.md
-      - Day 5 - MAG annotation and FAIR data: course_material/day5_mag_annotation_and_fair.md
+     # - Day 4 - Metagenome assembly and binning: course_material/day4_assembly_and_binning.md
+     # - Day 5 - MAG annotation and FAIR data: course_material/day5_mag_annotation_and_fair.md
 
 theme:
   name: material
@@ -52,8 +52,8 @@ copyright: >
   <a href="#__consent">Change cookie settings</a>
 
 # Repository (update once the repository is created)
-repo_name: sib-swiss/metagenomics-training
-repo_url: https://github.com/sib-swiss/metagenomics-training
+repo_name: jeffe107/metagenomics-training
+repo_url: https://github.com/jeffe107/metagenomics-training
 
 markdown_extensions:
   - abbr

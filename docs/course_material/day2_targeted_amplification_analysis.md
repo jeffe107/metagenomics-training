@@ -350,7 +350,7 @@ We build a table of counts for all merged sequences (one column per ASV) and ins
     ```    
 
 ??? info "Cutting the band"
-    You can remove non-target-length sequences from the sequence table, e.g. `seqtab2 <- seqtab[,nchar(colnames(seqtab)) %in% 250:262]`. This is analogous to "cutting a band" in-silico to get amplicons of the targeted length. Here we see multiple peaks (not a good sign), so we can cut around the expected V3–V4 length.
+    You can remove non-target-length sequences from the sequence table, e.g. `seqtab2 <- seqtab[,nchar(colnames(seqtab)) %in% 250:262]`. This is analogous to "cutting a band" _in silico_ to get amplicons of the targeted length. Here we see multiple peaks (not a good sign), so we can cut around the expected V3–V4 length.
 
 Here we see that we have multiple peaks... not a good sign, anyway we cut around them,
 
@@ -449,6 +449,8 @@ We assign a taxon to each ASV using the reference Silva database v138.1:
     ```
 
 This is the end of **Part I**. Move on to **Part II** for the downstream analysis.
+
+---
 
 ## Session 4 - Targeted sequencing II
 
@@ -601,7 +603,7 @@ We transform the data to proportions (appropriate for Bray-Curtis distances) and
     </figure>
 
 !!! tip "Not always the separation is clear"
-  Data exploration shows no clear separation.
+    Data exploration shows no clear separation.
 
 #### Abundance plots
 
@@ -705,18 +707,10 @@ Can we identify taxa that are specific for the two fractions (0.2 µm vs. 3 µm)
 
 Some taxa are known from lakes, rivers or seas (CL500-29 marine group, _Halioglobus_, _Polynucleobacter_) or from sediment/water interfaces (_Gemmatimonas_, _Opitutus_, _Brevundimonas_, _Ilumatobacter_, _Sediminibacterium_, _Solitalea_), and even some potential pathogens (_Roseomonas_). The hgcl-clade group is typical of areas associated with urban and industrial activities.
 
-## Summary
-
-Several tools were introduced to analyse 16S amplicon sequences from different samples along 2,600 km of the Danube river. The first part related to processing of the read data: QC, cleaning, filtering, error correction, merging, and taxonomy assignment. The second part related to α-diversity, β-diversity, various plots, geographic localisation, and linear discriminant analysis to highlight some interesting differences and taxa.
-
 ## Additional resources
 
 If you want to explore more in detail how you can expand your analysis, please check the following resources:
 
 * [DADA2 tutorial](https://benjjneb.github.io/dada2/tutorial.html)
-* [DADA2 pseudo-pooling](https://benjjneb.github.io/dada2/pseudo.html)
-* [Silva v138 DADA2 training data](https://zenodo.org/records/4587955)
-* [Savio et al. (2015) - bacterial diversity along the Danube river](https://ami-journals.onlinelibrary.wiley.com/doi/10.1111/1462-2920.12886)
-* [phylogeo](http://zachcp.github.io/phylogeo/)
-* [microbiomeMarker](https://github.com/yiluheihei/microbiomeMarker)
+* [Savio et al. (2015). Bacterial diversity along a 2600 km river continuum](https://ami-journals.onlinelibrary.wiley.com/doi/10.1111/1462-2920.12886)
 * [Phyloseq tutorial](https://vaulot.github.io/tutorials/Phyloseq_tutorial.html)

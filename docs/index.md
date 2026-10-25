@@ -11,7 +11,7 @@ Both targeted marker-gene (e.g., 16S) and whole-genome shotgun (WGS) approaches 
 * **Duration:** 5 days, two 2.5-hour sessions per day.
 * **Dates:** 26–30 October 2026.
 * **Format:** Online live format.
-* **Time zone:** Switzerland (GMT+2) local time.
+* **Time zone:** UK (GMT) local time.
 * **Recordings:** All sessions will be recorded and made available to ensure accessibility for attendees across different time zones.
 
 See the [course schedule](course_schedule.md) for the detailed programme.
