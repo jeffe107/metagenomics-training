@@ -1,5 +1,9 @@
 # Metagenomic Data Analysis of Microbial Communities (MGMC01)
 
+<p align="center">
+    <img src="docs/assets/images/flyer_course.png" alt="Flyer" width="50%">
+</p>
+
 ![Static Badge](https://img.shields.io/badge/release%20date-october%202026-%230DC09D)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
@@ -17,3 +21,7 @@
 - **Day 3 – Shotgun metagenomics and downstream analysis**: Principles of whole-genome shotgun sequencing (depth, coverage, classification vs profiling). Reference-based classification with a Nextflow pipeline (Bowtie2 host removal, Kraken2, Bracken), interactive Krona plots, Pavian exploration, and downstream Phyloseq analysis (α- and β-diversity, ordination, networks).
 - **Day 4 – Metagenome assembly and binning**: _De novo_ metagenome assembly, quality metrics, binning (MetaBAT2, MaxBin2), and exploration of MAGs with nf-core/mag.
 - **Day 5 – MAG annotation and FAIR data**: MAG quality assessment (BUSCO/CheckM2, BIgMAG), metabolic potential (KEGG Decoder), functional annotation (COG, CAZymes, biosynthetic gene clusters), genome visualization (Proksee), pangenome analysis, and FAIR data/reproducibility with workflow managers and containers.
+
+## Acknowledgement
+
+The material for this course is assembled from the SIB course [Introduction to Metagenomics Data Analysis of Microbial Communities](https://www.sib.swiss/training/course/20260504_MEMIC). A big portion of such course was developed by Dr. [Laurent Falquet](https://www.unifr.ch/bio/en/groups/falquet/), to whom we express our deepest gratitude.
