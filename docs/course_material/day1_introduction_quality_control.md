@@ -14,8 +14,8 @@
 
 ## Material
 
-* [:fontawesome-solid-file-pdf: Workshop introduction slides](../assets/pdf/WorkshopSIB26_Intro.pdf){: .md-button }
-* [:fontawesome-solid-file-pdf: NGS technologies and QC slides](../assets/pdf/WorkshopSIB26_NGStechnologiesQC.pdf){: .md-button }
+* **Session 1:** [:fontawesome-solid-file-pdf: Session 1 slides](../assets/pdf/Intro%20MDA-Day1-Part1.pdf){: .md-button }
+* **Session 2:** [:fontawesome-solid-file-pdf: Session 2 slides](../assets/pdf/Intro%20MDA-Day1-Part2.pdf){: .md-button }
 
 ## Session 1 - Introduction to metagenomics, goals and opportunities
 
@@ -60,13 +60,15 @@ Sequencing technologies have evolved to provide us with different types of reads
 !!! info "Further reading"
     For an expanded overview and in-depth discussion of metagenomics data analysis scope, we recommend this reading:
 
-    [:fontawesome-solid-file-pdf: Further reading](../assets/pdf/Analysis-of-metagenomic-data.pdf){: .md-button }
+    [:fontawesome-solid-file-pdf: Further reading](https://www.nature.com/articles/s43586-024-00376-6){: .md-button }
 
 ### Practical Activity: Design Your Own Metagenomics Study
 
 **Objective:** Design a metagenomics study to answer a scientific question, considering sampling strategy, experimental design, sequencing technology, and potential limitations.
 
-**Instructions:** Read your assigned scenario and try to answer the questions in the box.
+
+!!! tip "Activity"
+    Read your assigned scenario, use the provided questions to guide you through your mission and search for relevant literature for your scenario. Prepare a 5-min presentation describing what you found in terms of the problem, the proposed experiments and methodology and the expected outcomes.
 
 ??? question "Scenario 1"
     **Scenario 1 — Rice Straw Decomposition**
@@ -117,7 +119,7 @@ Sequencing technologies have evolved to provide us with different types of reads
 
     A biotechnology company wants to find novel enzymes from microorganisms living in environments such as compost, hot springs, and industrial wastewater. The goal is to identify promising candidates for industrial applications.
 
-    | **Discuss with your team** | **Questions** |
+    | **Topic** | **Questions** |
     |---|---|
     | **Research question** | Which environments would you sample, and why? |
     | **Study design** | How would you select samples and biological replicates? |
@@ -360,6 +362,6 @@ There are several tools to perform quality assessment, trimming, adapter removal
     ```
 
 !!! tip "Results"
-    Explore the `fastp.html`
+    Explore the `fastp.html` file.
 
     * What are the main observations?

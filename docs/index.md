@@ -73,9 +73,9 @@ See [Precourse preparations](precourse.md) for the full setup instructions.
 ## Material
 
 * This website
-* Shared document (through email)
 * Repository with files
 * A workspace on GitHub Codespaces
+* Repositories in Zenodo with the required data
 
 ## Acknowledgements
 
