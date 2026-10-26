@@ -21,17 +21,17 @@
 
 ### What is metagenomics?
 
-Metagenomics is the study of genetic material recovered directly from environmental or clinical samples, without the need to isolate and cultivate individual microorganisms. By sequencing **all the DNA (or RNA) present in a sample**, metagenomics gives us access to the composition and functional potential of whole microbial communities — bacteria, archaea, fungi, viruses and eukaryotic microbes — in their ecological context.
+Metagenomics is the study of genetic material recovered directly from environmental or clinical samples, without the need to isolate and cultivate individual microorganisms. By sequencing **all the DNA (or RNA) present in a sample**, metagenomics gives us access to the composition and functional potential of whole microbial communities in their ecological context.
 
-The term _metagenomics_ was coined in the late 1990s, but the field took off with the advent of high-throughput sequencing: culture-independent approaches suddenly made it possible to explore the so-called **"unculturable majority"** — the estimated >99% of microbial species that have never been grown in pure culture. From the first 16S rRNA gene surveys to today's whole-genome shotgun sequencing, metagenomics has become a cornerstone of microbial ecology, clinical diagnostics, biotechnology and planetary health monitoring.
+The term _metagenomics_ was coined in the late 1990s, but the field took off with the advent of high-throughput sequencing: culture-independent approaches suddenly made it possible to explore the so-called **"unculturable majority"**, this is the estimated >99% of microbial species that have never been grown in pure culture. From the first 16S rRNA gene surveys to today's whole-genome shotgun sequencing, metagenomics has become a cornerstone of microbial ecology, clinical diagnostics, biotechnology and planetary health monitoring.
 
 ### Goals and opportunities
 
 Depending on the question at hand, a metagenomics study can pursue different goals:
 
-* **Who is there?** — taxonomic profiling of the community (which organisms, and in which proportions).
-* **What can they do?** — functional profiling (which metabolic pathways, enzymes or traits are encoded by the community).
-* **Who is doing what?** — combining taxonomy and function, e.g. through metagenome-assembled genomes (MAGs) or metatranscriptomics.
+* **Who is there?** Taxonomic profiling of the community (which organisms, and in which proportions).
+* **What can they do?** Functional profiling (which metabolic pathways, enzymes or traits are encoded by the community).
+* **Who is doing what?** Combining taxonomy and function, e.g. through metagenome-assembled genomes (MAGs) or metatranscriptomics.
 
 These questions arise in a wide variety of fields: **environmental** studies (soil, water, extreme environments, biogeochemical cycles), **clinical** applications (gut microbiome, infectious disease, antimicrobial resistance), and **biotechnological** opportunities (enzyme discovery, bioremediation, agriculture, industrial fermentation).
 
