@@ -13,6 +13,11 @@
 * Explore β-diversity with an NMDS ordination and barplots of the most abundant taxa.
 * Map the samples geographically and run a LEfSe analysis to identify taxa that discriminate the sampled fractions.
 
+## Material
+
+* **Session 1:** [:fontawesome-solid-file-pdf: Session 1 slides](../assets/pdf/Intro%20MDA-Day2-Part1.pdf){: .md-button }
+* **Session 2:** [:fontawesome-solid-file-pdf: Session 2 slides](../assets/pdf/Intro%20MDA-Day2-Part2.pdf){: .md-button }
+
 ## Targeted sequencing (Introduction and theory)
 
 ### Principles of amplicon-based sequencing
@@ -519,6 +524,9 @@ Plotting the rarefaction curve is a quality check to verify that we reached satu
       <figcaption>Rarefaction curves for all samples. When is the saturation reached?</figcaption>
     </figure>
 
+!!! question "Question"
+    Looking at these curves, are all samples saturated? If you had to pick a rarefaction depth to compare samples, which depth would you choose and why?
+
 #### Richness plots
 
 We then add the ASV sequences to the object and rename the ASVs, and check the α-diversity with several richness indices, either by Depth or by Fraction, along the river:
@@ -548,7 +556,7 @@ We then add the ASV sequences to the object and rename the ASVs, and check the �
     </figure>
 
 !!! question "Question"
-    Can you see an effect?
+    Does there appear to be a trend with distance along the river (`pos_km`)? Is this trend stronger for one of the fractions or depths?
 
 #### Shannon plot with regression
 
@@ -581,7 +589,7 @@ We now focus on the Shannon diversity, plotting the regression line by Fraction 
     </figure>
 
 !!! question "Question"
-    Do you see a clear separation of the Fraction?
+    Do you see a clear separation of the Fraction? The regression lines have confidence intervals. Do the intervals overlap between fractions across most of the river, or do they suggest a difference?
 
 #### Beta diversity
 
@@ -602,8 +610,8 @@ We transform the data to proportions (appropriate for Bray-Curtis distances) and
       <figcaption>NMDS ordination of the samples using Bray-Curtis distances.</figcaption>
     </figure>
 
-!!! tip "Not always the separation is clear"
-    Data exploration shows no clear separation.
+!!! question "Question"
+    Do you see clustering by Fraction, by country, or by position along the river? If not, what other factors from the metadata could explain the spread?
 
 #### Abundance plots
 
@@ -624,6 +632,9 @@ We also plot the genus and phylum abundance per sample:
       <figcaption>Genus abundance per sample (top 20 most abundant taxa).</figcaption>
     </figure>
 
+!!! question "Question"
+    Which taxa appear to be shared across most samples? Are there any samples that look particularly different at the genus level?
+
 !!! terminal "RStudio"
     ```r title="Barplot top 1000" linenums="71"
     #plot Phylum abundance of first 1000 most abundant taxa
@@ -643,7 +654,7 @@ We also plot the genus and phylum abundance per sample:
     Many samples do not contain one of the 20 most abundant genera! However, some taxa are typical of fresh water (Acinetobacter, Flavobacter, Rhodoluna, Limnohabitans, Pseudarcicella, Sphingorhabdus) or sludge (Luteolibacter).
 
 !!! question "Question"
-    Are there differences?
+    Are there phylum-level differences between samples or between fractions? Are there any samples that appear compositionally distinct from the rest?
 
 #### Phylogeo localization
 
@@ -706,6 +717,88 @@ Can we identify taxa that are specific for the two fractions (0.2 µm vs. 3 µm)
     </figure>
 
 Some taxa are known from lakes, rivers or seas (CL500-29 marine group, _Halioglobus_, _Polynucleobacter_) or from sediment/water interfaces (_Gemmatimonas_, _Opitutus_, _Brevundimonas_, _Ilumatobacter_, _Sediminibacterium_, _Solitalea_), and even some potential pathogens (_Roseomonas_). The hgcl-clade group is typical of areas associated with urban and industrial activities.
+
+## Optional exercises
+
+These exercises use the same data and code as above. They are designed to be short (10-30 minutes) and to extract additional insights from the dataset.
+
+### Exercise 1: Test different filtering thresholds (Part I)
+*Goal:* Evaluate the trade-off between read retention and stringency.
+
+1. Go back to `filterAndTrim()`. Try a more stringent filter e.g. `maxEE=c(1,1)` (or a more lenient one) keeping all other parameters the same.
+2. Re-run the downstream steps until building `track` (or just compare `out` and the final `track` table).
+
+!!! question "Questions"
+    - How many reads were lost compared to the original `maxEE=c(2,2)` run?
+    - Did the proportion of merged/non-chimeric reads change? Is this trade-off worth it for this dataset?
+
+!!! tip
+    You don't need to re-run taxonomy assignment to answer this, comparing `track` is sufficient.
+
+### Exercise 2: Rarefy and compare alpha diversity (Part II)
+*Goal:* Account for different sequencing depths before computing richness.
+
+Using `vegan` (already loaded), rarefy the counts to an even depth.
+
+!!! terminal "RStudio"
+    ```r
+    library(vegan)
+    # find a depth (e.g. min sample sum)
+    sort(sample_sums(ps))
+    set.seed(123)
+    ps.rar <- rarefy_even_depth(ps, sample.size = min(sample_sums(ps)), rngseed = 123, replace = FALSE)
+    plot_richness(ps.rar, x="pos_km", color="factor(Fraction)", measures=c("Shannon","Observed"))
+    ```
+
+!!! question "Questions"
+    - Did your choice of rarefaction depth exclude any samples? If so, are they representative of a particular fraction/country?
+    - How do the Shannon/Observed trends compare to the non-rarefied ones from the tutorial?
+
+### Exercise 3: Explore beta diversity with a presence/absence metric (Part II)
+*Goal:* See if abundance weighting drives the NMDS pattern.
+
+!!! terminal "RStudio"
+    ```r
+    # Jaccard (presence/absence)
+    ord.nmds.jac <- ordinate(ps.prop, method="NMDS", distance="jaccard", binary=TRUE)
+    plot_ordination(ps.prop, ord.nmds.jac, color="Fraction", title="Jaccard (binary) NMDS") + geom_point(size=3)
+    ```
+
+!!! question "Questions"
+    - Is the ordination structure different from Bray-Curtis?
+    - Does this suggest that the pattern is driven more by which taxa are present, or by their relative abundances?
+
+### Exercise 4: Plot abundance at a different taxonomic rank (Part II)
+*Goal:* Get a coarser (or different) view of the community.
+
+Try plotting the top families instead of genera/phyla.
+
+!!! terminal "RStudio"
+    ```r
+    top15_fam <- names(sort(taxa_sums(ps), decreasing=TRUE))[1:15]
+    ps.top15fam <- transform_sample_counts(ps, function(OTU) OTU/(sum(OTU)+1))
+    ps.top15fam <- prune_taxa(top15_fam, ps.top15fam)
+    plot_bar(ps.top15fam, x="BioSample", fill="Family") + geom_bar(aes(color=Family, fill=Family), stat="identity", position="stack")
+    ```
+
+!!! question "Questions"
+    - Are there families that are ubiquitous across the river?
+    - Do any families track with the fraction split better than the genera shown before?
+
+### Exercise 5: LEfSe at a different rank (Part II)
+*Goal:* Find discriminant taxa at higher/lower resolution.
+
+!!! terminal "RStudio"
+    ```r
+    lef_out_ph <- microbiomeMarker::run_lefse(ps, group="Fraction", taxa_rank="Phylum")
+    microbiomeMarker::plot_ef_bar(lef_out_ph)
+    lef_out_fam <- microbiomeMarker::run_lefse(ps, group="Fraction", taxa_rank="Family")
+    microbiomeMarker::plot_ef_bar(lef_out_fam)
+    ```
+
+!!! question "Questions"
+    - What differences do you see between Phylum, Family and Genus level results?
+    - At which rank is the biological interpretation the clearest for this fraction comparison?
 
 ## Additional resources
 
