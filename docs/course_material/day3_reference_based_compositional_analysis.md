@@ -301,6 +301,7 @@ Let's check what first the community position in terms of abundance:
 
 !!! terminal "RStudio"
     ```r title="Abundance plot" linenums="33"
+    percentages <- transform_sample_counts(two_sample_data, function(x) x*100 / sum(x) )
     top20 <- names(sort(taxa_sums(two_sample_data), decreasing=TRUE))[1:20]
     ps.top20 <- prune_taxa(top20, percentages)
 
