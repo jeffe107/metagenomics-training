@@ -430,7 +430,7 @@ Although we are seeing certain level of sample discrimination using ordination m
     ```r title="Network analysis" linenums="102"
     library(vegan)
     metadata <- as(sample_data(two_sample_data), "data.frame")
-    dist_matrix <- phyloseq::distance(two_sample_data_clr, method = "euclidean")
+    dist_matrix <- phyloseq::distance(two_sample_data, method = "euclidean")
 
     permanova_result <- adonis2(dist_matrix ~ Group, data = metadata, permutations = 999)
     ```
