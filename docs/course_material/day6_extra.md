@@ -163,3 +163,50 @@ If you want to explore more in detail how you can expand your analysis, please c
 * [DAS Tool publication](https://doi.org/10.1186/s13059-018-1540-z)
 * [QUAST / MetaQUAST](https://quast.sourceforge.net/)
 * [MIMAG standards for reporting MAGs](https://doi.org/10.1038/nbt.3893)
+
+
+
+## Session 10 - FAIR data and reproducibility
+
+### Why FAIR?
+
+Everything we did in this course produces valuable research objects: raw reads, assemblies, MAGs, taxonomy tables, figures. If these outputs cannot be **found, accessed, interoperated and reused** — by your future self, by your collaborators, or by reviewers — much of their value is lost. The **FAIR** principles provide the checklist:
+
+* **F**indable — with a persistent identifier (DOI/accession) and rich, indexed metadata.
+* **A**ccessible — deposited in a trusted repository, retrievable with standard protocols (and clear license/conditions).
+* **I**nteroperable — using community formats and controlled vocabularies/ontologies, so that both humans and machines can process the data.
+* **R**eusable — with clear provenance (how the data were generated and processed) and a license that states how it may be reused.
+
+### FAIR in practice: repositories and metadata
+
+For metagenomics, this translates into concrete actions:
+
+* **Raw reads** — deposited in INSDC repositories ([NCBI SRA](https://www.ncbi.nlm.nih.gov/sra), [ENA](https://www.ebi.ac.uk/ena), DDBJ) at submission of the associated BioProject/BioSample. Note that the datasets used in this course ([PRJNA256993](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA256993) on [Day 2](day2_targeted_amplification_analysis.md), [PRJEB22811](https://www.ncbi.nlm.nih.gov/bioproject/PRJEB22811) on [Day 3](day3_reference_based_compositional_analysis.md)) are public exactly because they were submitted with proper metadata.
+* **Metadata** — follow the community checklists: **MIxS** (Genomic Standards Consortium) packages for environment, host and sampling metadata; **MIMAG** for MAG reports (quality metrics, taxonomy, code availability). Metadata richness is what makes the difference between a reusable dataset and an uninterpretable FASTQ file.
+* **Assemblies and MAGs** — deposited in GenBank/IMG-M/ MG-RAST with their quality statistics and taxonomy.
+* **Analysis outputs and code** — supplementary tables with DOIs (e.g. Zenodo, connected to a GitHub release), plus the exact commands and parameters used.
+
+!!! question "Question"
+    Look at the `PRJNA256993_SraRunTable.txt` metadata you used on [Day 2](day2_targeted_amplification_analysis.md): which MIxS fields are covered? Which ones would a reviewer still ask for (e.g. sampling protocol, extraction kit, PCR primers)?
+
+### Reproducible analyses: workflows and containers
+
+FAIR data alone is not enough: the **process** that turns reads into results must also be reproducible. Throughout this course we have (implicitly and explicitly) relied on the two pillars of computational reproducibility in bioinformatics:
+
+* **Workflow managers** — tools such as [Nextflow](https://www.nextflow.io/) (used for the Kraken2/Bracken pipeline on [Day 3](day3_reference_based_compositional_analysis.md) and for nf-core/mag on [Day 4](day4_assembly_and_binning.md)) capture the entire analysis — every tool, parameter, input and output — in a single executable, versioned definition that can run on a laptop, a cluster or the cloud. Communities such as [nf-core](https://nf-co.re/) provide curated, peer-reviewed workflows that you can reuse instead of reinventing.
+* **Containers** — Docker/Singularity images freeze the software environment (OS libraries, tool versions) of each step, so the same workflow produces the same result anywhere, forever. nf-core pipelines, for example, ship every process as a container.
+
+A practical recipe for a FAIR and reproducible metagenomics analysis:
+
+1. Version your workflow and scripts in **Git** (e.g. on GitHub), with a README that states how to run them.
+2. Run them with a **workflow manager** (Nextflow, Snakemake) using **containers/conda** environments pinned to specific versions.
+3. Record the **parameters and database versions** (e.g. the exact Kraken2 database and Silva release used above).
+4. Deposit raw data and derived objects in **trusted repositories** with rich metadata and persistent identifiers.
+5. Report according to community standards (**MIxS**, **MIMAG**), and license your code and data so others can reuse them.
+
+### Course wrap-up
+
+Over these five days you have travelled the full metagenomics analysis arc: from study design and quality control ([Day 1](day1_introduction_quality_control.md)), through targeted amplicon analysis ([Day 2](day2_targeted_amplification_analysis.md)), read-based shotgun classification and community statistics ([Day 3](day3_reference_based_compositional_analysis.md)), _de novo_ assembly and MAG recovery ([Day 4](day4_assembly_and_binning.md)), to MAG quality assessment and functional interpretation ([Session 9](#session-9-mag-quality-assessment-annotation-and-classification)) — and finally to the principles that make all of it shareable and reusable (this session). We hope you will take this workflow back to your own data!
+
+!!! info "Post-course support"
+    You will receive continued support via **email for 30 days** following the course, along with on-demand access to the session recordings for the same period. Do not hesitate to bring your own data questions to the discussion slots or by email.
