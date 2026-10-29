@@ -13,11 +13,12 @@
 * Annotate and compare functional categories with COGclassifier, dbCAN3 (CAZymes) and antiSMASH (biosynthetic gene clusters).
 * Visualize and annotate prokaryotic genomes with Proksee, and compare the gene repertoire of related MAGs with a pangenome analysis (Roary/Phandango).
 
-## Objective
+## Material
 
-In the previous chapters we classified communities at the read level ([Day 3](day3_reference_based_compositional_analysis.md)) and analyzed amplicon sequencing data ([Day 2](day2_targeted_amplification_analysis.md)). In this chapter we recover **Metagenome-Assembled Genomes (MAGs)** from the shotgun dataset introduced in [Day 3](day3_reference_based_compositional_analysis.md) (Cuatro Ciénegas, México).This chapter closes the analysis arc: in **Sessions 7 and 8** we assess, annotate and interpret the MAGs recovered with nf-core/mag.
+* **Session 1:** [:fontawesome-solid-file-pdf: Session 1 slides](../assets/pdf/Intro%20MDA-Day4-Part1.pdf){: .md-button }
+* **Session 2:** [:fontawesome-solid-file-pdf: Session 2 slides](../assets/pdf/Intro%20MDA-Day4-Part2.pdf){: .md-button }
 
-### Principles of _de novo_ assembly
+## Principles of _de novo_ assembly
 
 Assembly reconstructs the original genomes from millions of short (or long) reads, without a reference. In its simplest form the problem is solved by finding overlaps between reads and laying them out into longer contiguous sequences (**contigs**), a paradigm known as **overlap–layout–consensus (OLC)**.
 
