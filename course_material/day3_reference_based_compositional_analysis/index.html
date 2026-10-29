@@ -12,6 +12,8 @@
         <link rel="prev" href="../day2_targeted_amplification_analysis/">
       
       
+        <link rel="next" href="../day4_mag_annotation/">
+      
       
         
       
@@ -931,6 +933,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../day4_mag_annotation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 4 - Pipeline selection, MAG quality and annotation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1377,7 +1407,7 @@
 <li><strong>Library preparation</strong>: typically PCR-free or low-cycle protocols are preferred to avoid amplification bias; paired-end short reads (2×150 bp) are the standard, while long-read libraries (PacBio, Nanopore) improve continuity at higher cost and error rate. Host DNA depletion or methylation-based enrichment can be used when the microbial fraction is low (e.g. clinical samples).</li>
 <li><strong>Sequencing depth</strong>: how many reads are generated per sample. Shallow shotgun (~1 Gb) supports family-level profiling; deep sequencing (5–20+ Gb) is needed for strain resolution, assembly and MAG recovery.</li>
 <li><strong>Coverage</strong>: the number of times a genome is sequenced, which depends on sequencing depth and on the relative abundance of the organism in the community. A genome at 1% relative abundance in a 10 Gb run receives only ~100 Mb of reads (often not enough to assemble). <strong>Abundance and genome size therefore jointly determine which members of a community can be recovered as MAGs.</strong></li>
-<li><strong>Community complexity</strong>: diverse environments (soil, marine) dilute the coverage of individual genomes, while low-complexity communities (gut, enrichment cultures) are more amenable to assembly and binning (<a href="../day4_assembly_and_binning/">Day 4</a>).</li>
+<li><strong>Community complexity</strong>: diverse environments (soil, marine) dilute the coverage of individual genomes, while low-complexity communities (gut, enrichment cultures) are more amenable to assembly and binning (<a href="../day4_mag_annotation/">Day 4</a>).</li>
 </ul>
 <h3 id="read-based-taxonomic-classification">Read-based taxonomic classification</h3>
 <p>Before dealing with assemblies (Days 4–5), the fastest way to obtain a community profile is to classify individual reads against a reference database. Two families of methods dominate:</p>
@@ -2172,6 +2202,22 @@ Total<span class="w">     </span><span class="m">5</span><span class="w">  </spa
             </div>
           </a>
         
+        
+          
+          <a href="../day4_mag_annotation/" class="md-footer__link md-footer__link--next" aria-label="Next: Day 4 - Pipeline selection, MAG quality and annotation">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Day 4 - Pipeline selection, MAG quality and annotation
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
         
       </nav>
     

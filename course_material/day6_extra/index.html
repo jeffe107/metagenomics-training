@@ -514,6 +514,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../day4_mag_annotation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 4 - Pipeline selection, MAG quality and annotation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -741,6 +769,67 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#session-10-fair-data-and-reproducibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session 10 - FAIR data and reproducibility
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Session 10 - FAIR data and reproducibility">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-fair" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why FAIR?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fair-in-practice-repositories-and-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FAIR in practice: repositories and metadata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reproducible-analyses-workflows-and-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reproducible analyses: workflows and containers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#course-wrap-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Course wrap-up
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -773,7 +862,7 @@
 <li>Inspect the output of an end-to-end MAG-recovery pipeline and decode the naming scheme of the recovered bins.</li>
 </ul>
 <h2 id="objective">Objective</h2>
-<p>In this chapter we recover <strong>Metagenome-Assembled Genomes (MAGs)</strong> from the shotgun dataset introduced in <a href="../day3_reference_based_compositional_analysis/">Day 3</a> (Cuatro Ciénegas, México). <strong>Session 7</strong> covers the theory of <em>de novo</em> metagenome assembly; <strong>Session 8</strong> covers how individual genomes are carved out of the assembly (binning) and how both steps are orchestrated in a single workflow with <a href="https://nf-co.re/mag/">nf-core/mag</a>. The quality assessment, annotation and interpretation of the recovered MAGs is the topic of <a href="../day5_mag_annotation_and_fair/">Day 5</a>.</p>
+<p>In this chapter we recover <strong>Metagenome-Assembled Genomes (MAGs)</strong> from the shotgun dataset introduced in <a href="../day3_reference_based_compositional_analysis/">Day 3</a> (Cuatro Ciénegas, México). <strong>Session 7</strong> covers the theory of <em>de novo</em> metagenome assembly; <strong>Session 8</strong> covers how individual genomes are carved out of the assembly (binning) and how both steps are orchestrated in a single workflow with <a href="https://nf-co.re/mag/">nf-core/mag</a>. The quality assessment, annotation and interpretation of the recovered MAGs is the topic of <a href="day5_mag_annotation_and_fair.md">Day 5</a>.</p>
 <h2 id="session-7-metagenomics-assembly">Session 7 - Metagenomics assembly</h2>
 <h3 id="principles-of-de-novo-assembly">Principles of <em>de novo</em> assembly</h3>
 <p>Assembly reconstructs the original genomes from millions of short (or long) reads, without a reference. In its simplest form the problem is solved by finding overlaps between reads and laying them out into longer contiguous sequences (<strong>contigs</strong>), a paradigm known as <strong>overlap–layout–consensus (OLC)</strong> — the basis of classic assemblers such as CAP3 or Canu/Flye for long reads.</p>
@@ -799,7 +888,7 @@
 <li><strong>Number of contigs</strong> and total assembly size — how fragmented is the reconstruction?</li>
 <li><strong>N50 / L50</strong> — the contig length at which 50% of the assembly is contained in contigs at least that long (a contiguity summary; not a correctness measure!).</li>
 <li><strong>Misassemblies and correctly placed bases</strong> — assessed by aligning the assembly to a reference with tools such as <strong>QUAST</strong>/<strong>MetaQUAST</strong> (when a close reference exists) or by mapping the reads back to the assembly to check consistency (e.g. with <strong>Bandage</strong>, or with the mapping statistics produced by the pipeline).</li>
-<li>For the recovered genomes later on, quality is judged with completeness/contamination estimates (CheckM2, BUSCO) — the topic of <a href="../day5_mag_annotation_and_fair/">Day 5</a>.</li>
+<li>For the recovered genomes later on, quality is judged with completeness/contamination estimates (CheckM2, BUSCO) — the topic of <a href="day5_mag_annotation_and_fair.md">Day 5</a>.</li>
 </ul>
 <h2 id="session-8-draft-genomes-bins-and-metagenome-assembled-genomes-mags">Session 8 - Draft genomes (bins) and Metagenome-Assembled Genomes (MAGs)</h2>
 <h3 id="from-contigs-to-genomes-binning-strategies">From contigs to genomes: binning strategies</h3>
@@ -824,7 +913,7 @@
 <h3 id="hands-on-exploring-the-recovered-mags">Hands-on: exploring the recovered MAGs</h3>
 <p>If not done already, login to your GitHub account and open the Codespaces training environment <span style="color:red">opening this link in a new tab:</span></p>
 <p><a class="md-button" href="https://codespaces.new/nextflow-io/training?quickstart=1&amp;ref=2.1.5">https://codespaces.new/nextflow-io/training?quickstart=1&amp;ref=2.1.5</a></p>
-<p>The pre-computed results are placed within the <code>metagenomics</code> directory of the workspace (<code>data/faas/</code> contains the predicted proteins per MAG; download and extract the folder <code>intermediate.tar.gz</code> from the <strong>Moodle page</strong> for the GenBank annotations and the remaining outputs used on <a href="../day5_mag_annotation_and_fair/">Day 5</a>).</p>
+<p>The pre-computed results are placed within the <code>metagenomics</code> directory of the workspace (<code>data/faas/</code> contains the predicted proteins per MAG; download and extract the folder <code>intermediate.tar.gz</code> from the <strong>Moodle page</strong> for the GenBank annotations and the remaining outputs used on <a href="day5_mag_annotation_and_fair.md">Day 5</a>).</p>
 <h4 id="1-look-at-the-recovered-mags">1. Look at the recovered MAGs</h4>
 <p>The protein FASTA files (<code>.faa</code>, produced by Prokka) are named after the sample, the assembler and the binning tool. List them and count how many MAGs were recovered per binner:</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">List the MAGs recovered by the pipeline</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -879,7 +968,7 @@ grep<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;^&gt
 <span class="c1"># look at the predicted proteins (amino-acid sequences)</span>
 head<span class="w"> </span>-20<span class="w"> </span>MEGAHIT-MetaBAT2-ERR2143759.7.faa
 </code></pre></div></td></tr></table></div>
-<p>Each of these files is a <strong>draft genome</strong>: a set of genes recovered from the community without ever culturing its organism. The GenBank version of the same MAG (with genes annotated on the contigs) is found at <code>intermediate/gbks/MEGAHIT-MetaBAT2-ERR2143759.7.gbk</code> — we will use it on <a href="../day5_mag_annotation_and_fair/">Day 5</a> for visualization and secondary-metabolite detection.</p>
+<p>Each of these files is a <strong>draft genome</strong>: a set of genes recovered from the community without ever culturing its organism. The GenBank version of the same MAG (with genes annotated on the contigs) is found at <code>intermediate/gbks/MEGAHIT-MetaBAT2-ERR2143759.7.gbk</code> — we will use it on <a href="day5_mag_annotation_and_fair.md">Day 5</a> for visualization and secondary-metabolite detection.</p>
 <h4 id="4-relate-bins-to-their-contigs">4. Relate bins to their contigs</h4>
 <p>MEGAHIT names contigs with short random-looking codes. The mapping between each MAG and its contig name is provided in the following file (<a href="../../assets/data/summary_contigs.tsv">download</a>):</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Map bins to contigs</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>head<span class="w"> </span>../summary_contigs.tsv
@@ -916,7 +1005,7 @@ head<span class="w"> </span>-20<span class="w"> </span>MEGAHIT-MetaBAT2-ERR21437
 <li>What are the limitations of the MAGs we just recovered (completeness, contamination, strain chimerism)? How would you quantify them?</li>
 </ul>
 </div>
-<p>These last questions lead us directly to <a href="../day5_mag_annotation_and_fair/">Day 5</a>, where we assess the quality of these MAGs, annotate their functions and discuss how to make such analyses FAIR and reproducible.</p>
+<p>These last questions lead us directly to <a href="day5_mag_annotation_and_fair.md">Day 5</a>, where we assess the quality of these MAGs, annotate their functions and discuss how to make such analyses FAIR and reproducible.</p>
 <h2 id="additional-resources">Additional resources</h2>
 <p>If you want to explore more in detail how you can expand your analysis, please check the following resources:</p>
 <ul>
@@ -930,6 +1019,47 @@ head<span class="w"> </span>-20<span class="w"> </span>MEGAHIT-MetaBAT2-ERR21437
 <li><a href="https://quast.sourceforge.net/">QUAST / MetaQUAST</a></li>
 <li><a href="https://doi.org/10.1038/nbt.3893">MIMAG standards for reporting MAGs</a></li>
 </ul>
+<h2 id="session-10-fair-data-and-reproducibility">Session 10 - FAIR data and reproducibility</h2>
+<h3 id="why-fair">Why FAIR?</h3>
+<p>Everything we did in this course produces valuable research objects: raw reads, assemblies, MAGs, taxonomy tables, figures. If these outputs cannot be <strong>found, accessed, interoperated and reused</strong> — by your future self, by your collaborators, or by reviewers — much of their value is lost. The <strong>FAIR</strong> principles provide the checklist:</p>
+<ul>
+<li><strong>F</strong>indable — with a persistent identifier (DOI/accession) and rich, indexed metadata.</li>
+<li><strong>A</strong>ccessible — deposited in a trusted repository, retrievable with standard protocols (and clear license/conditions).</li>
+<li><strong>I</strong>nteroperable — using community formats and controlled vocabularies/ontologies, so that both humans and machines can process the data.</li>
+<li><strong>R</strong>eusable — with clear provenance (how the data were generated and processed) and a license that states how it may be reused.</li>
+</ul>
+<h3 id="fair-in-practice-repositories-and-metadata">FAIR in practice: repositories and metadata</h3>
+<p>For metagenomics, this translates into concrete actions:</p>
+<ul>
+<li><strong>Raw reads</strong> — deposited in INSDC repositories (<a href="https://www.ncbi.nlm.nih.gov/sra">NCBI SRA</a>, <a href="https://www.ebi.ac.uk/ena">ENA</a>, DDBJ) at submission of the associated BioProject/BioSample. Note that the datasets used in this course (<a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA256993">PRJNA256993</a> on <a href="../day2_targeted_amplification_analysis/">Day 2</a>, <a href="https://www.ncbi.nlm.nih.gov/bioproject/PRJEB22811">PRJEB22811</a> on <a href="../day3_reference_based_compositional_analysis/">Day 3</a>) are public exactly because they were submitted with proper metadata.</li>
+<li><strong>Metadata</strong> — follow the community checklists: <strong>MIxS</strong> (Genomic Standards Consortium) packages for environment, host and sampling metadata; <strong>MIMAG</strong> for MAG reports (quality metrics, taxonomy, code availability). Metadata richness is what makes the difference between a reusable dataset and an uninterpretable FASTQ file.</li>
+<li><strong>Assemblies and MAGs</strong> — deposited in GenBank/IMG-M/ MG-RAST with their quality statistics and taxonomy.</li>
+<li><strong>Analysis outputs and code</strong> — supplementary tables with DOIs (e.g. Zenodo, connected to a GitHub release), plus the exact commands and parameters used.</li>
+</ul>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>Look at the <code>PRJNA256993_SraRunTable.txt</code> metadata you used on <a href="../day2_targeted_amplification_analysis/">Day 2</a>: which MIxS fields are covered? Which ones would a reviewer still ask for (e.g. sampling protocol, extraction kit, PCR primers)?</p>
+</div>
+<h3 id="reproducible-analyses-workflows-and-containers">Reproducible analyses: workflows and containers</h3>
+<p>FAIR data alone is not enough: the <strong>process</strong> that turns reads into results must also be reproducible. Throughout this course we have (implicitly and explicitly) relied on the two pillars of computational reproducibility in bioinformatics:</p>
+<ul>
+<li><strong>Workflow managers</strong> — tools such as <a href="https://www.nextflow.io/">Nextflow</a> (used for the Kraken2/Bracken pipeline on <a href="../day3_reference_based_compositional_analysis/">Day 3</a> and for nf-core/mag on <a href="day4_assembly_and_binning.md">Day 4</a>) capture the entire analysis — every tool, parameter, input and output — in a single executable, versioned definition that can run on a laptop, a cluster or the cloud. Communities such as <a href="https://nf-co.re/">nf-core</a> provide curated, peer-reviewed workflows that you can reuse instead of reinventing.</li>
+<li><strong>Containers</strong> — Docker/Singularity images freeze the software environment (OS libraries, tool versions) of each step, so the same workflow produces the same result anywhere, forever. nf-core pipelines, for example, ship every process as a container.</li>
+</ul>
+<p>A practical recipe for a FAIR and reproducible metagenomics analysis:</p>
+<ol>
+<li>Version your workflow and scripts in <strong>Git</strong> (e.g. on GitHub), with a README that states how to run them.</li>
+<li>Run them with a <strong>workflow manager</strong> (Nextflow, Snakemake) using <strong>containers/conda</strong> environments pinned to specific versions.</li>
+<li>Record the <strong>parameters and database versions</strong> (e.g. the exact Kraken2 database and Silva release used above).</li>
+<li>Deposit raw data and derived objects in <strong>trusted repositories</strong> with rich metadata and persistent identifiers.</li>
+<li>Report according to community standards (<strong>MIxS</strong>, <strong>MIMAG</strong>), and license your code and data so others can reuse them.</li>
+</ol>
+<h3 id="course-wrap-up">Course wrap-up</h3>
+<p>Over these five days you have travelled the full metagenomics analysis arc: from study design and quality control (<a href="../day1_introduction_quality_control/">Day 1</a>), through targeted amplicon analysis (<a href="../day2_targeted_amplification_analysis/">Day 2</a>), read-based shotgun classification and community statistics (<a href="../day3_reference_based_compositional_analysis/">Day 3</a>), <em>de novo</em> assembly and MAG recovery (<a href="day4_assembly_and_binning.md">Day 4</a>), to MAG quality assessment and functional interpretation (<a href="#session-9-mag-quality-assessment-annotation-and-classification">Session 9</a>) — and finally to the principles that make all of it shareable and reusable (this session). We hope you will take this workflow back to your own data!</p>
+<div class="admonition info">
+<p class="admonition-title">Post-course support</p>
+<p>You will receive continued support via <strong>email for 30 days</strong> following the course, along with on-demand access to the session recordings for the same period. Do not hesitate to bring your own data questions to the discussion slots or by email.</p>
+</div>
 
 
 
