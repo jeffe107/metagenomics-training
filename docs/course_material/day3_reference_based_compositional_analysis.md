@@ -31,7 +31,7 @@ Several design decisions determine what a shotgun dataset can resolve:
 * **Library preparation**: typically PCR-free or low-cycle protocols are preferred to avoid amplification bias; paired-end short reads (2×150 bp) are the standard, while long-read libraries (PacBio, Nanopore) improve continuity at higher cost and error rate. Host DNA depletion or methylation-based enrichment can be used when the microbial fraction is low (e.g. clinical samples).
 * **Sequencing depth**: how many reads are generated per sample. Shallow shotgun (~1 Gb) supports family-level profiling; deep sequencing (5–20+ Gb) is needed for strain resolution, assembly and MAG recovery.
 * **Coverage**: the number of times a genome is sequenced, which depends on sequencing depth and on the relative abundance of the organism in the community. A genome at 1% relative abundance in a 10 Gb run receives only ~100 Mb of reads (often not enough to assemble). **Abundance and genome size therefore jointly determine which members of a community can be recovered as MAGs.**
-* **Community complexity**: diverse environments (soil, marine) dilute the coverage of individual genomes, while low-complexity communities (gut, enrichment cultures) are more amenable to assembly and binning ([Day 4](day4_assembly_and_binning.md)).
+* **Community complexity**: diverse environments (soil, marine) dilute the coverage of individual genomes, while low-complexity communities (gut, enrichment cultures) are more amenable to assembly and binning ([Day 4](day4_mag_annotation.md)).
 
 ### Read-based taxonomic classification
 
