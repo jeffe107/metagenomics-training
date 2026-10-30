@@ -91,6 +91,10 @@ or extract it from here:
 !!! info "Workflow used"
     You are receiving the output of the pipeline [TaxoFlow](https://taxoflow.work/), executed using the indexed genome `Human / GRCh38 no-alt` for Bowtie2 and the database `PlusPFP (Standard plus Refseq protozoa, fungi & plant) v04/09/2024` for Kraken2 and Bracken. The output includes the BIOM file and other intermediate files. You can find them [here](https://github.com/jeffe107/metagenomics-training/exercise).
 
+    You can access the BIOM file directly:
+
+    [:fontawesome-solid-file-code: BIOM file](../assets/data/merged.biom){: .md-button }
+
 In your analysis you should (not an exhaustive list):
 
 1. Filters the abundance data:
