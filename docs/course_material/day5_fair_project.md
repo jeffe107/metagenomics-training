@@ -89,7 +89,7 @@ or extract it from here:
 **Your task, then, is to perform the proper statistical analysis: use the output of the bioinformatics step to perform diversity analyses and differential abundance analysis between dietary supplement and yogurt samples.**
 
 !!! info "Workflow used"
-    You are receiving the output of the pipeline [TaxoFlow](https://taxoflow.work/), executed using the indexed genome `Human / GRCh38 no-alt` for Bowtie2 and the database `PlusPFP (Standard plus Refseq protozoa, fungi & plant) v04/09/2024` for Kraken2 and Bracken. The output includes the BIOM file and other intermediate files. You can find them [here](https://github.com/jeffe107/metagenomics-training/exercise).
+    You are receiving the output of the pipeline [TaxoFlow](https://taxoflow.work/), executed using the indexed genome `Human / GRCh38 no-alt` for Bowtie2 and the database `PlusPFP (Standard plus Refseq protozoa, fungi & plant) v04/09/2024` for Kraken2 and Bracken. The output includes the BIOM file and other intermediate files. You can find them [here](https://github.com/jeffe107/metagenomics-training/tree/main/exercise).
 
     You can access the BIOM file directly:
 
