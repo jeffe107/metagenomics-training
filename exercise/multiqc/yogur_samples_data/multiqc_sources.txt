@@ -1,0 +1,129 @@
+Module	Section	Sample Name	Source
+Bowtie 2 / HiSAT2	all_sections	SRR11605259_aln_sum	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605259_aln_sum.log
+Bowtie 2 / HiSAT2	all_sections	SRR11605260_aln_sum	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605260_aln_sum.log
+Bowtie 2 / HiSAT2	all_sections	SRR11605261_aln_sum	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605261_aln_sum.log
+Bowtie 2 / HiSAT2	all_sections	SRR11605262_aln_sum	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605262_aln_sum.log
+Bowtie 2 / HiSAT2	all_sections	SRR11605263_aln_sum	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605263_aln_sum.log
+Bowtie 2 / HiSAT2	all_sections	SRR11605264_aln_sum	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605264_aln_sum.log
+Bowtie 2 / HiSAT2	all_sections	SRR11605265_aln_sum	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605265_aln_sum.log
+Bowtie 2 / HiSAT2	all_sections	SRR11605266_aln_sum	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605266_aln_sum.log
+Bowtie 2 / HiSAT2	all_sections	SRR11605267_aln_sum	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605267_aln_sum.log
+Bowtie 2 / HiSAT2	all_sections	SRR11605268_aln_sum	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605268_aln_sum.log
+Bowtie 2 / HiSAT2	all_sections	SRR11605269_aln_sum	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605269_aln_sum.log
+Bowtie 2 / HiSAT2	all_sections	SRR11605270_aln_sum	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605270_aln_sum.log
+Bowtie 2 / HiSAT2	all_sections	SRR11605271_aln_sum	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605271_aln_sum.log
+Bowtie 2 / HiSAT2	all_sections	SRR11605272_aln_sum	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605272_aln_sum.log
+Bowtie 2 / HiSAT2	all_sections	SRR11605273_aln_sum	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605273_aln_sum.log
+Bowtie 2 / HiSAT2	all_sections	SRR11605274_aln_sum	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605274_aln_sum.log
+Cutadapt	all_sections	SRR11605259_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605259_1.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR11605259_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605259_2.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR11605260_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605260_1.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR11605260_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605260_2.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR11605261_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605261_1.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR11605261_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605261_2.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR11605262_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605262_1.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR11605262_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605262_2.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR11605263_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605263_1.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR11605263_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605263_2.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR11605264_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605264_1.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR11605264_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605264_2.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR11605265_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605265_1.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR11605265_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605265_2.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR11605266_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605266_1.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR11605266_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605266_2.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR11605267_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605267_1.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR11605267_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605267_2.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR11605268_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605268_1.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR11605268_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605268_2.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR11605269_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605269_1.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR11605269_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605269_2.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR11605270_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605270_1.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR11605270_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605270_2.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR11605271_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605271_1.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR11605271_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605271_2.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR11605272_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605272_1.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR11605272_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605272_2.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR11605273_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605273_1.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR11605273_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605273_2.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR11605274_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605274_1.fastq.gz_trimming_report.txt
+Cutadapt	all_sections	SRR11605274_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605274_2.fastq.gz_trimming_report.txt
+Kraken	all_sections	SRR11605259.k2report	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605259.k2report
+Kraken	all_sections	SRR11605260.k2report	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605260.k2report
+Kraken	all_sections	SRR11605261.k2report	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605261.k2report
+Kraken	all_sections	SRR11605262.k2report	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605262.k2report
+Kraken	all_sections	SRR11605263.k2report	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605263.k2report
+Kraken	all_sections	SRR11605264.k2report	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605264.k2report
+Kraken	all_sections	SRR11605265.k2report	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605265.k2report
+Kraken	all_sections	SRR11605266.k2report	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605266.k2report
+Kraken	all_sections	SRR11605267.k2report	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605267.k2report
+Kraken	all_sections	SRR11605268.k2report	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605268.k2report
+Kraken	all_sections	SRR11605269.k2report	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605269.k2report
+Kraken	all_sections	SRR11605270.k2report	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605270.k2report
+Kraken	all_sections	SRR11605271.k2report	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605271.k2report
+Kraken	all_sections	SRR11605272.k2report	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605272.k2report
+Kraken	all_sections	SRR11605273.k2report	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605273.k2report
+Kraken	all_sections	SRR11605274.k2report	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605274.k2report
+FastQC	all_sections	SRR11605259_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605259_1_fastqc.zip
+FastQC	all_sections	SRR11605259_1_val_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605259_1_val_1_fastqc.zip
+FastQC	all_sections	SRR11605259_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605259_2_fastqc.zip
+FastQC	all_sections	SRR11605259_2_val_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605259_2_val_2_fastqc.zip
+FastQC	all_sections	SRR11605260_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605260_1_fastqc.zip
+FastQC	all_sections	SRR11605260_1_val_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605260_1_val_1_fastqc.zip
+FastQC	all_sections	SRR11605260_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605260_2_fastqc.zip
+FastQC	all_sections	SRR11605260_2_val_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605260_2_val_2_fastqc.zip
+FastQC	all_sections	SRR11605261_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605261_1_fastqc.zip
+FastQC	all_sections	SRR11605261_1_val_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605261_1_val_1_fastqc.zip
+FastQC	all_sections	SRR11605261_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605261_2_fastqc.zip
+FastQC	all_sections	SRR11605261_2_val_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605261_2_val_2_fastqc.zip
+FastQC	all_sections	SRR11605262_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605262_1_fastqc.zip
+FastQC	all_sections	SRR11605262_1_val_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605262_1_val_1_fastqc.zip
+FastQC	all_sections	SRR11605262_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605262_2_fastqc.zip
+FastQC	all_sections	SRR11605262_2_val_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605262_2_val_2_fastqc.zip
+FastQC	all_sections	SRR11605263_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605263_1_fastqc.zip
+FastQC	all_sections	SRR11605263_1_val_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605263_1_val_1_fastqc.zip
+FastQC	all_sections	SRR11605263_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605263_2_fastqc.zip
+FastQC	all_sections	SRR11605263_2_val_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605263_2_val_2_fastqc.zip
+FastQC	all_sections	SRR11605264_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605264_1_fastqc.zip
+FastQC	all_sections	SRR11605264_1_val_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605264_1_val_1_fastqc.zip
+FastQC	all_sections	SRR11605264_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605264_2_fastqc.zip
+FastQC	all_sections	SRR11605264_2_val_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605264_2_val_2_fastqc.zip
+FastQC	all_sections	SRR11605265_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605265_1_fastqc.zip
+FastQC	all_sections	SRR11605265_1_val_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605265_1_val_1_fastqc.zip
+FastQC	all_sections	SRR11605265_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605265_2_fastqc.zip
+FastQC	all_sections	SRR11605265_2_val_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605265_2_val_2_fastqc.zip
+FastQC	all_sections	SRR11605266_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605266_1_fastqc.zip
+FastQC	all_sections	SRR11605266_1_val_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605266_1_val_1_fastqc.zip
+FastQC	all_sections	SRR11605266_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605266_2_fastqc.zip
+FastQC	all_sections	SRR11605266_2_val_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605266_2_val_2_fastqc.zip
+FastQC	all_sections	SRR11605267_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605267_1_fastqc.zip
+FastQC	all_sections	SRR11605267_1_val_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605267_1_val_1_fastqc.zip
+FastQC	all_sections	SRR11605267_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605267_2_fastqc.zip
+FastQC	all_sections	SRR11605267_2_val_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605267_2_val_2_fastqc.zip
+FastQC	all_sections	SRR11605268_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605268_1_fastqc.zip
+FastQC	all_sections	SRR11605268_1_val_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605268_1_val_1_fastqc.zip
+FastQC	all_sections	SRR11605268_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605268_2_fastqc.zip
+FastQC	all_sections	SRR11605268_2_val_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605268_2_val_2_fastqc.zip
+FastQC	all_sections	SRR11605269_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605269_1_fastqc.zip
+FastQC	all_sections	SRR11605269_1_val_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605269_1_val_1_fastqc.zip
+FastQC	all_sections	SRR11605269_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605269_2_fastqc.zip
+FastQC	all_sections	SRR11605269_2_val_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605269_2_val_2_fastqc.zip
+FastQC	all_sections	SRR11605270_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605270_1_fastqc.zip
+FastQC	all_sections	SRR11605270_1_val_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605270_1_val_1_fastqc.zip
+FastQC	all_sections	SRR11605270_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605270_2_fastqc.zip
+FastQC	all_sections	SRR11605270_2_val_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605270_2_val_2_fastqc.zip
+FastQC	all_sections	SRR11605271_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605271_1_fastqc.zip
+FastQC	all_sections	SRR11605271_1_val_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605271_1_val_1_fastqc.zip
+FastQC	all_sections	SRR11605271_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605271_2_fastqc.zip
+FastQC	all_sections	SRR11605271_2_val_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605271_2_val_2_fastqc.zip
+FastQC	all_sections	SRR11605272_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605272_1_fastqc.zip
+FastQC	all_sections	SRR11605272_1_val_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605272_1_val_1_fastqc.zip
+FastQC	all_sections	SRR11605272_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605272_2_fastqc.zip
+FastQC	all_sections	SRR11605272_2_val_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605272_2_val_2_fastqc.zip
+FastQC	all_sections	SRR11605273_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605273_1_fastqc.zip
+FastQC	all_sections	SRR11605273_1_val_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605273_1_val_1_fastqc.zip
+FastQC	all_sections	SRR11605273_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605273_2_fastqc.zip
+FastQC	all_sections	SRR11605273_2_val_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605273_2_val_2_fastqc.zip
+FastQC	all_sections	SRR11605274_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605274_1_fastqc.zip
+FastQC	all_sections	SRR11605274_1_val_1	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605274_1_val_1_fastqc.zip
+FastQC	all_sections	SRR11605274_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605274_2_fastqc.zip
+FastQC	all_sections	SRR11605274_2_val_2	/data/users/jyepesgarcia/taxoflow_tutorial/TaxoFlow/multi/work/8f/2901804eac7d3123d3efdc1e674680/SRR11605274_2_val_2_fastqc.zip

@@ -1,0 +1,100 @@
+name	taxonomy_id	taxonomy_lvl	kraken_assigned_reads	added_reads	new_est_reads	fraction_total_reads
+Bifidobacterium breve	1685	S	2189453	372951	2562404	0.35405
+Bifidobacterium animalis	28025	S	48057	966239	1014296	0.14015
+Bifidobacterium longum	216816	S	36110	37618	73728	0.01019
+Bifidobacterium bifidum	1681	S	3719	2758	6477	0.00089
+Bifidobacterium catenulatum	1686	S	3191	556	3747	0.00052
+Bifidobacterium angulatum	1683	S	2121	41	2162	0.00030
+Bifidobacterium scardovii	158787	S	1308	3	1311	0.00018
+Bifidobacterium sp. KRGSERBCFTRI	2985571	S	205	62829	63034	0.00871
+Bifidobacterium sp. ESL0732	2983222	S	129	89	218	0.00003
+Bifidobacterium sp. ESL0790	2983233	S	71	7	78	0.00001
+Bifidobacterium sp. ESL0775	2983230	S	54	17	71	0.00001
+Bifidobacterium sp. WK041_4_12	3059038	S	43	43	86	0.00001
+Bifidobacterium sp. ESL0728	2983220	S	33	12	45	0.00001
+Bifidobacterium sp. ESL0690	2983214	S	32	17	49	0.00001
+Bifidobacterium sp. ESL0682	2983212	S	31	6	37	0.00001
+Bifidobacterium sp. ESL0769	2983229	S	24	12	36	0.00000
+Bifidobacterium pseudolongum	1694	S	740	9	749	0.00010
+Bifidobacterium dentium	1689	S	519	3	522	0.00007
+Bifidobacterium choerinum	35760	S	455	3	458	0.00006
+Bifidobacterium adolescentis	1680	S	426	358	784	0.00011
+Bifidobacterium pseudocatenulatum	28026	S	338	113	451	0.00006
+Bifidobacterium lemurum	1603886	S	150	5	155	0.00002
+Bifidobacterium asteroides	1684	S	149	0	149	0.00002
+Bifidobacterium pullorum	78448	S	148	2	150	0.00002
+Bifidobacterium subtile	77635	S	106	0	106	0.00001
+Bifidobacterium thermophilum	33905	S	95	0	95	0.00001
+Bifidobacterium imperatoris	2020965	S	86	14	100	0.00001
+Bifidobacterium coryneforme	1687	S	80	0	80	0.00001
+Bifidobacterium eulemuris	1765219	S	78	3	81	0.00001
+Bifidobacterium saguini	762210	S	69	11	80	0.00001
+Bifidobacterium actinocoloniiforme	638619	S	47	0	47	0.00001
+Bifidobacterium faecale	1454229	S	34	100	134	0.00002
+Streptococcus thermophilus	1308	S	2918722	117932	3036654	0.41958
+Streptococcus salivarius	1304	S	2112	487	2599	0.00036
+Streptococcus sp. HSISS3	1316412	S	606	150	756	0.00010
+Streptococcus sp. HSISS2	1316411	S	250	63	313	0.00004
+Streptococcus sp. ZY1909104	3233335	S	184	17	201	0.00003
+Streptococcus sp. FSL W8-0197	2975349	S	147	63	210	0.00003
+Streptococcus sp. FDAARGOS_192	1839799	S	103	49	152	0.00002
+Streptococcus sp. DTU_2020_1000888_1_SI_GRL_NUU_041A	3077723	S	66	17	83	0.00001
+Streptococcus sp. DTU_2020_1001019_1_SI_AUS_MUR_006	3077584	S	37	1	38	0.00001
+Streptococcus sp. FSL R7-0248	2975324	S	25	12	37	0.00001
+Streptococcus vestibularis	1343	S	844	43	887	0.00012
+Streptococcus gordonii	1302	S	784	11	795	0.00011
+Streptococcus macedonicus	59310	S	260	254	514	0.00007
+Streptococcus suis	1307	S	191	39	230	0.00003
+Streptococcus agalactiae	1311	S	170	1378	1548	0.00021
+Streptococcus parasuis	1501662	S	163	6	169	0.00002
+Streptococcus intermedius	1338	S	116	5	121	0.00002
+Streptococcus equinus	1335	S	142	9	151	0.00002
+Streptococcus pneumoniae	1313	S	137	150	287	0.00004
+Streptococcus sanguinis	1305	S	97	3	100	0.00001
+Streptococcus pyogenes	1314	S	83	32	115	0.00002
+Streptococcus lutetiensis	150055	S	69	7	76	0.00001
+Streptococcus mutans	1309	S	54	15	69	0.00001
+Streptococcus infantis	68892	S	53	2	55	0.00001
+Streptococcus equi	1336	S	29	0	29	0.00000
+Streptococcus iniae	1346	S	41	0	41	0.00001
+Streptococcus oralis	1303	S	38	4	42	0.00001
+Streptococcus sobrinus	1310	S	34	0	34	0.00000
+Streptococcus ruminantium	1917441	S	27	7	34	0.00000
+Streptococcus mitis	28037	S	25	2	27	0.00000
+Streptococcus pluranimalium	82348	S	25	0	25	0.00000
+Lactococcus cremoris	1359	S	450	107	557	0.00008
+Lactococcus raffinolactis	1366	S	317	7	324	0.00004
+Lactococcus lactis	1358	S	157	63	220	0.00003
+Lactococcus sp.	44273	S	25	95	120	0.00002
+Lactobacillus delbrueckii	1584	S	287317	6551	293868	0.04060
+Lactobacillus acidophilus	1579	S	152702	1459	154161	0.02130
+Lactobacillus helveticus	1587	S	108	9	117	0.00002
+Lactobacillus amylovorus	1604	S	28	1	29	0.00000
+Lacticaseibacillus paracasei	1597	S	1003	43	1046	0.00014
+Lactiplantibacillus plantarum	1590	S	805	197	1002	0.00014
+Enterococcus faecium	1352	S	719	996	1715	0.00024
+Enterococcus faecalis	1351	S	40	26	66	0.00001
+Geobacillus stearothermophilus	1422	S	25	314	339	0.00005
+Anoxybacillus flavithermus	33934	S	44	59	103	0.00001
+Staphylococcus cohnii	29382	S	112	26	138	0.00002
+Clostridium botulinum	1491	S	1085	22	1107	0.00015
+Faecalibacterium prausnitzii	853	S	39	16	55	0.00001
+Agathobacter rectalis	39491	S	105	26	131	0.00002
+Anaerobutyricum hallii	39488	S	24	3	27	0.00000
+Megasphaera stantonii	2144175	S	70	0	70	0.00001
+Thermus thermophilus	274	S	256	35	291	0.00004
+Thermus parvatiensis	456163	S	45	33	78	0.00001
+Kluyvera intermedia	61648	S	26	7	33	0.00000
+Escherichia coli	562	S	25	168	193	0.00003
+Hafnia alvei	569	S	24	6	30	0.00000
+Vibrio furnissii	29494	S	45	7	52	0.00001
+Sphingomonas aliaeris	2759526	S	39	2	41	0.00001
+Caulobacter flavus	1679497	S	39	5	44	0.00001
+Achromobacter veterisilvae	2069367	S	36	5	41	0.00001
+Phocaeicola vulgatus	821	S	45	20	65	0.00001
+Segatella copri	165179	S	35	1	36	0.00000
+Homo sapiens	9606	S	1187	423	1610	0.00022
+Babesia bigemina	5866	S	1142	37	1179	0.00016
+Solanum stenotomum	172797	S	35	45	80	0.00001
+Capsicum annuum	4072	S	25	17	42	0.00001
+Cryptomeria japonica	3369	S	40	14	54	0.00001

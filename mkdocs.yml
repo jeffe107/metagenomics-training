@@ -9,6 +9,7 @@ nav:
       - Day 2 - Targeted sequencing analysis: course_material/day2_targeted_amplification_analysis.md
       - Day 3 - Shotgun metagenomics and downstream analysis: course_material/day3_reference_based_compositional_analysis.md
       - Day 4 - Pipeline selection, MAG quality and annotation: course_material/day4_mag_annotation.md
+      - Day 5 - FAIR principles, reproducibility and Project: course_material/day5_fair_project.md
 
 theme:
   name: material

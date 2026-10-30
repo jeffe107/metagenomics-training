@@ -1,0 +1,88 @@
+name	taxonomy_id	taxonomy_lvl	kraken_assigned_reads	added_reads	new_est_reads	fraction_total_reads
+Streptococcus thermophilus	1308	S	6520256	241822	6762078	0.93685
+Streptococcus sp. ZY19097	3231906	S	9706	181	9887	0.00137
+Streptococcus sp. HSISS2	1316411	S	932	151	1083	0.00015
+Streptococcus sp. HSISS3	1316412	S	837	133	970	0.00013
+Streptococcus sp. FSL R7-0248	2975324	S	229	102	331	0.00005
+Streptococcus sp. FSL W8-0197	2975349	S	175	63	238	0.00003
+Streptococcus sp. LPB0220	2610896	S	44	4	48	0.00001
+Streptococcus sp. FDAARGOS_520	2420308	S	31	1374	1405	0.00019
+Streptococcus sp. ZY1909104	3233335	S	24	1	25	0.00000
+Streptococcus salivarius	1304	S	10155	2541	12696	0.00176
+Streptococcus infantarius	102684	S	3333	532	3865	0.00054
+Streptococcus ruminicola	2686210	S	2951	646	3597	0.00050
+Streptococcus pasteurianus	197614	S	2805	3913	6718	0.00093
+Streptococcus agalactiae	1311	S	1592	4156	5748	0.00080
+Streptococcus vestibularis	1343	S	1512	68	1580	0.00022
+Streptococcus gordonii	1302	S	1507	17	1524	0.00021
+Streptococcus parasuis	1501662	S	1279	30	1309	0.00018
+Streptococcus gallolyticus	315405	S	1168	399	1567	0.00022
+Streptococcus suis	1307	S	781	91	872	0.00012
+Streptococcus pyogenes	1314	S	714	282	996	0.00014
+Streptococcus mutans	1309	S	351	25	376	0.00005
+Streptococcus lutetiensis	150055	S	314	27	341	0.00005
+Streptococcus equinus	1335	S	300	17	317	0.00004
+Streptococcus sanguinis	1305	S	279	9	288	0.00004
+Streptococcus dysgalactiae	1334	S	171	152	323	0.00004
+Streptococcus equi	1336	S	57	0	57	0.00001
+Streptococcus cristatus	45634	S	215	1	216	0.00003
+Streptococcus pneumoniae	1313	S	197	377	574	0.00008
+Streptococcus oralis	1303	S	191	21	212	0.00003
+Streptococcus intermedius	1338	S	102	3	105	0.00001
+Streptococcus anginosus	1328	S	50	17	67	0.00001
+Streptococcus constellatus	76860	S	38	2170	2208	0.00031
+Streptococcus didelphis	102886	S	185	0	185	0.00003
+Streptococcus infantis	68892	S	172	5	177	0.00002
+Streptococcus macedonicus	59310	S	158	130	288	0.00004
+Streptococcus iniae	1346	S	128	0	128	0.00002
+Streptococcus sobrinus	1310	S	101	0	101	0.00001
+Streptococcus ratti	1341	S	84	0	84	0.00001
+Streptococcus lactarius	684066	S	53	0	53	0.00001
+Streptococcus mitis	28037	S	50	3	53	0.00001
+Streptococcus alactolyticus	29389	S	45	1	46	0.00001
+Streptococcus parauberis	1348	S	43	0	43	0.00001
+Streptococcus hillyeri	2282420	S	37	0	37	0.00001
+Streptococcus halotolerans	1814128	S	35	0	35	0.00000
+Streptococcus pluranimalium	82348	S	32	0	32	0.00000
+Streptococcus ferus	1345	S	28	0	28	0.00000
+Streptococcus halichoeri	254785	S	27	0	27	0.00000
+Streptococcus canis	1329	S	27	0	27	0.00000
+Streptococcus pseudoporcinus	361101	S	24	0	24	0.00000
+Lactococcus sp.	44273	S	5033	5556	10589	0.00147
+Lactococcus cremoris	1359	S	419	82	501	0.00007
+Lactococcus raffinolactis	1366	S	356	2	358	0.00005
+Lactococcus lactis	1358	S	353	68	421	0.00006
+Lactococcus formosensis	1281486	S	347	30	377	0.00005
+Lactococcus petauri	1940789	S	32	16	48	0.00001
+Lactobacillus delbrueckii	1584	S	369701	6668	376369	0.05214
+Lactobacillus helveticus	1587	S	243	16	259	0.00004
+Levilactobacillus brevis	1580	S	178	4	182	0.00003
+Leuconostoc mesenteroides	1245	S	113	16	129	0.00002
+Lactiplantibacillus plantarum	1590	S	46	3	49	0.00001
+Enterococcus cecorum	44008	S	1452	5	1457	0.00020
+Enterococcus faecium	1352	S	546	55	601	0.00008
+Enterococcus faecalis	1351	S	42	2	44	0.00001
+Bacillus thuringiensis	1428	S	32	31	63	0.00001
+Anoxybacillus flavithermus	33934	S	31	20	51	0.00001
+Staphylococcus haemolyticus	1283	S	93	10	103	0.00001
+Staphylococcus aureus	1280	S	53	23	76	0.00001
+Clostridium botulinum	1491	S	217	4	221	0.00003
+Faecalibacterium prausnitzii	853	S	27	23	50	0.00001
+Ruminococcus sp. SR1/5	657323	S	26	19	45	0.00001
+Blautia wexlerae	418240	S	31	12	43	0.00001
+Blautia sp. SC05B48	2479767	S	26	25	51	0.00001
+Agathobacter rectalis	39491	S	44	3	47	0.00001
+Bifidobacterium pseudocatenulatum	28026	S	36	3	39	0.00001
+Bifidobacterium longum	216816	S	26	10	36	0.00000
+Escherichia coli	562	S	59	242	301	0.00004
+Bacteroides stercoris	46506	S	85	21	106	0.00001
+Bacteroides uniformis	820	S	75	81	156	0.00002
+Phocaeicola vulgatus	821	S	28	10	38	0.00001
+Populus trichocarpa	3694	S	466	42	508	0.00007
+Populus nigra	3691	S	153	177	330	0.00005
+Solanum stenotomum	172797	S	64	11	75	0.00001
+Capsicum annuum	4072	S	26	1	27	0.00000
+Cryptomeria japonica	3369	S	27	2	29	0.00000
+Homo sapiens	9606	S	323	151	474	0.00007
+Saccharomyces cerevisiae	4932	S	283	21	304	0.00004
+Babesia bigemina	5866	S	286	2	288	0.00004
