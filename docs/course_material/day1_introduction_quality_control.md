@@ -300,6 +300,19 @@ Go to the directory WGS_shortReads_MOCK:
     | Sequence length distribution | ⚠️ WARNING (31–125 bp, nearly all at 125) | ⚠️ WARNING (35–151 bp, most at 151) | Both were trimmed, so a few reads are shorter. The maximum length reflects each run's read length. |
     | Sequence duplication levels | ⚠️ WARNING (50.7% remain; bump at >10 copies) | ✅ PASS (88.2% remain) | More duplication in the metagenome is expected: abundant organisms are sequenced deeply, and some duplicates may be technical. The plot cannot separate the two causes. |
 
+!!! tip "Integrate with MultiQC"
+    You can integrate multipe FastQC outputs into a single a report using [MultiQC](https://seqera.io/multiqc/). Run the following commands in the terminal inside the folders than contain the FASTQC outputs:
+
+    !!! terminal "CodeSpaces"
+        ```bash title="Run FastQC on the WGS reads"
+        conda install bioconda::multiqc
+        multiqc .
+        ```
+
+    Once finished, you can download or open the file `multiqc_report.html`.
+
+
+
 ### Tips: FastQC output explained
 
 !!! tip "Reading the report at a glance"

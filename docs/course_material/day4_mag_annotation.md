@@ -174,6 +174,11 @@ Moving forward, it is time now to identify genomic features within the bins/MAGs
 
 [Prokka](https://github.com/tseemann/prokka) (included within nf-core/mag) has provided us with the annotation about the presence/localization of enzymes in the bins/MAGs that are involved in a wide variety of processes. Nonetheless, Prokka uses EC numbers to describe such genomic features, and as a result, we needed to transform these annotations to K numbers and merge them into a single file (this was already done for you). Now, let's install KEGG Decoder:
 
+??? tip "EC numbers to KO numbers"
+    In case you need to use the ouput from Prokka run over your own data, you will the correspondance between EC numbers and KO numbers, you can find it here:
+
+    [:fontawesome-solid-file-code: EC to KO](../assets/data/ec_2_ko.txt){: .md-button }
+
 !!! terminal "CodeSpaces"
     ```bash title="Install KEGG Decoder"
     conda create -n keggdecoder python=3.6

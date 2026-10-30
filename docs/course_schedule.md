@@ -12,7 +12,7 @@ The course runs for **5 days** (Monday 26<sup>th</sup> to Friday 30<sup>th</sup>
 | 2   | Tue 27 Oct | 3–4      | [Targeted sequencing](course_material/day2_targeted_amplification_analysis.md) |
 | 3   | Wed 28 Oct | 5–6      | [Whole-genome sequencing and taxonomic classification](course_material/day3_reference_based_compositional_analysis.md) |
 | 4   | Thu 29 Oct | 7–8      | [Pipeline selection, MAG quality assessment and annotation](course_material/day4_mag_annotation.md) |
-| 5   | Fri 30 Oct | 9–10     | **FAIR principles, good practices & Project** |
+| 5   | Fri 30 Oct | 9–10     | [FAIR principles, good practices & Project](course_material/day5_fair_project.md) |
 
 ## Day 1 – Monday 26<sup>th</sup> (14:00–19:30)
 
@@ -48,3 +48,11 @@ The course runs for **5 days** (Monday 26<sup>th</sup> to Friday 30<sup>th</sup>
 | 14:00–16:30 | Session 7 | **Pipeline selection and quality assessment**<br>Principles of _de novo_ metagenomic assembly; assembly algorithms, coverage and community complexity challenges, quality metrics, and pipelines. |
 | 16:30–17:00 | Break     | |
 | 17:00–19:30 | Session 8 | **MAG annotation and classification**<br> Genome annotation using multiples tools, methodologies and approaches, along with visualization techniques. |
+
+## Day 5 – Friday 30<sup>th</sup> (14:00–19:30)
+
+| Time      | Type       | Topic |
+|-----------|------------|-------|
+| 14:00–15:00 | Session 9 | **FAIR principles and reproducibility**<br>Important aspects, methodologies to ensure reproducibility across studies,  Open Access and transparency. |
+| 15:00–15:30 | Break     | |
+| 15:30–19:30 | Session 10 | **Real-world project**<br> Applied knowledge and skills to a real dataset in order to extract insights and formulate biological conclusions. |
